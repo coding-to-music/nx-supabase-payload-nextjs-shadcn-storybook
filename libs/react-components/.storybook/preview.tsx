@@ -10,9 +10,9 @@ export const decorators: Decorator[] = [
         React.useEffect(() => {
             const className = darkMode ? "dark" : "light";
             const root = globalThis.document.documentElement;
-            root.classList.add(className);
+            root.dataset.theme = className;
             return () => {
-                root.classList.remove(className);
+                delete root.dataset.theme;
             };
         }, [darkMode]);
         return <Story />;

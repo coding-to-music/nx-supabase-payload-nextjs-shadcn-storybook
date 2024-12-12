@@ -39,6 +39,7 @@
             "@my-project/react-components/ui/*": [
                 "libs/react-components/src/ui/*"
             ],
+            "@my-project/utils": ["libs/utils/src/index.ts"],
             "@payload-config": ["apps/nextjs-app/src/payload.config.ts"]
         }
     },

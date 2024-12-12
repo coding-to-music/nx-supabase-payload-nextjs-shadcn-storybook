@@ -19,6 +19,7 @@
         "types": ["jest", "node"]
     },
     "include": [
+        "../../reset.d.ts",
         "**/*.ts",
         "**/*.tsx",
         "**/*.js",

@@ -20,6 +20,7 @@
         "src/**/*.test.js"
     ],
     "include": [
+        "../../reset.d.ts",
         "src/**/*.stories.ts",
         "src/**/*.stories.js",
         "src/**/*.stories.jsx",

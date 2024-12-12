@@ -128,6 +128,9 @@ export default [
                         props: false,
                         ref: false,
                     },
+                    allowList: {
+                        generateStaticParams: true,
+                    },
                 },
             ],
         },

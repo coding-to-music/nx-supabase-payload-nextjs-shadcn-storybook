@@ -1,6 +1,7 @@
 {
     "name": "@my-project/utils",
-    "version": "0.0.1",
-    "dependencies": {},
-    "private": true
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "dependencies": {}
 }

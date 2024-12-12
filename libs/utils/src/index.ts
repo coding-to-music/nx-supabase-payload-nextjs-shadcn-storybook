@@ -1,1 +1,3 @@
-export * from "./lib/utils";
+export * from "./canUseDom";
+export * from "./formatSlug";
+export * from "./getUrl";

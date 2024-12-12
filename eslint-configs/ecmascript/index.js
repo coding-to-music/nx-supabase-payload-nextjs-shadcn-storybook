@@ -73,6 +73,30 @@ export default [
                     },
                 },
             ],
+            "import/no-useless-path-segments": [
+                "error",
+                {
+                    noUselessIndex: true,
+                },
+            ],
+            "no-restricted-imports": [
+                "error",
+                {
+                    paths: [
+                        {
+                            name: "react",
+                            allowImportNames: ["default"],
+                            message: "Only React default import is allowed.",
+                        },
+                    ],
+                    patterns: [
+                        {
+                            regex: String.raw`(\.{1,2}\/)(\.{2}\/)*(\.+[^./]+[^/]*|[^./][^/]*)\/`,
+                            message: "Deep relative imports are not allowed.",
+                        },
+                    ],
+                },
+            ],
             "no-unused-vars": "off",
             quotes: [
                 "warn",

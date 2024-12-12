@@ -6,8 +6,10 @@ import {s3Storage} from "@payloadcms/storage-s3";
 import {buildConfig} from "payload";
 import sharp from "sharp";
 
+/* eslint-disable no-restricted-imports */
 import {Media} from "./collections/media";
 import {Users} from "./collections/users";
+/* eslint-enable */
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

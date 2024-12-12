@@ -46,6 +46,7 @@ export default [
             ],
             "@typescript-eslint/prefer-destructuring": "off",
             "func-names": ["warn", "always"],
+            "eslint-comments/require-description": "off",
             "func-name-matching": [
                 "warn",
                 "always",

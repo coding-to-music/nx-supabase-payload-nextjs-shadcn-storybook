@@ -37,6 +37,7 @@
     "dependencies": {
         "@my-project/payload": "workspace:*",
         "@my-project/react-components": "workspace:*",
+        "@my-project/utils": "workspace:*",
         "@payloadcms/db-postgres": "^3.2.1",
         "@payloadcms/next": "^3.2.1",
         "@payloadcms/storage-s3": "^3.2.1",

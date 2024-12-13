@@ -11,7 +11,7 @@ import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { revalidatePage } from './hooks/revalidatePage'
+import { revalidatePage } from './hooks'
 
 import {
   MetaDescriptionField,

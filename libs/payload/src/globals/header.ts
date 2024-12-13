@@ -1,10 +1,10 @@
+import { revalidateTag } from 'next/cache'
 import type { GlobalConfig } from 'payload'
 
 import { link } from '@/fields/link'
-import { revalidateFooter } from './hooks/revalidateFooter'
 
-export const Footer: GlobalConfig = {
-  slug: 'footer',
+export const Header: GlobalConfig = {
+  slug: 'header',
   access: {
     read: () => true,
   },
@@ -21,6 +21,14 @@ export const Footer: GlobalConfig = {
     },
   ],
   hooks: {
-    afterChange: [revalidateFooter],
+    afterChange: [
+      ({ doc, req: { payload } }) => {
+        payload.logger.info(`Revalidating header`)
+
+        revalidateTag('global_header')
+
+        return doc
+      }
+    ],
   },
 }

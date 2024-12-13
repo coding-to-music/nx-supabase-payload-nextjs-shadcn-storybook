@@ -1,5 +1,10 @@
 //@ts-check
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, unicorn/prefer-module, @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/require-await, @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable unicorn/prefer-module */
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 
 const {composePlugins, withNx} = require("@nx/next");
 const {withPayload} = require("@payloadcms/next/withPayload");

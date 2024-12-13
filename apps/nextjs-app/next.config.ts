@@ -1,5 +1,5 @@
 //@ts-check
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, unicorn/prefer-module, @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, unicorn/prefer-module, @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/require-await, @typescript-eslint/strict-boolean-expressions */
 
 const {composePlugins, withNx} = require("@nx/next");
 const {withPayload} = require("@payloadcms/next/withPayload");
@@ -30,6 +30,20 @@ const nextConfig = {
         svgr: false,
     },
     reactStrictMode: true,
+    redirects: async () => [
+        {
+            destination: "/ie-incompatible.html",
+            has: [
+                {
+                    type: "header",
+                    key: "user-agent",
+                    value: "(.*Trident.*)", // all ie browsers
+                },
+            ],
+            permanent: false,
+            source: "/:path((?!ie-incompatible.html$).*)", // all pages except the incompatibility page
+        },
+    ],
 };
 
 const plugins = [

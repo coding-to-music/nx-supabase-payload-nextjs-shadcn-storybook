@@ -10,7 +10,7 @@ type Props = {
   enableProse?: boolean
 }
 
-const RichText: React.FC<Props> = ({
+export const RichText: React.FC<Props> = ({
   className,
   content,
   enableGutter = true,
@@ -39,5 +39,3 @@ const RichText: React.FC<Props> = ({
     </div>
   )
 }
-
-export default RichText

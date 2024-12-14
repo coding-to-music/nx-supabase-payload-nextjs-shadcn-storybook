@@ -6,12 +6,12 @@ type Overrides = {
   checkboxOverrides?: Partial<CheckboxField>
 }
 
-type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField]
+type Factory = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField]
 
-export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
+export const slug: Factory = (fieldToUse = 'title', overrides = {}) => {
   const { slugOverrides, checkboxOverrides } = overrides
 
-  const checkBoxField: CheckboxField = {
+  const checkboxField: CheckboxField = {
     name: 'slugLock',
     type: 'checkbox',
     defaultValue: true,
@@ -58,12 +58,12 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
           path: '@/fields/slug/SlugComponent#SlugComponent',
           clientProps: {
             fieldToUse,
-            checkboxFieldPath: checkBoxField.name,
+            checkboxFieldPath: checkboxField.name,
           },
         },
       },
     },
   }
 
-  return [slugField, checkBoxField]
+  return [slugField, checkboxField]
 }

@@ -15,14 +15,14 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
   },
 }
 
-type LinkType = (options?: {
+type Factory = (options?: {
   appearances?: LinkAppearances[] | false
   disableLabel?: boolean
   overrides?: Record<string, unknown>
 }) => Field
 
-export const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
-  const linkResult: Field = {
+export const link: Factory = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
+  const linkField: Field = {
     name: 'link',
     type: 'group',
     admin: {
@@ -99,7 +99,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       },
     }))
 
-    linkResult.fields.push({
+    linkField.fields.push({
       type: 'row',
       fields: [
         ...linkTypes,
@@ -115,7 +115,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       ],
     })
   } else {
-    linkResult.fields = [...linkResult.fields, ...linkTypes]
+    linkField.fields = [...linkField.fields, ...linkTypes]
   }
 
   if (appearances !== false) {
@@ -125,7 +125,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
     }
 
-    linkResult.fields.push({
+    linkField.fields.push({
       name: 'appearance',
       type: 'select',
       admin: {
@@ -136,5 +136,5 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
     })
   }
 
-  return deepMerge(linkResult, overrides)
+  return deepMerge(linkField, overrides)
 }

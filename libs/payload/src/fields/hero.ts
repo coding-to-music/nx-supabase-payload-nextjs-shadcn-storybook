@@ -9,7 +9,7 @@ import {
 
 import { linkGroup } from '@/fields/linkGroup'
 
-export const hero: Field = {
+const heroField: Field = {
   name: 'hero',
   type: 'group',
   fields: [
@@ -70,3 +70,7 @@ export const hero: Field = {
   ],
   label: false,
 }
+
+type Factory = () => Field
+
+export const hero: Factory = () => heroField

@@ -5,13 +5,13 @@ import type { LinkAppearances } from './link'
 import deepMerge from '@/utilities/deepMerge'
 import { link } from './link'
 
-type LinkGroupType = (options?: {
+type Factory = (options?: {
   appearances?: LinkAppearances[] | false
   overrides?: Partial<ArrayField>
 }) => Field
 
-export const linkGroup: LinkGroupType = ({ appearances, overrides = {} } = {}) => {
-  const generatedLinkGroup: Field = {
+export const linkGroup: Factory = ({ appearances, overrides = {} } = {}) => {
+  const linkGroupField: Field = {
     name: 'links',
     type: 'array',
     fields: [
@@ -21,5 +21,5 @@ export const linkGroup: LinkGroupType = ({ appearances, overrides = {} } = {}) =
     ],
   }
 
-  return deepMerge(generatedLinkGroup, overrides)
+  return deepMerge(linkGroupField, overrides)
 }

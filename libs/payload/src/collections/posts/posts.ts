@@ -24,7 +24,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { slugField } from '@/fields/slug'
+import { slug } from '@/fields/slug'
 import { getServerSideURL } from '@/utilities/getURL'
 
 export const Posts: CollectionConfig<'posts'> = {
@@ -213,7 +213,7 @@ export const Posts: CollectionConfig<'posts'> = {
         },
       ],
     },
-    ...slugField(),
+    ...slug(),
   ],
   hooks: {
     afterChange: [revalidatePost],

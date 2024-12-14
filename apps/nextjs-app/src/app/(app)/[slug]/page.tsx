@@ -1,107 +1,104 @@
-import type { Metadata } from 'next'
+import type {Page as PageType} from "@my-project/payload";
+import configPromise from "@my-project/payload/config";
+import type {Metadata} from "next";
+import {draftMode} from "next/headers";
+import {getPayload} from "payload";
+import React, {cache} from "react";
 
-import { PayloadRedirects } from '~/components/utils/PayloadRedirects'
-import configPromise from '@my-project/payload/config'
-import { getPayload } from 'payload'
-import { draftMode } from 'next/headers'
-import React, { cache } from 'react'
+import {homeStatic} from "./_/home-static";
+import PageClient from "./page.client";
 
-import type { Page as PageType } from '@my-project/payload'
-
-import { RenderBlocks } from '~/components/utils/RenderBlocks'
-import { RenderHero } from '~/components/utils/RenderHero'
-import { generateMeta } from '~/utils/generateMeta'
-import { homeStatic } from './_/home-static'
-import PageClient from './page.client'
+import {PayloadRedirects} from "~/components/utils/PayloadRedirects";
+import {RenderBlocks} from "~/components/utils/RenderBlocks";
+import {RenderHero} from "~/components/utils/RenderHero";
+import {generateMeta} from "~/utils/generateMeta";
 
 export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise })
-  const pages = await payload.find({
-    collection: 'pages',
-    draft: false,
-    limit: 1000,
-    overrideAccess: false,
-    select: {
-      slug: true,
-    },
-  })
+    const payload = await getPayload({config: configPromise});
+    const pages = await payload.find({
+        collection: "pages",
+        draft: false,
+        limit: 1000,
+        overrideAccess: false,
+        select: {
+            slug: true,
+        },
+    });
 
-  const params = pages.docs
-    ?.filter((doc) => {
-      return doc.slug !== 'home'
-    })
-    .map(({ slug }) => {
-      return { slug }
-    })
+    const parameters = pages.docs
+        ?.filter((document_) => document_.slug !== "home")
+        .map(({slug}) => ({slug}));
 
-  return params
+    return parameters;
 }
 
-type Args = {
-  params: Promise<{
-    slug?: string
-  }>
+interface Args {
+    params: Promise<{
+        slug?: string;
+    }>;
 }
 
-export default async function Page({ params: paramsPromise }: Args) {
-  const { slug = 'home' } = await paramsPromise
-  const url = '/' + slug
+export default async function Page({params: parametersPromise}: Args) {
+    const {slug = "home"} = await parametersPromise;
+    const url = "/" + slug;
 
-  let page: PageType | null
+    let page: PageType | null;
 
-  page = await queryPageBySlug({
-    slug,
-  })
+    page = await queryPageBySlug({
+        slug,
+    });
 
-  // Remove this code once your website is seeded
-  if (!page && slug === 'home') {
-    page = homeStatic
-  }
+    // Remove this code once your website is seeded
+    if (!page && slug === "home") {
+        page = homeStatic;
+    }
 
-  if (!page) {
-    return <PayloadRedirects url={url} />
-  }
+    if (!page) {
+        return <PayloadRedirects url={url} />;
+    }
 
-  const { hero, layout } = page
+    const {hero, layout} = page;
 
-  return (
-    <article className="pt-16 pb-24">
-      <PageClient />
-      {/* Allows redirects for valid pages too */}
-      <PayloadRedirects disableNotFound url={url} />
+    return (
+        <article className={"pb-24 pt-16"}>
+            <PageClient />
+            {/* Allows redirects for valid pages too */}
+            <PayloadRedirects url={url} disableNotFound />
 
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
-    </article>
-  )
+            <RenderHero {...hero} />
+            <RenderBlocks blocks={layout} />
+        </article>
+    );
 }
 
-export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
-  const { slug = 'home' } = await paramsPromise
-  const page = await queryPageBySlug({
-    slug,
-  })
+export async function generateMetadata({
+    params: parametersPromise,
+}): Promise<Metadata> {
+    const {slug = "home"} = await parametersPromise;
+    const page = await queryPageBySlug({
+        slug,
+    });
 
-  return generateMeta({ doc: page })
+    return await generateMeta({doc: page});
 }
 
-const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
-  const { isEnabled: draft } = await draftMode()
+const queryPageBySlug = cache(async ({slug}: {slug: string}) => {
+    const {isEnabled: draft} = await draftMode();
 
-  const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload({config: configPromise});
 
-  const result = await payload.find({
-    collection: 'pages',
-    draft,
-    limit: 1,
-    pagination: false,
-    overrideAccess: draft,
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
-  })
+    const result = await payload.find({
+        collection: "pages",
+        draft,
+        limit: 1,
+        pagination: false,
+        overrideAccess: draft,
+        where: {
+            slug: {
+                equals: slug,
+            },
+        },
+    });
 
-  return result.docs?.[0] || null
-})
+    return result.docs?.[0] || null;
+});

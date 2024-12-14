@@ -1,12 +1,15 @@
-import { RichText } from '~/components/utils/RichText'
-import React from 'react'
+import type React from "react";
 
-import { Width } from '../Width'
+import {Width} from "../Width";
 
-export const Message: React.FC = ({ message }: { message: Record<string, any> }) => {
-  return (
-    <Width className="my-12" width="100">
-      {message && <RichText content={message} />}
+import {RichText} from "~/components/utils/RichText";
+
+export const Message: React.FC = ({
+    message,
+}: {
+    message: Record<string, any>;
+}) => (
+    <Width className={"my-12"} width={"100"}>
+        {message && <RichText content={message} />}
     </Width>
-  )
-}
+);

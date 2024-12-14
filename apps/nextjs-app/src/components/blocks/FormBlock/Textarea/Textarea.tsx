@@ -1,45 +1,44 @@
-import type { TextField } from '@payloadcms/plugin-form-builder/types'
-import type { FieldErrorsImpl, FieldValues, UseFormRegister } from 'react-hook-form'
+import {
+    Label,
+    Textarea as TextAreaComponent,
+} from "@my-project/react-components";
+import type {TextField} from "@payloadcms/plugin-form-builder/types";
+import type React from "react";
+import type {
+    FieldErrorsImpl,
+    FieldValues,
+    UseFormRegister,
+} from "react-hook-form";
 
-import { Label } from '@my-project/react-components'
-import { Textarea as TextAreaComponent } from '@my-project/react-components'
-import React from 'react'
-
-import { Error } from '../Error'
-import { Width } from '../Width'
+import {Error} from "../Error";
+import {Width} from "../Width";
 
 export const Textarea: React.FC<
-  TextField & {
-    errors: Partial<
-      FieldErrorsImpl<{
-        [x: string]: any
-      }>
-    >
-    register: UseFormRegister<FieldValues>
-    rows?: number
-  }
+    TextField & {
+        errors: Partial<FieldErrorsImpl<Record<string, any>>>;
+        register: UseFormRegister<FieldValues>;
+        rows?: number;
+    }
 > = ({
-  name,
-  defaultValue,
-  errors,
-  label,
-  register,
-  required: requiredFromProps,
-  rows = 3,
-  width,
-}) => {
-  return (
+    name,
+    defaultValue,
+    errors,
+    label,
+    register,
+    required: requiredFromProps,
+    rows = 3,
+    width,
+}) => (
     <Width width={width}>
-      <Label htmlFor={name}>{label}</Label>
+        <Label htmlFor={name}>{label}</Label>
 
-      <TextAreaComponent
-        defaultValue={defaultValue}
-        id={name}
-        rows={rows}
-        {...register(name, { required: requiredFromProps })}
-      />
+        <TextAreaComponent
+            defaultValue={defaultValue}
+            id={name}
+            rows={rows}
+            {...register(name, {required: requiredFromProps})}
+        />
 
-      {requiredFromProps && errors[name] && <Error />}
+        {requiredFromProps && errors[name] && <Error />}
     </Width>
-  )
-}
+);

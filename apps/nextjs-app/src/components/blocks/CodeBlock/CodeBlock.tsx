@@ -1,21 +1,19 @@
-import React from 'react'
+import type React from "react";
 
-import { Code } from './CodeBlock.client'
+import {Code} from "./CodeBlock.client";
 
-export type CodeBlockProps = {
-  code: string
-  language?: string
-  blockType: 'code'
+export interface CodeBlockProps {
+    code: string;
+    language?: string;
+    blockType: "code";
 }
 
 type Props = CodeBlockProps & {
-  className?: string
-}
+    className?: string;
+};
 
-export const CodeBlock: React.FC<Props> = ({ className, code, language }) => {
-  return (
-    <div className={[className, 'not-prose'].filter(Boolean).join(' ')}>
-      <Code code={code} language={language} />
+export const CodeBlock: React.FC<Props> = ({className, code, language}) => (
+    <div className={[className, "not-prose"].filter(Boolean).join(" ")}>
+        <Code code={code} language={language} />
     </div>
-  )
-}
+);

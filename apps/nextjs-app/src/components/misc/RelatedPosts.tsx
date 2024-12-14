@@ -1,31 +1,44 @@
-import clsx from 'clsx'
-import React from 'react'
-import { RichText } from '~/components/utils/RichText'
+import type {Post} from "@my-project/payload";
+import clsx from "clsx";
+import type React from "react";
 
-import type { Post } from '@my-project/payload'
+import {Card} from "./Card";
 
-import { Card } from './Card'
+import {RichText} from "~/components/utils/RichText";
 
-export type RelatedPostsProps = {
-  className?: string
-  docs?: Post[]
-  introContent?: any
+export interface RelatedPostsProps {
+    className?: string;
+    docs?: Post[];
+    introContent?: any;
 }
 
 export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
-  const { className, docs, introContent } = props
+    const {className, docs, introContent} = props;
 
-  return (
-    <div className={clsx('container', className)}>
-      {introContent && <RichText content={introContent} enableGutter={false} />}
+    return (
+        <div className={clsx("container", className)}>
+            {introContent && (
+                <RichText content={introContent} enableGutter={false} />
+            )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch">
-        {docs?.map((doc, index) => {
-          if (typeof doc === 'string') return null
+            <div
+                className={
+                    "grid grid-cols-1 items-stretch gap-4 md:grid-cols-2 md:gap-8"
+                }
+            >
+                {docs?.map((document_, index) => {
+                    if (typeof document_ === "string") return null;
 
-          return <Card key={index} doc={doc} relationTo="posts" showCategories />
-        })}
-      </div>
-    </div>
-  )
-}
+                    return (
+                        <Card
+                            key={index}
+                            doc={document_}
+                            relationTo={"posts"}
+                            showCategories
+                        />
+                    );
+                })}
+            </div>
+        </div>
+    );
+};

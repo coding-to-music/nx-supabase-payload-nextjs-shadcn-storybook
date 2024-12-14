@@ -16,7 +16,6 @@
         "strict": true,
         "baseUrl": ".",
         "paths": {
-            "~/*": ["apps/nextjs-app/src/*"],
             "@my-project/payload": ["libs/payload/src/index.ts"],
             "@my-project/payload/config": [
                 "libs/payload/src/payload.config.ts"
@@ -41,7 +40,8 @@
                 "libs/react-components/src/ui/*"
             ],
             "@my-project/utils": ["libs/utils/src/index.ts"],
-            "@payload-config": ["apps/nextjs-app/src/payload.config.ts"]
+            "@payload-config": ["apps/nextjs-app/src/payload.config.ts"],
+            "~/*": ["apps/nextjs-app/src/*"]
         }
     },
     "exclude": ["node_modules", "tmp"]

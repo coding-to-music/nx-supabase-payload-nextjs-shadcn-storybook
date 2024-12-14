@@ -1,34 +1,49 @@
-import { getCachedGlobal } from '~/utils/getGlobals'
-import Link from 'next/link'
-import React from 'react'
+import type {Footer} from "@my-project/payload";
+import Link from "next/link";
+import React from "react";
 
-import type { Footer } from '@my-project/payload'
-
-import { ThemeSelector } from '~/theme/ThemeSelector'
-import { CmsLink } from '~/components/utils/CmsLink'
-import { Logo } from '~/components/misc/Logo'
+import {Logo} from "~/components/misc/Logo";
+import {CmsLink} from "~/components/utils/CmsLink";
+import {ThemeSelector} from "~/theme/ThemeSelector";
+import {getCachedGlobal} from "~/utils/getGlobals";
 
 export async function Footer() {
-  const footer: Footer = await getCachedGlobal('footer', 1)()
+    const footer: Footer = await getCachedGlobal("footer", 1)();
 
-  const navItems = footer?.navItems || []
+    const navItems = footer?.navItems || [];
 
-  return (
-    <footer className="border-t border-border bg-black dark:bg-card text-white">
-      <div className="container py-8 gap-8 flex flex-col md:flex-row md:justify-between">
-        <Link className="flex items-center" href="/">
-          <Logo />
-        </Link>
+    return (
+        <footer
+            className={
+                "border-t border-border bg-black text-white dark:bg-card"
+            }
+        >
+            <div
+                className={
+                    "container flex flex-col gap-8 py-8 md:flex-row md:justify-between"
+                }
+            >
+                <Link className={"flex items-center"} href={"/"}>
+                    <Logo />
+                </Link>
 
-        <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
-          <ThemeSelector />
-          <nav className="flex flex-col md:flex-row gap-4">
-            {navItems.map(({ link }, i) => {
-              return <CmsLink className="text-white" key={i} {...link} />
-            })}
-          </nav>
-        </div>
-      </div>
-    </footer>
-  )
+                <div
+                    className={
+                        "flex flex-col-reverse items-start gap-4 md:flex-row md:items-center"
+                    }
+                >
+                    <ThemeSelector />
+                    <nav className={"flex flex-col gap-4 md:flex-row"}>
+                        {navItems.map(({link}, index) => (
+                            <CmsLink
+                                key={index}
+                                className={"text-white"}
+                                {...link}
+                            />
+                        ))}
+                    </nav>
+                </div>
+            </div>
+        </footer>
+    );
 }

@@ -3,7 +3,7 @@ import { CallToActionBlock } from '@/blocks/CallToActionBlock'
 import { CodeBlock, CodeBlockProps } from '@/blocks/CodeBlock'
 import { MediaBlock } from '@/blocks/MediaBlock'
 import React, { Fragment, JSX } from 'react'
-import { CMSLink } from '@/components/Link'
+import { CmsLink } from '@/components/Link'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
 import type { BannerBlock as BannerBlockProps } from '@/payload-types'
 
@@ -187,7 +187,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
               const fields = node.fields
 
               return (
-                <CMSLink
+                <CmsLink
                   key={index}
                   newTab={Boolean(fields?.newTab)}
                   reference={fields.doc as any}
@@ -195,7 +195,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                   url={fields.url}
                 >
                   {serializedChildren}
-                </CMSLink>
+                </CmsLink>
               )
             }
 

@@ -1,4 +1,4 @@
-import type { Post } from '@/payload-types'
+import type { Post } from '@my-project/payload'
 
 export const post1: Partial<Post> = {
   slug: 'digital-horizons',

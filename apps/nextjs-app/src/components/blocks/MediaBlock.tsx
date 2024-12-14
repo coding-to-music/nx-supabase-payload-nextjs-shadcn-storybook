@@ -4,7 +4,7 @@ import { cn } from '@my-project/react-components/lib/utils'
 import React from 'react'
 import { RichText } from '@/components/utils/RichText'
 
-import type { MediaBlock as MediaBlockProps } from '@/payload-types'
+import type { MediaBlock as MediaBlockProps } from '@my-project/payload'
 
 import { Media } from '../../components/Media'
 

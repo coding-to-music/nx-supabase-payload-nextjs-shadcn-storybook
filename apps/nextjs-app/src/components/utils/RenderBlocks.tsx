@@ -1,7 +1,7 @@
 import { cn } from '@my-project/react-components/lib/utils'
 import React, { Fragment } from 'react'
 
-import type { Page } from '@/payload-types'
+import type { Page } from '@my-project/payload'
 
 import { ArchiveBlock } from '@/components/blocks/ArchiveBlock'
 import { CallToActionBlock } from '@/components/blocks/CallToActionBlock'

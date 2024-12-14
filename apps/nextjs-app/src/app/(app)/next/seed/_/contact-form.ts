@@ -1,4 +1,4 @@
-import type { Form } from '@/payload-types'
+import type { Form } from '@my-project/payload'
 
 export const contactForm: Partial<Form> = {
   confirmationMessage: {

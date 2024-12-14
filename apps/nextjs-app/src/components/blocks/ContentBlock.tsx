@@ -2,7 +2,7 @@ import { cn } from '@my-project/react-components/lib/utils'
 import React from 'react'
 import { RichText } from '@/components/utils/RichText'
 
-import type { ContentBlock as ContentBlockProps } from '@/payload-types'
+import type { ContentBlock as ContentBlockProps } from '@my-project/payload'
 
 import { CmsLink } from '../utils/CmsLink'
 

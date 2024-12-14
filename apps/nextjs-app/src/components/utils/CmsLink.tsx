@@ -3,7 +3,7 @@ import { cn } from '@my-project/react-components/lib/utils'
 import Link from 'next/link'
 import React from 'react'
 
-import type { Page, Post } from '@/payload-types'
+import type { Page, Post } from '@my-project/payload'
 
 type CmsLinkType = {
   appearance?: 'inline' | ButtonProps['variant']

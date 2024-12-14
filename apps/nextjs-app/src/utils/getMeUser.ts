@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import type { User } from '../payload-types'
+import type { User } from '@my-project/payload'
 import { getClientSideUrl } from '@my-project/utils'
 
 export const getMeUser = async (args?: {

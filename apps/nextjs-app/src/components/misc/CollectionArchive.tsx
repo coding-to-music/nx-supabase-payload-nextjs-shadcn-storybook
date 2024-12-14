@@ -1,7 +1,7 @@
 import { cn } from '@my-project/react-components/lib/utils'
 import React from 'react'
 
-import type { Post } from '@/payload-types'
+import type { Post } from '@my-project/payload'
 
 import { Card, CardPostData } from '@/components/misc/Card'
 

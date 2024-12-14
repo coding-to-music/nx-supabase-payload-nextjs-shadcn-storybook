@@ -5,7 +5,7 @@ import { MediaBlock } from '@/components/blocks/MediaBlock'
 import React, { Fragment, JSX } from 'react'
 import { CmsLink } from '@/components/utils/CmsLink'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
-import type { BannerBlock as BannerBlockProps } from '@/payload-types'
+import type { BannerBlock as BannerBlockProps } from '@my-project/payload'
 
 import {
   IS_BOLD,
@@ -19,7 +19,7 @@ import {
 import type {
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
-} from '@/payload-types'
+} from '@my-project/payload'
 
 export type NodeTypes =
   | DefaultNodeTypes

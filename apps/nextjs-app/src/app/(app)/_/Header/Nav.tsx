@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import type { Header as HeaderType } from '@/payload-types'
+import type { Header as HeaderType } from '@my-project/payload'
 
 import { CmsLink } from '@/components/utils/CmsLink'
 import Link from 'next/link'

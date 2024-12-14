@@ -2,7 +2,7 @@ import { getCachedGlobal } from '@/utils/getGlobals'
 import Link from 'next/link'
 import React from 'react'
 
-import type { Footer } from '@/payload-types'
+import type { Footer } from '@my-project/payload'
 
 import { ThemeSelector } from '@/theme/ThemeSelector'
 import { CmsLink } from '@/components/utils/CmsLink'

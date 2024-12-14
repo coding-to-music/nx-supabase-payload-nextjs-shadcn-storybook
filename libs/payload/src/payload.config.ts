@@ -17,7 +17,7 @@ import {Users} from "./collections/users";
 import {Header} from "./globals/header";
 import {Footer} from "./globals/footer";
 
-import {defaultLexical} from "./defaultLexical";
+import {defaultLexical} from "./default-lexical";
 
 import {plugins} from "./plugins";
 /* eslint-enable */

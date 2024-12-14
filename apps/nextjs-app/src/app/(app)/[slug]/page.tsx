@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { PayloadRedirects } from '@/components/PayloadRedirects'
+import { PayloadRedirects } from '@/components/utils/PayloadRedirects'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
@@ -8,8 +8,8 @@ import React, { cache } from 'react'
 
 import type { Page as PageType } from '@/payload-types'
 
-import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { RenderHero } from '@/heros/RenderHero'
+import { RenderBlocks } from '@/components/utils/RenderBlocks'
+import { RenderHero } from '@/components/utils/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { homeStatic } from './_/home-static'
 import PageClient from './page.client'

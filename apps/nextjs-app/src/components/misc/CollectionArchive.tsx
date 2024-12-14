@@ -3,7 +3,7 @@ import React from 'react'
 
 import type { Post } from '@/payload-types'
 
-import { Card, CardPostData } from '@/components/Card'
+import { Card, CardPostData } from '@/components/misc/Card'
 
 export type Props = {
   posts: CardPostData[]

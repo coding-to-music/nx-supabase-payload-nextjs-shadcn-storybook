@@ -1,13 +1,13 @@
 import type { Metadata } from 'next/types'
 
-import { CollectionArchive } from '@/components/CollectionArchive'
+import { CollectionArchive } from '@/components/misc/CollectionArchive'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 import { Post } from '@/payload-types'
-import { Search } from '@/search/Component'
+import { Search } from '@/components/misc/Search'
 import PageClient from './page.client'
-import { CardPostData } from '@/components/Card'
+import { CardPostData } from '@/components/misc/Card'
 
 type Args = {
   searchParams: Promise<{

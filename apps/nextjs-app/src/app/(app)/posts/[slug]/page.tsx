@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 
-import { RelatedPosts } from '@/blocks/RelatedPosts/Component'
-import { PayloadRedirects } from '@/components/PayloadRedirects'
+import { RelatedPosts } from '@/components/misc/RelatedPosts'
+import { PayloadRedirects } from '@/components/utils/PayloadRedirects'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
-import RichText from '@/components/RichText'
+import RichText from '@/components/utils/RichText'
 
 import type { Post } from '@/payload-types'
 

@@ -3,7 +3,7 @@
 import { cn } from 'src/utilities/cn'
 import React, { useEffect, useRef } from 'react'
 
-import type { Props as MediaProps } from '../types'
+import type { Props as MediaProps } from './types'
 
 import { getClientSideUrl } from '@my-project/utils'
 

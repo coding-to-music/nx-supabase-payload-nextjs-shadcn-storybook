@@ -9,7 +9,7 @@ interface Props {
     language?: string;
 }
 
-export const Code: React.FC<Props> = ({code, language = ""}) => {
+export const CodeBlockClient: React.FC<Props> = ({code, language = ""}) => {
     if (!code) return null;
 
     return (

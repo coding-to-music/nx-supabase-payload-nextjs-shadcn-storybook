@@ -1,6 +1,6 @@
 import type React from "react";
 
-import {Code} from "./CodeBlock.client";
+import {CodeBlockClient} from "./CodeBlock.client";
 
 export interface CodeBlockProps {
     code: string;
@@ -14,6 +14,6 @@ type Props = CodeBlockProps & {
 
 export const CodeBlock: React.FC<Props> = ({className, code, language}) => (
     <div className={[className, "not-prose"].filter(Boolean).join(" ")}>
-        <Code code={code} language={language} />
+        <CodeBlockClient code={code} language={language} />
     </div>
 );

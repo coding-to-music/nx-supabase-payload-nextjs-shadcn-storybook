@@ -77,6 +77,22 @@ export default [
         files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
         // Override or add rules here
         rules: {
+            "@nx/enforce-module-boundaries": [
+                "error",
+                {
+                    /* Same as in ../../eslint.config.js */
+                    enforceBuildableLibDependency: true,
+                    allow: [String.raw`^.*/eslint(\.base)?\.config\.[cm]?js$`],
+                    depConstraints: [
+                        {
+                            sourceTag: "*",
+                            onlyDependOnLibsWithTags: ["*"],
+                        },
+                    ],
+                    /* Same as in ../../eslint.config.js END */
+                    allowCircularSelfDependency: true,
+                },
+            ],
             "no-restricted-imports": [
                 "error",
                 {

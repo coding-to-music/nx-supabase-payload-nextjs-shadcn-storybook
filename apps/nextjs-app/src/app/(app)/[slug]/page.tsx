@@ -10,7 +10,7 @@ import type { Page as PageType } from '@/payload-types'
 
 import { RenderBlocks } from '@/components/utils/RenderBlocks'
 import { RenderHero } from '@/components/utils/RenderHero'
-import { generateMeta } from '@/utilities/generateMeta'
+import { generateMeta } from '@/utils/generateMeta'
 import { homeStatic } from './_/home-static'
 import PageClient from './page.client'
 

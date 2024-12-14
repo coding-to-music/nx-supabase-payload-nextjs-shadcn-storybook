@@ -11,7 +11,7 @@ import { RichText } from '@/components/utils/RichText'
 import type { Post } from '@/payload-types'
 
 import { PostHero } from '@/components/heros/PostHero'
-import { generateMeta } from '@/utilities/generateMeta'
+import { generateMeta } from '@/utils/generateMeta'
 import PageClient from './page.client'
 
 export async function generateStaticParams() {

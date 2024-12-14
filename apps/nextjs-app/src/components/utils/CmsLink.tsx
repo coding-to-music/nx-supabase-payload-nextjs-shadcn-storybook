@@ -1,5 +1,5 @@
 import { Button, type ButtonProps } from '@my-project/react-components'
-import { cn } from 'src/utilities/cn'
+import { cn } from '@/utils/cn'
 import Link from 'next/link'
 import React from 'react'
 

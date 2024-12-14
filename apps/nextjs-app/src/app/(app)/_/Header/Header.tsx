@@ -1,5 +1,5 @@
 import { HeaderClient } from './Header.client'
-import { getCachedGlobal } from '@/utilities/getGlobals'
+import { getCachedGlobal } from '@/utils/getGlobals'
 import React from 'react'
 
 import type { Header } from '@/payload-types'

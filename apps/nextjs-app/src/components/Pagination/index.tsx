@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination'
+} from '@my-project/react-components'
 import { cn } from '@/utilities/cn'
 import { useRouter } from 'next/navigation'
 import React from 'react'

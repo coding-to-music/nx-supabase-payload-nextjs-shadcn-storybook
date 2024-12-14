@@ -1,12 +1,12 @@
 'use client'
 import { cn } from '@my-project/react-components/lib/utils'
-import { useClickableCard } from '@/hooks/useClickableCard'
+import { useClickableCard } from '~/hooks/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 
 import type { Post } from '@my-project/payload'
 
-import { Media } from '@/components/utils/Media'
+import { Media } from '~/components/utils/Media'
 
 export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
 

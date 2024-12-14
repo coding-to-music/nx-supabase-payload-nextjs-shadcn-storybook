@@ -1,8 +1,8 @@
 import type React from 'react'
 import type { Page, Post } from '@my-project/payload'
 
-import { getCachedDocument } from '@/utils/getDocument'
-import { getCachedRedirects } from '@/utils/getRedirects'
+import { getCachedDocument } from '~/utils/getDocument'
+import { getCachedRedirects } from '~/utils/getRedirects'
 import { notFound, redirect } from 'next/navigation'
 
 interface Props {

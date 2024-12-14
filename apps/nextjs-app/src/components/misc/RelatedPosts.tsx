@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
-import { RichText } from '@/components/utils/RichText'
+import { RichText } from '~/components/utils/RichText'
 
 import type { Post } from '@my-project/payload'
 

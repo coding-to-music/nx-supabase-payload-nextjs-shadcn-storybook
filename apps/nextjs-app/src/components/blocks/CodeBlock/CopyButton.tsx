@@ -1,10 +1,10 @@
 "use client";
 import {Button} from "@my-project/react-components";
 import {CopyIcon} from "@payloadcms/ui/icons/Copy";
-import {useState} from "react";
+import React from "react";
 
 export function CopyButton({code}: {code: string}) {
-    const [text, setText] = useState("Copy");
+    const [text, setText] = React.useState("Copy");
 
     function updateCopyStatus() {
         if (text === "Copy") {

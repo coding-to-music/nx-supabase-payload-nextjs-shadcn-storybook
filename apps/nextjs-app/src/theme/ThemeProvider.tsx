@@ -1,8 +1,7 @@
 "use client";
 
 import {canUseDom} from "@my-project/utils";
-import type React from "react";
-import {useCallback, useEffect, useState} from "react";
+import React from "react";
 
 import {ThemeContext} from "./ThemeContext";
 import {
@@ -14,13 +13,13 @@ import type {Theme} from "./types";
 import {themeIsValid} from "./types";
 
 export const ThemeProvider = ({children}: {children: React.ReactNode}) => {
-    const [theme, setThemeState] = useState<Theme | undefined>(
+    const [theme, setThemeState] = React.useState<Theme | undefined>(
         canUseDom
             ? (document.documentElement.dataset.theme as Theme)
             : undefined,
     );
 
-    const setTheme = useCallback((themeToSet: Theme | null) => {
+    const setTheme = React.useCallback((themeToSet: Theme | null) => {
         if (themeToSet === null) {
             globalThis.localStorage.removeItem(themeLocalStorageKey);
             const implicitPreference = getImplicitPreference();
@@ -33,7 +32,7 @@ export const ThemeProvider = ({children}: {children: React.ReactNode}) => {
         }
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
         let themeToSet: Theme = defaultTheme;
         const preference =
             globalThis.localStorage.getItem(themeLocalStorageKey);

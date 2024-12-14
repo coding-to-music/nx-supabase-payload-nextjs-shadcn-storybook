@@ -2,8 +2,7 @@
 import type {Post} from "@my-project/payload";
 import {cn} from "@my-project/react-components/lib/utils";
 import Link from "next/link";
-import type React from "react";
-import {Fragment} from "react";
+import React from "react";
 
 import {Media} from "~/components/utils/Media";
 import {useClickableCard} from "~/hooks/useClickableCard";
@@ -68,10 +67,10 @@ export const Card: React.FC<{
                                             index === categories.length - 1;
 
                                         return (
-                                            <Fragment key={index}>
+                                            <React.Fragment key={index}>
                                                 {categoryTitle}
                                                 {!isLast && <>, &nbsp;</>}
-                                            </Fragment>
+                                            </React.Fragment>
                                         );
                                     }
 

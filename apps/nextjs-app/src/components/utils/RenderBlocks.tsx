@@ -1,7 +1,6 @@
 import type {Page} from "@my-project/payload";
 import {cn} from "@my-project/react-components/lib/utils";
 import type React from "react";
-import {Fragment} from "react";
 
 import {ArchiveBlock} from "~/components/blocks/ArchiveBlock";
 import {CallToActionBlock} from "~/components/blocks/CallToActionBlock";

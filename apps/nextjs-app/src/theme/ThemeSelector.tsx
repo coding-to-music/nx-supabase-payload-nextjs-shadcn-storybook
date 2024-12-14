@@ -7,7 +7,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@my-project/react-components";
-import React, {useState} from "react";
+import React from "react";
 
 import {themeLocalStorageKey} from "./shared";
 import type {Theme} from "./types";
@@ -15,7 +15,7 @@ import {useTheme} from "./useTheme";
 
 export const ThemeSelector: React.FC = () => {
     const {setTheme} = useTheme();
-    const [value, setValue] = useState("");
+    const [value, setValue] = React.useState("");
 
     const onThemeChange = (themeToSet: Theme & "auto") => {
         if (themeToSet === "auto") {

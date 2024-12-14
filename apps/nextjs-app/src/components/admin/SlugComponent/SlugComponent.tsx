@@ -9,8 +9,7 @@ import {
     useFormFields,
 } from "@payloadcms/ui";
 import type {TextFieldClientProps} from "payload";
-import type React from "react";
-import {useCallback, useEffect} from "react";
+import React from "react";
 import "./index.scss";
 
 type SlugComponentProps = {
@@ -46,7 +45,7 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
         ([fields]) => fields[fieldToUse]?.value as string,
     );
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (checkboxValue) {
             if (targetFieldValue) {
                 const formattedSlug = formatSlug(targetFieldValue);
@@ -58,7 +57,7 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
         }
     }, [targetFieldValue, checkboxValue, setValue, value]);
 
-    const handleLock = useCallback(
+    const handleLock = React.useCallback(
         (e) => {
             e.preventDefault();
 

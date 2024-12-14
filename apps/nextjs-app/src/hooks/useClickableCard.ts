@@ -1,14 +1,13 @@
 "use client";
 import {useRouter} from "next/navigation";
-import type {RefObject} from "react";
-import {useCallback, useEffect, useRef} from "react";
+import React from "react";
 
 interface UseClickableCardType<T extends HTMLElement> {
     card: {
-        ref: RefObject<T | null>;
+        ref: React.RefObject<T | null>;
     };
     link: {
-        ref: RefObject<HTMLAnchorElement | null>;
+        ref: React.RefObject<HTMLAnchorElement | null>;
     };
 }
 
@@ -24,13 +23,13 @@ export function useClickableCard<T extends HTMLElement>({
     scroll = true,
 }: Props): UseClickableCardType<T> {
     const router = useRouter();
-    const card = useRef<T>(null);
-    const link = useRef<HTMLAnchorElement>(null);
-    const timeDown = useRef<number>(0);
-    const hasActiveParent = useRef<boolean>(false);
-    const pressedButton = useRef<number>(0);
+    const card = React.useRef<T>(null);
+    const link = React.useRef<HTMLAnchorElement>(null);
+    const timeDown = React.useRef<number>(0);
+    const hasActiveParent = React.useRef<boolean>(false);
+    const pressedButton = React.useRef<number>(0);
 
-    const handleMouseDown = useCallback(
+    const handleMouseDown = React.useCallback(
         (e: MouseEvent) => {
             if (e.target) {
                 const target = e.target as Element;
@@ -52,7 +51,7 @@ export function useClickableCard<T extends HTMLElement>({
         [router, card, link, timeDown],
     );
 
-    const handleMouseUp = useCallback(
+    const handleMouseUp = React.useCallback(
         (e: MouseEvent) => {
             if (link.current?.href) {
                 const timeNow = Date.now();
@@ -78,7 +77,7 @@ export function useClickableCard<T extends HTMLElement>({
         [router, card, link, timeDown],
     );
 
-    useEffect(() => {
+    React.useEffect(() => {
         const cardNode = card.current;
 
         if (cardNode) {

@@ -1,7 +1,6 @@
 "use client";
 import type {Page} from "@my-project/payload";
-import type React from "react";
-import {useEffect} from "react";
+import React from "react";
 
 import {CmsLink} from "~/components/utils/CmsLink";
 import {Media} from "~/components/utils/Media";
@@ -15,7 +14,7 @@ export const HighImpactHero: React.FC<Page["hero"]> = ({
 }) => {
     const {setHeaderTheme} = useHeaderTheme();
 
-    useEffect(() => {
+    React.useEffect(() => {
         setHeaderTheme("dark");
     });
 

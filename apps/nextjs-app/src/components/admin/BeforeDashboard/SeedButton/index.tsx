@@ -1,8 +1,7 @@
 "use client";
 
 import {toast} from "@payloadcms/ui";
-import type React from "react";
-import {Fragment, useCallback, useState} from "react";
+import React from "react";
 
 import "./index.scss";
 
@@ -16,11 +15,11 @@ const SuccessMessage: React.FC = () => (
 );
 
 export const SeedButton: React.FC = () => {
-    const [loading, setLoading] = useState(false);
-    const [seeded, setSeeded] = useState(false);
-    const [error, setError] = useState(null);
+    const [loading, setLoading] = React.useState(false);
+    const [seeded, setSeeded] = React.useState(false);
+    const [error, setError] = React.useState(null);
 
-    const handleClick = useCallback(
+    const handleClick = React.useCallback(
         async (e) => {
             e.preventDefault();
 

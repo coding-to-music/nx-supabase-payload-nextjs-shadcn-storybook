@@ -3,7 +3,7 @@ import configPromise from "@my-project/payload/config";
 import type {Metadata} from "next";
 import {draftMode} from "next/headers";
 import {getPayload} from "payload";
-import React, {cache} from "react";
+import React from "react";
 
 import PageClient from "./page.client";
 
@@ -84,7 +84,7 @@ export async function generateMetadata({
     return await generateMeta({doc: post});
 }
 
-const queryPostBySlug = cache(async ({slug}: {slug: string}) => {
+const queryPostBySlug = React.cache(async ({slug}: {slug: string}) => {
     const {isEnabled: draft} = await draftMode();
 
     const payload = await getPayload({config: configPromise});

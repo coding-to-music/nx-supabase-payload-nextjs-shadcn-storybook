@@ -4,7 +4,7 @@ import {cn} from "@my-project/react-components/lib/utils";
 import {useRouter, useSelectedLayoutSegments} from "next/navigation";
 import type {PayloadAdminBarProps} from "payload-admin-bar";
 import {PayloadAdminBar} from "payload-admin-bar";
-import React, {useState} from "react";
+import React from "react";
 
 import "./index.scss";
 
@@ -34,7 +34,7 @@ export const AdminBar: React.FC<{
 }> = (props) => {
     const {adminBarProps} = props || {};
     const segments = useSelectedLayoutSegments();
-    const [show, setShow] = useState(false);
+    const [show, setShow] = React.useState(false);
     const collection = collectionLabels?.[segments?.[1]]
         ? segments?.[1]
         : "pages";

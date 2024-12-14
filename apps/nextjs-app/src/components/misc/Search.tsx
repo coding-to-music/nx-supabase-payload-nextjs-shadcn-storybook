@@ -1,18 +1,17 @@
 "use client";
 import {Input, Label} from "@my-project/react-components";
 import {useRouter} from "next/navigation";
-import type React from "react";
-import {useEffect, useState} from "react";
+import React from "react";
 
 import {useDebounce} from "~/hooks/useDebounce";
 
 export const Search: React.FC = () => {
-    const [value, setValue] = useState("");
+    const [value, setValue] = React.useState("");
     const router = useRouter();
 
     const debouncedValue = useDebounce(value);
 
-    useEffect(() => {
+    React.useEffect(() => {
         router.push(`/search${debouncedValue ? `?q=${debouncedValue}` : ""}`);
     }, [debouncedValue, router]);
 

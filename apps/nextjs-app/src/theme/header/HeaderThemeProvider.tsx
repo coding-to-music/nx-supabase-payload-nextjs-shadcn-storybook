@@ -1,8 +1,7 @@
 "use client";
 
 import {canUseDom} from "@my-project/utils";
-import type React from "react";
-import {useCallback, useState} from "react";
+import React from "react";
 
 import type {Theme} from "../types";
 
@@ -13,13 +12,15 @@ export const HeaderThemeProvider = ({
 }: {
     children: React.ReactNode;
 }) => {
-    const [headerTheme, setThemeState] = useState<Theme | undefined | null>(
+    const [headerTheme, setThemeState] = React.useState<
+        Theme | undefined | null
+    >(
         canUseDom
             ? (document.documentElement.dataset.theme as Theme)
             : undefined,
     );
 
-    const setHeaderTheme = useCallback((themeToSet: Theme | null) => {
+    const setHeaderTheme = React.useCallback((themeToSet: Theme | null) => {
         setThemeState(themeToSet);
     }, []);
 

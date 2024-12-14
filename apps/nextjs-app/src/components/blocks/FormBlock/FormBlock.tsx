@@ -3,8 +3,7 @@ import {Button} from "@my-project/react-components";
 import {getClientSideUrl} from "@my-project/utils";
 import type {Form as FormType} from "@payloadcms/plugin-form-builder/types";
 import {useRouter} from "next/navigation";
-import type React from "react";
-import {useCallback, useState} from "react";
+import React from "react";
 import {FormProvider, useForm} from "react-hook-form";
 
 import {buildInitialFormState} from "./buildInitialFormState";
@@ -54,14 +53,14 @@ export const FormBlock: React.FC<
         register,
     } = formMethods;
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [hasSubmitted, setHasSubmitted] = useState<boolean>();
-    const [error, setError] = useState<
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [hasSubmitted, setHasSubmitted] = React.useState<boolean>();
+    const [error, setError] = React.useState<
         {message: string; status?: string} | undefined
     >();
     const router = useRouter();
 
-    const onSubmit = useCallback(
+    const onSubmit = React.useCallback(
         (data: Data) => {
             let loadingTimerID: ReturnType<typeof setTimeout>;
             const submitForm = async () => {

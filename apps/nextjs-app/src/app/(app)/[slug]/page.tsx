@@ -3,7 +3,7 @@ import configPromise from "@my-project/payload/config";
 import type {Metadata} from "next";
 import {draftMode} from "next/headers";
 import {getPayload} from "payload";
-import React, {cache} from "react";
+import React from "react";
 
 import {homeStatic} from "./_/home-static";
 import PageClient from "./page.client";
@@ -82,7 +82,7 @@ export async function generateMetadata({
     return await generateMeta({doc: page});
 }
 
-const queryPageBySlug = cache(async ({slug}: {slug: string}) => {
+const queryPageBySlug = React.cache(async ({slug}: {slug: string}) => {
     const {isEnabled: draft} = await draftMode();
 
     const payload = await getPayload({config: configPromise});

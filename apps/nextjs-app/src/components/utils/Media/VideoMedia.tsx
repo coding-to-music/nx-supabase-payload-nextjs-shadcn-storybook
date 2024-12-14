@@ -2,18 +2,17 @@
 
 import {cn} from "@my-project/react-components/lib/utils";
 import {getClientSideUrl} from "@my-project/utils";
-import type React from "react";
-import {useEffect, useRef} from "react";
+import React from "react";
 
 import type {Props as MediaProps} from "./types";
 
 export const VideoMedia: React.FC<MediaProps> = (props) => {
     const {onClick, resource, videoClassName} = props;
 
-    const videoRef = useRef<HTMLVideoElement>(null);
+    const videoRef = React.seRef<HTMLVideoElement>(null);
     // const [showFallback] = useState<boolean>()
 
-    useEffect(() => {
+    React.useEffect(() => {
         const {current: video} = videoRef;
         if (video) {
             video.addEventListener("suspend", () => {

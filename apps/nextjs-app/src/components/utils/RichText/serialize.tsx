@@ -7,7 +7,7 @@ import type {
     DefaultNodeTypes,
     SerializedBlockNode,
 } from "@payloadcms/richtext-lexical";
-import React, {Fragment, type JSX} from "react";
+import React from "react";
 
 import {
     IS_BOLD,
@@ -35,10 +35,10 @@ interface Props {
     nodes: NodeTypes[];
 }
 
-export function serializeLexical({nodes}: Props): JSX.Element {
+export function serializeLexical({nodes}: Props): React.JSX.Element {
     return (
         <>
-            {nodes?.map((node, index): JSX.Element | null => {
+            {nodes?.map((node, index): React.JSX.Element | null => {
                 if (node == null) {
                     return null;
                 }
@@ -91,7 +91,7 @@ export function serializeLexical({nodes}: Props): JSX.Element {
                 // which does not return checked: false (only true - i.e. there is no prop for false)
                 const serializedChildrenFunction = (
                     node: NodeTypes,
-                ): JSX.Element | null => {
+                ): React.JSX.Element | null => {
                     if (node.children == null) {
                         return null;
                     } else {

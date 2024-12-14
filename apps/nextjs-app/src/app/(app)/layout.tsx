@@ -9,8 +9,9 @@ import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { Providers } from '@/providers'
-import { InitTheme } from '@/providers/Theme/InitTheme'
+import { InitTheme } from '@/theme/InitTheme'
+import { ThemeProvider } from '@/theme/ThemeProvider'
+import { HeaderThemeProvider } from '@/theme/header/HeaderThemeProvider'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
@@ -28,18 +29,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
-        <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-          <LivePreviewListener />
+        <ThemeProvider>
+          <HeaderThemeProvider>
+            <AdminBar
+              adminBarProps={{
+                preview: isEnabled,
+              }}
+            />
+            <LivePreviewListener />
 
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+            <Header />
+            {children}
+            <Footer />
+          </HeaderThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -1,230 +1,234 @@
-import type { CollectionConfig } from 'payload'
-
+import {getServerSideUrl} from "@my-project/utils";
 import {
-  BlocksFeature,
-  FixedToolbarFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-
-import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from '../../access/authenticated-or-published'
-import { Banner } from '../../blocks/banner'
-import { Code } from '../../blocks/code'
-import { MediaBlock } from '../../blocks/media-block'
-import { generatePreviewPath } from '../../utils/generate-preview-path'
-import { populateAuthors, revalidatePost } from './hooks'
-
+    MetaDescriptionField,
+    MetaImageField,
+    MetaTitleField,
+    OverviewField,
+    PreviewField,
+} from "@payloadcms/plugin-seo/fields";
 import {
-  MetaDescriptionField,
-  MetaImageField,
-  MetaTitleField,
-  OverviewField,
-  PreviewField,
-} from '@payloadcms/plugin-seo/fields'
-import { slug } from '../../fields/slug'
-import { getServerSideUrl } from '@my-project/utils'
+    BlocksFeature,
+    FixedToolbarFeature,
+    HeadingFeature,
+    HorizontalRuleFeature,
+    InlineToolbarFeature,
+    lexicalEditor,
+} from "@payloadcms/richtext-lexical";
+import type {CollectionConfig} from "payload";
 
-export const Posts: CollectionConfig<'posts'> = {
-  slug: 'posts',
-  access: {
-    create: authenticated,
-    delete: authenticated,
-    read: authenticatedOrPublished,
-    update: authenticated,
-  },
-  // This config controls what's populated by default when a post is referenced
-  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'posts'>
-  defaultPopulate: {
-    title: true,
-    slug: true,
-    categories: true,
-    meta: {
-      image: true,
-      description: true,
-    },
-  },
-  admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
-    livePreview: {
-      url: ({ data }) => {
-        const path = generatePreviewPath({
-          slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'posts',
-        })
+import {authenticated} from "../../access/authenticated";
+import {authenticatedOrPublished} from "../../access/authenticated-or-published";
+import {Banner} from "../../blocks/banner";
+import {Code} from "../../blocks/code";
+import {MediaBlock} from "../../blocks/media-block";
+import {slug} from "../../fields/slug";
+import {generatePreviewPath} from "../../utils/generate-preview-path";
 
-        return `${getServerSideUrl()}${path}`
-      },
-    },
-    preview: (data) => {
-      const path = generatePreviewPath({
-        slug: typeof data?.slug === 'string' ? data.slug : '',
-        collection: 'posts',
-      })
+import {populateAuthors, revalidatePost} from "./hooks";
 
-      return `${getServerSideUrl()}${path}`
+export const Posts: CollectionConfig<"posts"> = {
+    slug: "posts",
+    access: {
+        create: authenticated,
+        delete: authenticated,
+        read: authenticatedOrPublished,
+        update: authenticated,
     },
-    useAsTitle: 'title',
-  },
-  fields: [
-    {
-      name: 'title',
-      type: 'text',
-      required: true,
+    // This config controls what's populated by default when a post is referenced
+    // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
+    // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'posts'>
+    defaultPopulate: {
+        title: true,
+        slug: true,
+        categories: true,
+        meta: {
+            image: true,
+            description: true,
+        },
     },
-    {
-      type: 'tabs',
-      tabs: [
+    admin: {
+        defaultColumns: ["title", "slug", "updatedAt"],
+        livePreview: {
+            url: ({data}) => {
+                const path = generatePreviewPath({
+                    slug: typeof data?.slug === "string" ? data.slug : "",
+                    collection: "posts",
+                });
+
+                return `${getServerSideUrl()}${path}`;
+            },
+        },
+        preview: (data) => {
+            const path = generatePreviewPath({
+                slug: typeof data?.slug === "string" ? data.slug : "",
+                collection: "posts",
+            });
+
+            return `${getServerSideUrl()}${path}`;
+        },
+        useAsTitle: "title",
+    },
+    fields: [
         {
-          fields: [
-            {
-              name: 'content',
-              type: 'richText',
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ]
+            name: "title",
+            type: "text",
+            required: true,
+        },
+        {
+            type: "tabs",
+            tabs: [
+                {
+                    fields: [
+                        {
+                            name: "content",
+                            type: "richText",
+                            editor: lexicalEditor({
+                                features: ({rootFeatures}) => [
+                                    ...rootFeatures,
+                                    HeadingFeature({
+                                        enabledHeadingSizes: [
+                                            "h1",
+                                            "h2",
+                                            "h3",
+                                            "h4",
+                                        ],
+                                    }),
+                                    BlocksFeature({
+                                        blocks: [Banner, Code, MediaBlock],
+                                    }),
+                                    FixedToolbarFeature(),
+                                    InlineToolbarFeature(),
+                                    HorizontalRuleFeature(),
+                                ],
+                            }),
+                            label: false,
+                            required: true,
+                        },
+                    ],
+                    label: "Content",
                 },
-              }),
-              label: false,
-              required: true,
-            },
-          ],
-          label: 'Content',
-        },
-        {
-          fields: [
-            {
-              name: 'relatedPosts',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              filterOptions: ({ id }) => {
-                return {
-                  id: {
-                    not_in: [id],
-                  },
-                }
-              },
-              hasMany: true,
-              relationTo: 'posts',
-            },
-            {
-              name: 'categories',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              hasMany: true,
-              relationTo: 'categories',
-            },
-          ],
-          label: 'Meta',
-        },
-        {
-          name: 'meta',
-          label: 'SEO',
-          fields: [
-            OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
-            }),
-            MetaTitleField({
-              hasGenerateFn: true,
-            }),
-            MetaImageField({
-              relationTo: 'media',
-            }),
+                {
+                    fields: [
+                        {
+                            name: "relatedPosts",
+                            type: "relationship",
+                            admin: {
+                                position: "sidebar",
+                            },
+                            filterOptions: ({id}) => ({
+                                id: {
+                                    not_in: [id],
+                                },
+                            }),
+                            hasMany: true,
+                            relationTo: "posts",
+                        },
+                        {
+                            name: "categories",
+                            type: "relationship",
+                            admin: {
+                                position: "sidebar",
+                            },
+                            hasMany: true,
+                            relationTo: "categories",
+                        },
+                    ],
+                    label: "Meta",
+                },
+                {
+                    name: "meta",
+                    label: "SEO",
+                    fields: [
+                        OverviewField({
+                            titlePath: "meta.title",
+                            descriptionPath: "meta.description",
+                            imagePath: "meta.image",
+                        }),
+                        MetaTitleField({
+                            hasGenerateFn: true,
+                        }),
+                        MetaImageField({
+                            relationTo: "media",
+                        }),
 
-            MetaDescriptionField({}),
-            PreviewField({
-              // if the `generateUrl` function is configured
-              hasGenerateFn: true,
+                        MetaDescriptionField({}),
+                        PreviewField({
+                            // if the `generateUrl` function is configured
+                            hasGenerateFn: true,
 
-              // field paths to match the target field for data
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-            }),
-          ],
-        },
-      ],
-    },
-    {
-      name: 'publishedAt',
-      type: 'date',
-      admin: {
-        date: {
-          pickerAppearance: 'dayAndTime',
-        },
-        position: 'sidebar',
-      },
-      hooks: {
-        beforeChange: [
-          ({ siblingData, value }) => {
-            if (siblingData._status === 'published' && !value) {
-              return new Date()
-            }
-            return value
-          },
-        ],
-      },
-    },
-    {
-      name: 'authors',
-      type: 'relationship',
-      admin: {
-        position: 'sidebar',
-      },
-      hasMany: true,
-      relationTo: 'users',
-    },
-    // This field is only used to populate the user data via the `populateAuthors` hook
-    // This is because the `user` collection has access control locked to protect user privacy
-    // GraphQL will also not return mutated user data that differs from the underlying schema
-    {
-      name: 'populatedAuthors',
-      type: 'array',
-      access: {
-        update: () => false,
-      },
-      admin: {
-        disabled: true,
-        readOnly: true,
-      },
-      fields: [
-        {
-          name: 'id',
-          type: 'text',
+                            // field paths to match the target field for data
+                            titlePath: "meta.title",
+                            descriptionPath: "meta.description",
+                        }),
+                    ],
+                },
+            ],
         },
         {
-          name: 'name',
-          type: 'text',
+            name: "publishedAt",
+            type: "date",
+            admin: {
+                date: {
+                    pickerAppearance: "dayAndTime",
+                },
+                position: "sidebar",
+            },
+            hooks: {
+                beforeChange: [
+                    ({siblingData, value}) => {
+                        if (siblingData._status === "published" && !value) {
+                            return new Date();
+                        }
+                        return value;
+                    },
+                ],
+            },
         },
-      ],
+        {
+            name: "authors",
+            type: "relationship",
+            admin: {
+                position: "sidebar",
+            },
+            hasMany: true,
+            relationTo: "users",
+        },
+        // This field is only used to populate the user data via the `populateAuthors` hook
+        // This is because the `user` collection has access control locked to protect user privacy
+        // GraphQL will also not return mutated user data that differs from the underlying schema
+        {
+            name: "populatedAuthors",
+            type: "array",
+            access: {
+                update: () => false,
+            },
+            admin: {
+                disabled: true,
+                readOnly: true,
+            },
+            fields: [
+                {
+                    name: "id",
+                    type: "text",
+                },
+                {
+                    name: "name",
+                    type: "text",
+                },
+            ],
+        },
+        ...slug(),
+    ],
+    hooks: {
+        afterChange: [revalidatePost],
+        afterRead: [populateAuthors],
     },
-    ...slug(),
-  ],
-  hooks: {
-    afterChange: [revalidatePost],
-    afterRead: [populateAuthors],
-  },
-  versions: {
-    drafts: {
-      autosave: {
-        interval: 100, // We set this interval for optimal live preview
-      },
+    versions: {
+        drafts: {
+            autosave: {
+                interval: 100, // We set this interval for optimal live preview
+            },
+        },
+        maxPerDoc: 50,
     },
-    maxPerDoc: 50,
-  },
-}
+};

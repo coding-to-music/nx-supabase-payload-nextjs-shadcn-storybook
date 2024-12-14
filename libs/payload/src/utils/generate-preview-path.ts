@@ -1,29 +1,29 @@
-import { CollectionSlug } from 'payload'
+import type {CollectionSlug} from "payload";
 
 const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
-  posts: '/posts',
-  pages: '',
+    posts: "/posts",
+    pages: "",
+};
+
+interface Props {
+    collection: keyof typeof collectionPrefixMap;
+    slug: string;
 }
 
-type Props = {
-  collection: keyof typeof collectionPrefixMap
-  slug: string
-}
+export const generatePreviewPath = ({collection, slug}: Props) => {
+    const path = `${collectionPrefixMap[collection]}/${slug}`;
 
-export const generatePreviewPath = ({ collection, slug }: Props) => {
-  const path = `${collectionPrefixMap[collection]}/${slug}`
+    const parameters = {
+        slug,
+        collection,
+        path,
+    };
 
-  const params = {
-    slug,
-    collection,
-    path,
-  }
+    const encodedParameters = new URLSearchParams();
 
-  const encodedParams = new URLSearchParams()
+    for (const [key, value] of Object.entries(parameters)) {
+        encodedParameters.append(key, value);
+    }
 
-  Object.entries(params).forEach(([key, value]) => {
-    encodedParams.append(key, value)
-  })
-
-  return `/next/preview?${encodedParams.toString()}`
-}
+    return `/next/preview?${encodedParameters.toString()}`;
+};

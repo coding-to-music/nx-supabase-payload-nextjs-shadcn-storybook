@@ -11,7 +11,7 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type {Plugin} from "payload";
 
-import {revalidateRedirects} from "./hooks/revalidate-redirects";
+import {revalidateRedirects} from "./hooks";
 import type {Page, Post} from "./payload-types";
 import {search} from "./search";
 

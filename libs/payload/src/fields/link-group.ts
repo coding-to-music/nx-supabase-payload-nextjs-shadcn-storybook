@@ -1,6 +1,6 @@
 import type {ArrayField, Field} from "payload";
 
-import {deepMerge} from "../utils/deep-merge";
+import {deepMerge} from "../utils";
 
 import type {LinkAppearances} from "./link";
 import {link} from "./link";

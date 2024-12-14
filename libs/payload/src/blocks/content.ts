@@ -6,7 +6,7 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type {Block, Field} from "payload";
 
-import {link} from "../fields/link";
+import {link} from "../fields";
 
 const columnFields: Field[] = [
     {
@@ -52,7 +52,8 @@ const columnFields: Field[] = [
     link({
         overrides: {
             admin: {
-                condition: (_, {enableLink}) => Boolean(enableLink),
+                condition: (_: never, {enableLink}: {enableLink: unknown}) =>
+                    Boolean(enableLink),
             },
         },
     }),

@@ -1,6 +1,6 @@
 import type {Field} from "payload";
 
-import {deepMerge} from "../utils/deep-merge";
+import {deepMerge} from "../utils";
 
 export type LinkAppearances = "default" | "outline";
 
@@ -80,7 +80,7 @@ export const link: Factory = ({
             type: "relationship",
             admin: {
                 condition: (_, siblingData) =>
-                    siblingData?.type === "reference",
+                    siblingData?.["type"] === "reference",
             },
             label: "Document to link to",
             maxDepth: 1,
@@ -91,7 +91,7 @@ export const link: Factory = ({
             name: "url",
             type: "text",
             admin: {
-                condition: (_, siblingData) => siblingData?.type === "custom",
+                condition: (_, siblingData) => siblingData?.["type"] === "custom",
             },
             label: "Custom URL",
             required: true,

@@ -41,7 +41,7 @@ export const slug: Factory = (fieldToUse = "title", overrides = {}) => {
                         return formatSlug(value);
                     }
 
-                    if (operation === "create" || !data?.slug) {
+                    if (operation === "create" || !data?.["slug"]) {
                         const fallbackData =
                             data?.[fieldToUse] || data?.[fieldToUse];
 

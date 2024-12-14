@@ -8,8 +8,7 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type {CollectionConfig} from "payload";
 
-import {anyone} from "../access/anyone";
-import {authenticated} from "../access/authenticated";
+import {anyone, authenticated} from "../access";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

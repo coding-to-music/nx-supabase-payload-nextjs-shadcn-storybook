@@ -45,7 +45,7 @@ export const Archive: Block = {
             type: "select",
             admin: {
                 condition: (_, siblingData) =>
-                    siblingData.populateBy === "collection",
+                    siblingData["populateBy"] === "collection",
             },
             defaultValue: "posts",
             label: "Collections To Show",
@@ -61,7 +61,7 @@ export const Archive: Block = {
             type: "relationship",
             admin: {
                 condition: (_, siblingData) =>
-                    siblingData.populateBy === "collection",
+                    siblingData["populateBy"] === "collection",
             },
             hasMany: true,
             label: "Categories To Show",
@@ -72,7 +72,7 @@ export const Archive: Block = {
             type: "number",
             admin: {
                 condition: (_, siblingData) =>
-                    siblingData.populateBy === "collection",
+                    siblingData["populateBy"] === "collection",
                 step: 1,
             },
             defaultValue: 10,
@@ -83,7 +83,7 @@ export const Archive: Block = {
             type: "relationship",
             admin: {
                 condition: (_, siblingData) =>
-                    siblingData.populateBy === "selection",
+                    siblingData["populateBy"] === "selection",
             },
             hasMany: true,
             label: "Selection",

@@ -6,7 +6,7 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type {Block} from "payload";
 
-import {linkGroup} from "../fields/link-group";
+import {linkGroup} from "../fields";
 
 export const CallToAction: Block = {
     slug: "cta",

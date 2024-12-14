@@ -16,13 +16,10 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type {CollectionConfig} from "payload";
 
-import {authenticated} from "../../access/authenticated";
-import {authenticatedOrPublished} from "../../access/authenticated-or-published";
-import {Banner} from "../../blocks/banner";
-import {Code} from "../../blocks/code";
-import {MediaBlock} from "../../blocks/media-block";
-import {slug} from "../../fields/slug";
-import {generatePreviewPath} from "../../utils/generate-preview-path";
+import {authenticated, authenticatedOrPublished} from "../../access";
+import {Banner, Code, MediaBlock} from "../../blocks";
+import {slug} from "../../fields";
+import {generatePreviewPath} from "../../utils";
 
 import {populateAuthors, revalidatePost} from "./hooks";
 
@@ -51,7 +48,7 @@ export const Posts: CollectionConfig<"posts"> = {
         livePreview: {
             url: ({data}) => {
                 const path = generatePreviewPath({
-                    slug: typeof data?.slug === "string" ? data.slug : "",
+                    slug: typeof data?.["slug"] === "string" ? data["slug"] : "",
                     collection: "posts",
                 });
 
@@ -60,7 +57,7 @@ export const Posts: CollectionConfig<"posts"> = {
         },
         preview: (data) => {
             const path = generatePreviewPath({
-                slug: typeof data?.slug === "string" ? data.slug : "",
+                slug: typeof data?.["slug"] === "string" ? data["slug"] : "",
                 collection: "posts",
             });
 
@@ -176,7 +173,7 @@ export const Posts: CollectionConfig<"posts"> = {
             hooks: {
                 beforeChange: [
                     ({siblingData, value}) => {
-                        if (siblingData._status === "published" && !value) {
+                        if (siblingData["_status"] === "published" && !value) {
                             return new Date();
                         }
                         return value;

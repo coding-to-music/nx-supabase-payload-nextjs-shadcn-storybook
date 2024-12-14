@@ -6,7 +6,7 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type {Field} from "payload";
 
-import {linkGroup} from "../fields/link-group";
+import {linkGroup} from "../fields";
 
 const heroField: Field = {
     name: "hero",
@@ -62,7 +62,7 @@ const heroField: Field = {
             type: "upload",
             admin: {
                 condition: (_, {type} = {}) =>
-                    ["highImpact", "mediumImpact"].includes(type),
+                    ["highImpact", "mediumImpact"].includes(type as string),
             },
             relationTo: "media",
             required: true,

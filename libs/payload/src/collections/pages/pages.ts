@@ -8,17 +8,17 @@ import {
 } from "@payloadcms/plugin-seo/fields";
 import type {CollectionConfig} from "payload";
 
-import {authenticated} from "../../access/authenticated";
-import {authenticatedOrPublished} from "../../access/authenticated-or-published";
-import {Archive} from "../../blocks/archive";
-import {Content} from "../../blocks/content";
-import {CallToAction} from "../../blocks/cta";
-import {FormBlock} from "../../blocks/form-block";
-import {MediaBlock} from "../../blocks/media-block";
-import {hero} from "../../fields/hero";
-import {slug} from "../../fields/slug";
-import {populatePublishedAt} from "../../hooks/populate-published-at";
-import {generatePreviewPath} from "../../utils/generate-preview-path";
+import {authenticated, authenticatedOrPublished} from "../../access";
+import {
+    Archive,
+    CallToAction,
+    Content,
+    FormBlock,
+    MediaBlock,
+} from "../../blocks";
+import {hero, slug} from "../../fields";
+import {populatePublishedAt} from "../../hooks";
+import {generatePreviewPath} from "../../utils";
 
 import {revalidatePage} from "./hooks";
 
@@ -42,7 +42,7 @@ export const Pages: CollectionConfig<"pages"> = {
         livePreview: {
             url: ({data}) => {
                 const path = generatePreviewPath({
-                    slug: typeof data?.slug === "string" ? data.slug : "",
+                    slug: typeof data?.["slug"] === "string" ? data["slug"] : "",
                     collection: "pages",
                 });
 
@@ -51,7 +51,7 @@ export const Pages: CollectionConfig<"pages"> = {
         },
         preview: (data) => {
             const path = generatePreviewPath({
-                slug: typeof data?.slug === "string" ? data.slug : "",
+                slug: typeof data?.["slug"] === "string" ? data["slug"] : "",
                 collection: "pages",
             });
 

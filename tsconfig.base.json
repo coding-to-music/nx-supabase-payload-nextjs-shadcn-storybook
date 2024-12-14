@@ -16,6 +16,7 @@
         "strict": true,
         "baseUrl": ".",
         "paths": {
+            "~/*": ["apps/nextjs-app/src/*"],
             "@my-project/payload": ["libs/payload/src/index.ts"],
             "@my-project/payload/config": [
                 "libs/payload/src/payload.config.ts"

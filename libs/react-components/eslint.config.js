@@ -57,6 +57,28 @@ export default [
     {
         files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
         // Override or add rules here
-        rules: {},
+        rules: {
+            "no-restricted-imports": [
+                "error",
+                {
+                    /* Same as in @my-project/eslint-config-ecmascript */
+                    paths: [
+                        {
+                            name: "react",
+                            allowImportNames: ["default"],
+                            message: "Only React default import is allowed.",
+                        },
+                    ],
+                    /* Same as in @my-project/eslint-config-ecmascript END */
+                    patterns: [
+                        {
+                            // Deep relative import are not allowed, except for from lib/utils
+                            regex: String.raw`(\.{1,2}\/)(\.{2}\/)*(?!lib\/utils$)(\.+[^./]+[^/]*|[^./][^/]*)\/`,
+                            message: "Deep relative imports are not allowed.",
+                        },
+                    ],
+                },
+            ],
+        },
     },
 ];

@@ -7,20 +7,10 @@ import {s3Storage} from "@payloadcms/storage-s3";
 import {buildConfig} from "payload";
 import sharp from "sharp";
 
-/* eslint-disable import/order, no-restricted-imports */
-import {Categories} from "./collections/categories";
-import {Media} from "./collections/media";
-import {Pages} from "./collections/pages";
-import {Posts} from "./collections/posts";
-import {Users} from "./collections/users";
-
-import {Header} from "./globals/header";
-import {Footer} from "./globals/footer";
-
+import {Categories, Media, Pages, Posts, Users} from "./collections";
 import {defaultLexical} from "./default-lexical";
-
+import {Footer, Header} from "./globals";
 import {plugins} from "./plugins";
-/* eslint-enable */
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

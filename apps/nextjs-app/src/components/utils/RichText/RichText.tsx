@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn'
+import { cn } from '@my-project/react-components/lib/utils'
 import React from 'react'
 
 import { serializeLexical } from './serialize'

@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn'
+import { cn } from '@my-project/react-components/lib/utils'
 import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'

@@ -1,4 +1,4 @@
-import configPromise from '@payload-config'
+import configPromise from '@my-project/payload/config'
 import { getPayload } from 'payload'
 import { unstable_cache } from 'next/cache'
 

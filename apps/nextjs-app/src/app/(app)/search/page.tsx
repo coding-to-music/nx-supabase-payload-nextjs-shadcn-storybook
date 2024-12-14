@@ -1,7 +1,7 @@
 import type { Metadata } from 'next/types'
 
 import { CollectionArchive } from '@/components/misc/CollectionArchive'
-import configPromise from '@payload-config'
+import configPromise from '@my-project/payload/config'
 import { getPayload } from 'payload'
 import React from 'react'
 import { Post } from '@/payload-types'

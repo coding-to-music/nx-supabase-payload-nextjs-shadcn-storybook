@@ -19,7 +19,7 @@ interface Props {
   scroll?: boolean
 }
 
-function useClickableCard<T extends HTMLElement>({
+export function useClickableCard<T extends HTMLElement>({
   external = false,
   newTab = false,
   scroll = true,
@@ -103,5 +103,3 @@ function useClickableCard<T extends HTMLElement>({
     },
   }
 }
-
-export default useClickableCard

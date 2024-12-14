@@ -9,7 +9,7 @@ import React from 'react'
 import type { Props as MediaProps } from '../types'
 
 import { cssVariables } from '@/cssVariables'
-import { getClientSideURL } from '@/utilities/getURL'
+import { getClientSideUrl } from '@my-project/utils'
 
 const { breakpoints } = cssVariables
 
@@ -47,7 +47,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     height = fullHeight!
     alt = altFromResource || ''
 
-    src = `${getClientSideURL()}${url}`
+    src = `${getClientSideUrl()}${url}`
   }
 
   const loading = loadingFromProps || 'lazy'

@@ -15,7 +15,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
 import './global.css'
-import { getServerSideURL } from '@/utilities/getURL'
+import { getServerSideUrl } from '@my-project/utils'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -46,7 +46,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(getServerSideURL()),
+  metadataBase: new URL(getServerSideUrl()),
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',

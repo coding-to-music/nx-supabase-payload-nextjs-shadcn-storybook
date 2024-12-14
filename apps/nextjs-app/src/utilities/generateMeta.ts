@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import type { Page, Post } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
-import { getServerSideURL } from './getURL'
+import { getServerSideUrl } from '@my-project/utils'
 
 export const generateMeta = async (args: {
   doc: Partial<Page> | Partial<Post>
@@ -14,7 +14,7 @@ export const generateMeta = async (args: {
     typeof doc?.meta?.image === 'object' &&
     doc.meta.image !== null &&
     'url' in doc.meta.image &&
-    `${getServerSideURL()}`
+    `${getServerSideUrl()}`
 
   const title = doc?.meta?.title
     ? doc?.meta?.title + ' | Payload Website Template'

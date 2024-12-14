@@ -3,12 +3,12 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { Plugin } from 'payload'
-import { revalidateRedirects } from '@/hooks/revalidateRedirects'
+import { revalidateRedirects } from './hooks/revalidate-redirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
-import { Page, Post } from '@/payload-types'
-import { getServerSideURL } from '@/utilities/getURL'
+import { Page, Post } from './payload-types'
+import { getServerSideUrl } from '@my-project/utils'
 import { search } from './search'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
@@ -16,7 +16,7 @@ const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
-  const url = getServerSideURL()
+  const url = getServerSideUrl()
 
   return doc?.slug ? `${url}/${doc.slug}` : url
 }

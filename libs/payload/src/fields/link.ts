@@ -1,6 +1,6 @@
 import type { Field } from 'payload'
 
-import deepMerge from '@/utilities/deepMerge'
+import { deepMerge } from '../utils/deep-merge'
 
 export type LinkAppearances = 'default' | 'outline'
 

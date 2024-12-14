@@ -1,16 +1,16 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Archive } from '../../blocks/ArchiveBlock/config'
-import { CallToAction } from '../../blocks/CallToAction/config'
-import { Content } from '../../blocks/Content/config'
-import { FormBlock } from '../../blocks/Form/config'
-import { MediaBlock } from '../../blocks/MediaBlock/config'
-import { hero } from '@/heros/config'
-import { slug } from '@/fields/slug'
-import { populatePublishedAt } from '../../hooks/populatePublishedAt'
-import { generatePreviewPath } from '../../utilities/generatePreviewPath'
+import { authenticatedOrPublished } from '../../access/authenticated-or-published'
+import { Archive } from '../../blocks/archive'
+import { CallToAction } from '../../blocks/cta'
+import { Content } from '../../blocks/content'
+import { FormBlock } from '../../blocks/form-block'
+import { MediaBlock } from '../../blocks/media-block'
+import { hero } from '../../fields/hero'
+import { slug } from '../../fields/slug'
+import { populatePublishedAt } from '../../hooks/populate-published-at'
+import { generatePreviewPath } from '../../utils/generate-preview-path'
 import { revalidatePage } from './hooks'
 
 import {
@@ -20,7 +20,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { getServerSideURL } from '@/utilities/getURL'
+import { getServerSideUrl } from '@my-project/utils'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -46,7 +46,7 @@ export const Pages: CollectionConfig<'pages'> = {
           collection: 'pages',
         })
 
-        return `${getServerSideURL()}${path}`
+        return `${getServerSideUrl()}${path}`
       },
     },
     preview: (data) => {
@@ -55,7 +55,7 @@ export const Pages: CollectionConfig<'pages'> = {
         collection: 'pages',
       })
 
-      return `${getServerSideURL()}${path}`
+      return `${getServerSideUrl()}${path}`
     },
     useAsTitle: 'title',
   },
@@ -69,7 +69,7 @@ export const Pages: CollectionConfig<'pages'> = {
       type: 'tabs',
       tabs: [
         {
-          fields: [hero],
+          fields: [hero()],
           label: 'Hero',
         },
         {

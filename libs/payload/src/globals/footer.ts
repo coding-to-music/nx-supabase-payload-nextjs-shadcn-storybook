@@ -1,7 +1,7 @@
 import { revalidateTag } from 'next/cache'
 import type { GlobalConfig } from 'payload'
 
-import { link } from '@/fields/link'
+import { link } from '../fields/link'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',

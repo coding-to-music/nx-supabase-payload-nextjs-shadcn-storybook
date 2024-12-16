@@ -1,6 +1,5 @@
 import type {Footer} from "@my-project/payload";
 import Link from "next/link";
-import React from "react";
 
 import {Logo} from "~/components/misc/Logo";
 import {CmsLink} from "~/components/utils/CmsLink";

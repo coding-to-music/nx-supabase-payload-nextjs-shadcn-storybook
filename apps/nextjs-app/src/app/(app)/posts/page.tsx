@@ -1,7 +1,6 @@
 import configPromise from "@my-project/payload/config";
 import type {Metadata} from "next/types";
 import {getPayload} from "payload";
-import React from "react";
 
 import PageClient from "./page.client";
 

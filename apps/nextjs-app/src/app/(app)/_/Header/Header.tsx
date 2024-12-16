@@ -1,5 +1,4 @@
 import type {Header} from "@my-project/payload";
-import React from "react";
 
 import {HeaderClient} from "./Header.client";
 

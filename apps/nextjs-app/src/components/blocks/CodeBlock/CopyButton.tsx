@@ -3,17 +3,17 @@ import {Button} from "@my-project/react-components";
 import {CopyIcon} from "@payloadcms/ui/icons/Copy";
 import React from "react";
 
-export function CopyButton({code}: {code: string}) {
+export const CopyButton = ({code}: {code: string}) => {
     const [text, setText] = React.useState("Copy");
 
-    function updateCopyStatus() {
+    const updateCopyStatus = () => {
         if (text === "Copy") {
             setText(() => "Copied!");
             setTimeout(() => {
                 setText(() => "Copy");
             }, 1000);
         }
-    }
+    };
 
     return (
         <div className={"flex justify-end align-middle"}>
@@ -33,4 +33,4 @@ export function CopyButton({code}: {code: string}) {
             </Button>
         </div>
     );
-}
+};

@@ -13,7 +13,7 @@ import {RenderBlocks} from "~/components/utils/RenderBlocks";
 import {RenderHero} from "~/components/utils/RenderHero";
 import {generateMeta} from "~/utils/generateMeta";
 
-export async function generateStaticParams() {
+export const generateStaticParams = async () => {
     const payload = await getPayload({config: configPromise});
     const pages = await payload.find({
         collection: "pages",
@@ -30,7 +30,7 @@ export async function generateStaticParams() {
         .map(({slug}) => ({slug}));
 
     return parameters;
-}
+};
 
 interface Args {
     params: Promise<{
@@ -71,16 +71,16 @@ export default async function Page({params: parametersPromise}: Args) {
     );
 }
 
-export async function generateMetadata({
+export const generateMetadata = async ({
     params: parametersPromise,
-}): Promise<Metadata> {
+}): Promise<Metadata> => {
     const {slug = "home"} = await parametersPromise;
     const page = await queryPageBySlug({
         slug,
     });
 
     return await generateMeta({doc: page});
-}
+};
 
 const queryPageBySlug = React.cache(async ({slug}: {slug: string}) => {
     const {isEnabled: draft} = await draftMode();

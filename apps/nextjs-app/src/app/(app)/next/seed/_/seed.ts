@@ -345,7 +345,7 @@ export const seed = async ({
     payload.logger.info("Seeded database successfully!");
 };
 
-async function fetchFileByURL(url: string): Promise<File> {
+const fetchFileByURL = async (url: string): Promise<File> => {
     const res = await fetch(url, {
         credentials: "include",
         method: "GET",
@@ -365,4 +365,4 @@ async function fetchFileByURL(url: string): Promise<File> {
         mimetype: `image/${url.split(".").pop()}`,
         size: data.byteLength,
     };
-}
+};

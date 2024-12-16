@@ -5,7 +5,7 @@ import {getPayload} from "payload";
 
 type Collection = keyof Config["collections"];
 
-async function getDocument(collection: Collection, slug: string, depth = 0) {
+const getDocument = async (collection: Collection, slug: string, depth = 0) => {
     const payload = await getPayload({config: configPromise});
 
     const page = await payload.find({
@@ -19,7 +19,7 @@ async function getDocument(collection: Collection, slug: string, depth = 0) {
     });
 
     return page.docs[0];
-}
+};
 
 /**
  * Returns a unstable_cache function mapped with the cache tag for the slug

@@ -17,11 +17,11 @@ interface Props {
     scroll?: boolean;
 }
 
-export function useClickableCard<T extends HTMLElement>({
+export const useClickableCard = <T extends HTMLElement>({
     external = false,
     newTab = false,
     scroll = true,
-}: Props): UseClickableCardType<T> {
+}: Props): UseClickableCardType<T> => {
     const router = useRouter();
     const card = React.useRef<T>(null);
     const link = React.useRef<HTMLAnchorElement>(null);
@@ -102,4 +102,4 @@ export function useClickableCard<T extends HTMLElement>({
             ref: link,
         },
     };
-}
+};

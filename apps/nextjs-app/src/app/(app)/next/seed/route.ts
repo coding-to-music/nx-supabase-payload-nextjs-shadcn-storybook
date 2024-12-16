@@ -7,7 +7,7 @@ import {seed} from "./_/seed";
 const payloadToken = "payload-token";
 export const maxDuration = 60; // This function can run for a maximum of 60 seconds
 
-export async function POST(
+export const POST = async (
     request: Request & {
         cookies: {
             get: (name: string) => {
@@ -15,7 +15,7 @@ export async function POST(
             };
         };
     },
-): Promise<Response> {
+): Promise<Response> => {
     const payload = await getPayload({config});
     const requestHeaders = await headers();
 
@@ -37,4 +37,4 @@ export async function POST(
     } catch {
         return new Response("Error seeding data.");
     }
-}
+};

@@ -2,7 +2,7 @@ import configPromise from "@my-project/payload/config";
 import {unstable_cache} from "next/cache";
 import {getPayload} from "payload";
 
-export async function getRedirects(depth = 1) {
+export const getRedirects = async (depth = 1) => {
     const payload = await getPayload({config: configPromise});
 
     const {docs: redirects} = await payload.find({
@@ -13,7 +13,7 @@ export async function getRedirects(depth = 1) {
     });
 
     return redirects;
-}
+};
 
 /**
  * Returns a unstable_cache function mapped with the cache tag for 'redirects'.

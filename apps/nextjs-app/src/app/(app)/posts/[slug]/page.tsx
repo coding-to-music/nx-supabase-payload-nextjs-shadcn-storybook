@@ -13,7 +13,7 @@ import {PayloadRedirects} from "~/components/utils/PayloadRedirects";
 import {RichText} from "~/components/utils/RichText";
 import {generateMeta} from "~/utils/generateMeta";
 
-export async function generateStaticParams() {
+export const generateStaticParams = async () => {
     const payload = await getPayload({config: configPromise});
     const posts = await payload.find({
         collection: "posts",
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
     const parameters = posts.docs.map(({slug}) => ({slug}));
 
     return parameters;
-}
+};
 
 interface Args {
     params: Promise<{
@@ -75,14 +75,14 @@ export default async function Post({params: parametersPromise}: Args) {
     );
 }
 
-export async function generateMetadata({
+export const generateMetadata = async ({
     params: parametersPromise,
-}: Args): Promise<Metadata> {
+}: Args): Promise<Metadata> => {
     const {slug = ""} = await parametersPromise;
     const post = await queryPostBySlug({slug});
 
     return await generateMeta({doc: post});
-}
+};
 
 const queryPostBySlug = React.cache(async ({slug}: {slug: string}) => {
     const {isEnabled: draft} = await draftMode();

@@ -1,4 +1,4 @@
-import type {Footer} from "@my-project/payload";
+import type {Footer as FooterType} from "@my-project/payload";
 import Link from "next/link";
 
 import {Logo} from "~/components/misc/Logo";
@@ -6,8 +6,8 @@ import {CmsLink} from "~/components/utils/CmsLink";
 import {ThemeSelector} from "~/theme/ThemeSelector";
 import {getCachedGlobal} from "~/utils/getGlobals";
 
-export async function Footer() {
-    const footer: Footer = await getCachedGlobal("footer", 1)();
+export const Footer = async () => {
+    const footer: FooterType = await getCachedGlobal("footer", 1)();
 
     const navItems = footer?.navItems || [];
 
@@ -45,4 +45,4 @@ export async function Footer() {
             </div>
         </footer>
     );
-}
+};

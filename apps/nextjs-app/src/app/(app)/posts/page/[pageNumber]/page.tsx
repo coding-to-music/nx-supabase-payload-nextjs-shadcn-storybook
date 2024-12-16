@@ -65,16 +65,16 @@ export default async function Page({params: parametersPromise}: Args) {
     );
 }
 
-export async function generateMetadata({
+export const generateMetadata = async ({
     params: parametersPromise,
-}: Args): Promise<Metadata> {
+}: Args): Promise<Metadata> => {
     const {pageNumber} = await parametersPromise;
     return {
         title: `Payload Website Template Posts Page ${pageNumber || ""}`,
     };
-}
+};
 
-export async function generateStaticParams() {
+export const generateStaticParams = async () => {
     const payload = await getPayload({config: configPromise});
     const {totalDocs} = await payload.count({
         collection: "posts",
@@ -90,4 +90,4 @@ export async function generateStaticParams() {
     }
 
     return pages;
-}
+};

@@ -7,7 +7,7 @@ import type {CollectionSlug} from "payload";
 
 const payloadToken = "payload-token";
 
-export async function GET(
+export const GET = async (
     request: Request & {
         cookies: {
             get: (name: string) => {
@@ -15,7 +15,7 @@ export async function GET(
             };
         };
     },
-): Promise<Response> {
+): Promise<Response> => {
     const payload = await getPayload({config: configPromise});
     const token = request.cookies.get(payloadToken)?.value;
     const {searchParams} = new URL(request.url);
@@ -107,4 +107,4 @@ export async function GET(
 
         redirect(path);
     }
-}
+};

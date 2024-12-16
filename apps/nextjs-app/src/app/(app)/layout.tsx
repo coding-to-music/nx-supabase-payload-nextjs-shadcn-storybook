@@ -1,4 +1,5 @@
 import {cn} from "@my-project/react-components/lib/utils";
+import {getServerSideUrl} from "@my-project/utils";
 import {GeistMono} from "geist/font/mono";
 import {GeistSans} from "geist/font/sans";
 import type {Metadata} from "next";
@@ -16,7 +17,6 @@ import {HeaderThemeProvider} from "~/theme/header/HeaderThemeProvider";
 import {mergeOpenGraph} from "~/utils/mergeOpenGraph";
 
 import "./global.css";
-import {getServerSideUrl} from "@my-project/utils";
 
 export default async function RootLayout({
     children,

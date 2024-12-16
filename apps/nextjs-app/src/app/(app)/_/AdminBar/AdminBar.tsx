@@ -1,14 +1,13 @@
 "use client";
 
 import {cn} from "@my-project/react-components/lib/utils";
+import {getClientSideUrl} from "@my-project/utils";
 import {useRouter, useSelectedLayoutSegments} from "next/navigation";
 import type {PayloadAdminBarProps} from "payload-admin-bar";
 import {PayloadAdminBar} from "payload-admin-bar";
 import React from "react";
 
 import "./index.scss";
-
-import {getClientSideUrl} from "@my-project/utils";
 
 const baseClass = "admin-bar";
 

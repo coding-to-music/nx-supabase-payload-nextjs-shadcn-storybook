@@ -8,7 +8,7 @@ import {
 } from "@my-project/react-components";
 import type {CountryField} from "@payloadcms/plugin-form-builder/types";
 import type React from "react";
-import type {Control, FieldErrorsImpl, FieldValues} from "react-hook-form";
+import type {Control, FieldErrorsImpl} from "react-hook-form";
 import {Controller} from "react-hook-form";
 
 import {Error} from "../Error";

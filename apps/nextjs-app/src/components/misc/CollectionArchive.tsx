@@ -1,4 +1,3 @@
-import type {Post} from "@my-project/payload";
 import {cn} from "@my-project/react-components/lib/utils";
 import type React from "react";
 

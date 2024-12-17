@@ -24,6 +24,7 @@ export default [
     {
         rules: {
             "@typescript-eslint/explicit-function-return-type": "off",
+            "@typescript-eslint/init-declarations": "off",
             "@typescript-eslint/no-magic-numbers": [
                 "error",
                 {

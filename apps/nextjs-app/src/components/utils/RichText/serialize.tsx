@@ -184,29 +184,22 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                         );
                     }
                     case "listitem": {
-                        if (node?.checked == null) {
-                            return (
-                                <li key={index} value={node?.value}>
-                                    {serializedChildren}
-                                </li>
-                            );
-                        } else {
-                            return (
-                                <li
-                                    aria-checked={
-                                        node.checked ? "true" : "false"
-                                    }
-                                    className={` ${node.checked ? "" : ""}`}
-                                    tabIndex={-1}
-                                    value={node?.value}
-                                    key={index}
-                                    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-                                    role="checkbox"
-                                >
-                                    {serializedChildren}
-                                </li>
-                            );
-                        }
+                        return node?.checked == null ? (
+                            <li key={index} value={node?.value}>
+                                {serializedChildren}
+                            </li>
+                        ) : (
+                            <li
+                                key={index}
+                                aria-checked={node.checked ? "true" : "false"}
+                                className={` ${node.checked ? "" : ""}`}
+                                role={"checkbox"}
+                                tabIndex={-1}
+                                value={node.value}
+                            >
+                                {serializedChildren}
+                            </li>
+                        );
                     }
                     case "quote": {
                         return (

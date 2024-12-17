@@ -43,13 +43,13 @@ export const GET = async (
         }
 
         if (!token) {
-            new Response("You are not allowed to preview this page", {
+            return new Response("You are not allowed to preview this page", {
                 status: 403,
             });
         }
 
         if (!path.startsWith("/")) {
-            new Response(
+            return new Response(
                 "This endpoint can only be used for internal previews",
                 {status: 500},
             );

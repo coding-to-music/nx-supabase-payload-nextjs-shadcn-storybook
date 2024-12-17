@@ -20,7 +20,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
                 // console.warn('Video was suspended, rendering fallback image.')
             });
         }
-    }, []);
+    }, [videoRef]);
 
     if (resource && typeof resource === "object") {
         const {filename} = resource;

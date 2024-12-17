@@ -30,5 +30,6 @@ export const Logo = (props: Props) => {
             }
             width={193}
         />
+        /* eslint-enable @next/next/no-img-element */
     );
 };

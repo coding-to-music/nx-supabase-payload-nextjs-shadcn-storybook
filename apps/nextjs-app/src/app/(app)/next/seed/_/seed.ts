@@ -346,18 +346,18 @@ export const seed = async ({
 };
 
 const fetchFileByURL = async (url: string): Promise<File> => {
-    const res = await fetch(url, {
+    const response = await fetch(url, {
         credentials: "include",
         method: "GET",
     });
 
-    if (!res.ok) {
+    if (!response.ok) {
         throw new Error(
-            `Failed to fetch file from ${url}, status: ${res.status}`,
+            `Failed to fetch file from ${url}, status: ${response.status}`,
         );
     }
 
-    const data = await res.arrayBuffer();
+    const data = await response.arrayBuffer();
 
     return {
         name: url.split("/").pop() || `file-${Date.now()}`,

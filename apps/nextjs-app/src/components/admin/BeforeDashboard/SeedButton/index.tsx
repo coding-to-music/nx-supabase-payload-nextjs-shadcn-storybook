@@ -20,8 +20,8 @@ export const SeedButton: React.FC = () => {
     const [error, setError] = React.useState(null);
 
     const handleClick = React.useCallback(
-        async (e) => {
-            e.preventDefault();
+        async (event) => {
+            event.preventDefault();
 
             if (seeded) {
                 toast.info("Database already seeded.");
@@ -46,8 +46,8 @@ export const SeedButton: React.FC = () => {
                                 method: "POST",
                                 credentials: "include",
                             })
-                                .then((res) => {
-                                    if (res.ok) {
+                                .then((response) => {
+                                    if (response.ok) {
                                         resolve(true);
                                         setSeeded(true);
                                     } else {

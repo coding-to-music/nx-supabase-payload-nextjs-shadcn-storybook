@@ -78,7 +78,7 @@ export const GET = async (
 
         // Verify the given slug exists
         try {
-            const docs = await payload.find({
+            const documents = await payload.find({
                 collection,
                 draft: true,
                 limit: 1,
@@ -93,7 +93,7 @@ export const GET = async (
                 },
             });
 
-            if (docs.docs.length === 0) {
+            if (documents.docs.length === 0) {
                 return new Response("Document not found", {status: 404});
             }
         } catch (error) {

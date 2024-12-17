@@ -58,8 +58,8 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
     }, [targetFieldValue, checkboxValue, setValue, value]);
 
     const handleLock = React.useCallback(
-        (e) => {
-            e.preventDefault();
+        (event) => {
+            event.preventDefault();
 
             dispatchFields({
                 type: "UPDATE",

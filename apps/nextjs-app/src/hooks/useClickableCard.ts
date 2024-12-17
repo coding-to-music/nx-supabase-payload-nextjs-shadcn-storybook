@@ -30,14 +30,14 @@ export const useClickableCard = <T extends HTMLElement>({
     const pressedButton = React.useRef<number>(0);
 
     const handleMouseDown = React.useCallback(
-        (e: MouseEvent) => {
-            if (e.target) {
-                const target = e.target as Element;
+        (event: MouseEvent) => {
+            if (event.target) {
+                const target = event.target as Element;
 
                 const timeNow = Date.now();
                 const parent = target?.closest("a");
 
-                pressedButton.current = e.button;
+                pressedButton.current = event.button;
 
                 if (parent) {
                     hasActiveParent.current = true;
@@ -52,7 +52,7 @@ export const useClickableCard = <T extends HTMLElement>({
     );
 
     const handleMouseUp = React.useCallback(
-        (e: MouseEvent) => {
+        (event: MouseEvent) => {
             if (link.current?.href) {
                 const timeNow = Date.now();
                 const difference = timeNow - timeDown.current;
@@ -62,7 +62,7 @@ export const useClickableCard = <T extends HTMLElement>({
                     difference <= 250 &&
                     !hasActiveParent.current &&
                     pressedButton.current === 0 &&
-                    !e.ctrlKey
+                    !event.ctrlKey
                 ) {
                     if (external) {
                         const target = newTab ? "_blank" : "_self";

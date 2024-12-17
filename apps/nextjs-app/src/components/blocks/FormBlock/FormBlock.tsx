@@ -93,7 +93,7 @@ export const FormBlock: React.FC<
                         },
                     );
 
-                    const res = await request.json();
+                    const response = await request.json();
 
                     clearTimeout(loadingTimerID);
 
@@ -102,9 +102,9 @@ export const FormBlock: React.FC<
 
                         setError({
                             message:
-                                res.errors?.[0]?.message ||
+                                response.errors?.[0]?.message ||
                                 "Internal Server Error",
-                            status: res.status,
+                            status: response.status,
                         });
 
                         return;

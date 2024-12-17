@@ -93,6 +93,15 @@ export default [
                     allowCircularSelfDependency: true,
                 },
             ],
+            "@typescript-eslint/no-unused-vars": [
+                "error",
+                {
+                    args: "all",
+                    argsIgnorePattern: "^_",
+                    ignoreRestSiblings: true,
+                    caughtErrors: "all",
+                },
+            ],
             "no-restricted-imports": [
                 "error",
                 {

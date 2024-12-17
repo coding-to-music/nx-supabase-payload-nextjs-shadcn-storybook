@@ -8,7 +8,9 @@ export const LivePreviewListener: React.FC = () => {
     const router = useRouter();
     return (
         <PayloadLivePreview
-            refresh={router.refresh}
+            refresh={() => {
+                router.refresh();
+            }}
             serverURL={getClientSideUrl()}
         />
     );

@@ -1,10 +1,4 @@
-import type {
-    CollectionSlug,
-    File,
-    GlobalSlug,
-    Payload,
-    PayloadRequest,
-} from "payload";
+import type {CollectionSlug, File, GlobalSlug, Payload} from "payload";
 
 import {contactForm as contactFormData} from "./contact-form";
 import {contact as contactPageData} from "./contact-page";
@@ -30,13 +24,7 @@ const globals: GlobalSlug[] = ["header", "footer"];
 // i.e. running `yarn seed` locally instead of using the admin UI within an active app
 // The app is not running to revalidate the pages and so the API routes are not available
 // These error messages can be ignored: `Error hitting revalidate route for...`
-export const seed = async ({
-    payload,
-    req,
-}: {
-    payload: Payload;
-    req: PayloadRequest;
-}): Promise<void> => {
+export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
     payload.logger.info("Seeding database...");
 
     // we need to clear the media directory before seeding
@@ -68,7 +56,7 @@ export const seed = async ({
         });
     }
 
-    const pages = await payload.delete({
+    await payload.delete({
         collection: "pages",
         where: {},
     });

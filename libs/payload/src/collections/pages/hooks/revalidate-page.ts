@@ -17,6 +17,7 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
     }
 
     // If the page was previously published, we need to revalidate the old path
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
     if (previousDoc?._status === "published" && doc._status !== "published") {
         const oldPath =
             previousDoc.slug === "home" ? "/" : `/${previousDoc.slug}`;

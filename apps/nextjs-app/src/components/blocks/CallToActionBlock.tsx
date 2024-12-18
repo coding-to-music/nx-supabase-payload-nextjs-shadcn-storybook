@@ -15,6 +15,7 @@ export const CallToActionBlock: React.FC<CTABlockProps> = ({
             }
         >
             <div className={"flex max-w-[48rem] items-center"}>
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {richText && (
                     <RichText
                         className={"mb-0"}
@@ -24,6 +25,7 @@ export const CallToActionBlock: React.FC<CTABlockProps> = ({
                 )}
             </div>
             <div className={"flex flex-col gap-8"}>
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress] */}
                 {(links || []).map(({link}, index) => (
                     <CmsLink key={index} size={"lg"} {...link} />
                 ))}

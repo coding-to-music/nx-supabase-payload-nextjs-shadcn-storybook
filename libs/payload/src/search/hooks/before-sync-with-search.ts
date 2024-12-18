@@ -3,6 +3,7 @@ import type {BeforeSync, DocToSync} from "@payloadcms/plugin-search/types";
 export const beforeSyncWithSearch: BeforeSync = async ({
     originalDoc,
     searchDoc,
+    // eslint-disable-next-line @typescript-eslint/require-await -- [bulk suppress]
 }) => {
     const {
         doc: {relationTo: collection},
@@ -12,16 +13,22 @@ export const beforeSyncWithSearch: BeforeSync = async ({
 
     const modifiedDocument: DocToSync = {
         ...searchDoc,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
         slug,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
         meta: {
             ...meta,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
             title: meta?.title || title,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
             image: meta?.image?.id || meta?.image,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
             description: meta?.description,
         },
         categories: [],
     };
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-magic-numbers -- [bulk suppress]
     if (categories && Array.isArray(categories) && categories.length > 0) {
         // get full categories and keep a flattened copy of their most important properties
         try {
@@ -30,7 +37,9 @@ export const beforeSyncWithSearch: BeforeSync = async ({
 
                 return {
                     relationTo: "categories",
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
                     id,
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
                     title,
                 };
             });

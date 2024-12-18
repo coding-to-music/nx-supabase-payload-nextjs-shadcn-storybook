@@ -27,6 +27,7 @@ export const Header: GlobalConfig = {
 
                 revalidateTag("global_header");
 
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- [bulk suppress]
                 return doc;
             },
         ],

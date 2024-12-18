@@ -13,9 +13,12 @@ import {Width} from "../Width";
 
 export const Checkbox: React.FC<
     CheckboxField & {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
         errors: Partial<FieldErrorsImpl<Record<string, any>>>;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
         getValues: any;
         register: UseFormRegister<FieldValues>;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
         setValue: any;
     }
 > = ({
@@ -43,6 +46,7 @@ export const Checkbox: React.FC<
                 />
                 <Label htmlFor={name}>{label}</Label>
             </div>
+            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
             {requiredFromProps && errors[name] && <Error />}
         </Width>
     );

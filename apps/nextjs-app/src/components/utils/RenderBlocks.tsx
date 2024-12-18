@@ -16,10 +16,12 @@ const blockComponents = {
 };
 
 export const RenderBlocks: React.FC<{
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
     blocks: Array<Page["layout"][0]>;
 }> = (props) => {
     const {blocks} = props;
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition, @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
 
     if (hasBlocks) {
@@ -28,12 +30,15 @@ export const RenderBlocks: React.FC<{
                 {blocks.map((block, index) => {
                     const {blockType} = block;
 
+                    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                     if (blockType && blockType in blockComponents) {
                         const Block = blockComponents[blockType];
 
+                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                         if (Block) {
                             return (
                                 <div key={index} className={"my-16"}>
+                                    {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress] */}
                                     {/* @ts-expect-error */}
                                     <Block {...block} />
                                 </div>

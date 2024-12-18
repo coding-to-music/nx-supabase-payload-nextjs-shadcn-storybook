@@ -3,6 +3,7 @@ import type {Post} from "@my-project/payload";
 export const post1: Partial<Post> = {
     slug: "digital-horizons",
     _status: "published",
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress]
     // @ts-ignore
     authors: ["{{AUTHOR}}"],
     content: {
@@ -171,6 +172,7 @@ export const post1: Partial<Post> = {
                     fields: {
                         blockName: "Generate Text",
                         blockType: "code",
+                        // eslint-disable-next-line no-template-curly-in-string -- [bulk suppress]
                         code: "async function generateText(prompt) {\n    const apiKey = 'your-api-key';\n    const apiUrl = 'https://api.example.com/generate-text';\n\n    const response = await fetch(apiUrl, {\n        method: 'POST',\n        headers: {\n            'Content-Type': 'application/json',\n            'Authorization': `Bearer ${apiKey}`\n        },\n        body: JSON.stringify({\n            model: 'text-generation-model',\n            prompt: prompt,\n            max_tokens: 50\n        })\n    });\n\n    const data = await response.json();\n    console.log(data.choices[0].text.trim());\n}\n\n// Example usage\ngenerateText(\"Once upon a time in a faraway land,\");\n",
                         language: "javascript",
                     },
@@ -295,6 +297,7 @@ export const post1: Partial<Post> = {
     meta: {
         description:
             "Dive into the marvels of modern innovation, where the only constant is change. A journey where pixels and data converge to craft the future.",
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress]
         // @ts-ignore
         image: "{{IMAGE_1}}",
         title: "Digital Horizons: A Glimpse into Tomorrow",

@@ -9,15 +9,19 @@ import {RichText} from "~/components/utils/RichText";
 export interface RelatedPostsProps {
     className?: string;
     docs?: Post[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
     introContent?: any;
 }
 
 export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
     const {className, docs, introContent} = props;
 
     return (
         <div className={clsx("container", className)}>
+            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
             {introContent && (
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
                 <RichText content={introContent} enableGutter={false} />
             )}
 

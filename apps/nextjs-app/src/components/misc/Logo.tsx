@@ -13,7 +13,9 @@ export const Logo = (props: Props) => {
         className,
     } = props;
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const loading = loadingFromProps || "lazy";
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const priority = priorityFromProps || "low";
 
     return (

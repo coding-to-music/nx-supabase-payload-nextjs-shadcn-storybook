@@ -31,8 +31,10 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     let width: number | undefined;
     let height: number | undefined;
     let alt = altFromProps;
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     let source: StaticImageData | string = sourceFromProps || "";
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (!source && resource && typeof resource === "object") {
         const {
             alt: altFromResource,
@@ -43,27 +45,33 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
         width = fullWidth!;
         height = fullHeight!;
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
         alt = altFromResource || "";
 
         source = `${getClientSideUrl()}${url}`;
     }
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const loading = loadingFromProps || "lazy";
 
     // NOTE: this is used by the browser to determine which image to download at different screen sizes
     const sizes =
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
         sizeFromProps ||
         Object.entries(breakpoints)
+            // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
             .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
             .join(", ");
 
     return (
         <picture>
             <NextImage
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
                 alt={alt || ""}
                 blurDataURL={placeholderBlur}
                 className={cn(imgClassName)}
                 fill={fill}
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 height={fill ? undefined : height}
                 loading={loading}
                 placeholder={"blur"}
@@ -71,6 +79,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
                 quality={100}
                 sizes={sizes}
                 src={source}
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 width={fill ? undefined : width}
             />
         </picture>

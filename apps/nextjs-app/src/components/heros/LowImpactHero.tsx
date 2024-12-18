@@ -19,7 +19,9 @@ export const LowImpactHero: React.FC<LowImpactHeroType> = ({
 }) => (
     <div className={"container mt-16"}>
         <div className={"max-w-[48rem]"}>
+            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress] */}
             {children ||
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 (richText && (
                     <RichText content={richText} enableGutter={false} />
                 ))}

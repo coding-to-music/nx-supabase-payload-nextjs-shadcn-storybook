@@ -21,7 +21,9 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
             <div
                 className={"grid grid-cols-4 gap-x-16 gap-y-8 lg:grid-cols-12"}
             >
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {columns &&
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                     columns.length > 0 &&
                     columns.map((col, index) => {
                         const {enableLink, link, richText, size} = col;
@@ -36,6 +38,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                                     },
                                 )}
                             >
+                                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                                 {richText && (
                                     <RichText
                                         content={richText}
@@ -43,6 +46,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                                     />
                                 )}
 
+                                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                                 {enableLink && <CmsLink {...link} />}
                             </div>
                         );

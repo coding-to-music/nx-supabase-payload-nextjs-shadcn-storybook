@@ -21,9 +21,12 @@ export const Pagination: React.FC<{
 
     const {className, page, totalPages} = props;
     const hasNextPage = page < totalPages;
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const hasPreviousPage = page > 1;
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const hasExtraPreviousPages = page - 1 > 1;
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const hasExtraNextPages = page + 1 < totalPages;
 
     return (
@@ -34,6 +37,7 @@ export const Pagination: React.FC<{
                         <PaginationPrevious
                             disabled={!hasPreviousPage}
                             onClick={() => {
+                                // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                 router.push(`/posts/page/${page - 1}`);
                             }}
                         />
@@ -49,9 +53,11 @@ export const Pagination: React.FC<{
                         <PaginationItem>
                             <PaginationLink
                                 onClick={() => {
+                                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                     router.push(`/posts/page/${page - 1}`);
                                 }}
                             >
+                                {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress] */}
                                 {page - 1}
                             </PaginationLink>
                         </PaginationItem>
@@ -72,9 +78,11 @@ export const Pagination: React.FC<{
                         <PaginationItem>
                             <PaginationLink
                                 onClick={() => {
+                                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                     router.push(`/posts/page/${page + 1}`);
                                 }}
                             >
+                                {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress] */}
                                 {page + 1}
                             </PaginationLink>
                         </PaginationItem>
@@ -90,6 +98,7 @@ export const Pagination: React.FC<{
                         <PaginationNext
                             disabled={!hasNextPage}
                             onClick={() => {
+                                // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                 router.push(`/posts/page/${page + 1}`);
                             }}
                         />

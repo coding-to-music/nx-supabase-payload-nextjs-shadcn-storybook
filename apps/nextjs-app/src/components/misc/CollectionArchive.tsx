@@ -18,7 +18,9 @@ export const CollectionArchive: React.FC<Props> = (props) => {
                         "grid grid-cols-4 gap-x-4 gap-y-4 sm:grid-cols-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-8 xl:gap-x-8"
                     }
                 >
+                    {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress] */}
                     {posts?.map((result, index) => {
+                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                         if (typeof result === "object" && result !== null) {
                             return (
                                 <div key={index} className={"col-span-4"}>

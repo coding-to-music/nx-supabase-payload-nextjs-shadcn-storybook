@@ -23,6 +23,7 @@ export const ArchiveBlock: React.FC<
         selectedDocs,
     } = props;
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const limit = limitFromProps || 3;
 
     let posts: Post[] = [];
@@ -38,6 +39,7 @@ export const ArchiveBlock: React.FC<
             collection: "posts",
             depth: 1,
             limit,
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-magic-numbers -- [bulk suppress]
             ...(flattenedCategories && flattenedCategories.length > 0
                 ? {
                       where: {
@@ -51,7 +53,9 @@ export const ArchiveBlock: React.FC<
 
         posts = fetchedPosts.docs;
     } else {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         if (selectedDocs?.length) {
+            // eslint-disable-next-line array-callback-return -- [bulk suppress]
             const filteredSelectedPosts = selectedDocs.map((post) => {
                 if (typeof post.value === "object") return post.value;
             }) as Post[];
@@ -62,6 +66,7 @@ export const ArchiveBlock: React.FC<
 
     return (
         <div className={"my-16"} id={`block-${id}`}>
+            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
             {introContent && (
                 <div className={"container mb-16"}>
                     <RichText

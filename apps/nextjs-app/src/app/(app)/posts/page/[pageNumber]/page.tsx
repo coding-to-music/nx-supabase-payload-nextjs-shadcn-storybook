@@ -54,6 +54,7 @@ export default async function Page({params: parametersPromise}: Args) {
             <CollectionArchive posts={posts.docs} />
 
             <div className={"container"}>
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition, @typescript-eslint/no-magic-numbers -- [bulk suppress] */}
                 {posts?.page && posts?.totalPages > 1 && (
                     <Pagination
                         page={posts.page}
@@ -70,6 +71,7 @@ export const generateMetadata = async ({
 }: Args): Promise<Metadata> => {
     const {pageNumber} = await parametersPromise;
     return {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         title: `Payload Website Template Posts Page ${pageNumber || ""}`,
     };
 };
@@ -81,6 +83,7 @@ export const generateStaticParams = async () => {
         overrideAccess: false,
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const totalPages = Math.ceil(totalDocs / 10);
 
     const pages: Array<{pageNumber: string}> = [];

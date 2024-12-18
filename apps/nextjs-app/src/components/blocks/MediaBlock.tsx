@@ -28,6 +28,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
     } = props;
 
     let caption;
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (media && typeof media === "object") caption = media.caption;
 
     return (
@@ -48,11 +49,13 @@ export const MediaBlock: React.FC<Props> = (props) => {
                 resource={media}
                 src={staticImage}
             />
+            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
             {caption && (
                 <div
                     className={cn(
                         "mt-6",
                         {
+                            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                             container: !disableInnerContainer,
                         },
                         captionClassName,

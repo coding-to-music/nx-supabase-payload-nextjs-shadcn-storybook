@@ -12,6 +12,7 @@ export const MediumImpactHero: React.FC<Page["hero"]> = ({
 }) => (
     <div className={""}>
         <div className={"container mb-8"}>
+            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
             {richText && (
                 <RichText
                     className={"mb-6"}
@@ -20,6 +21,7 @@ export const MediumImpactHero: React.FC<Page["hero"]> = ({
                 />
             )}
 
+            {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress] */}
             {Array.isArray(links) && links.length > 0 && (
                 <ul className={"flex gap-4"}>
                     {links.map(({link}, index) => (
@@ -31,6 +33,7 @@ export const MediumImpactHero: React.FC<Page["hero"]> = ({
             )}
         </div>
         <div className={"container"}>
+            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
             {media && typeof media === "object" && (
                 <div>
                     <Media
@@ -40,6 +43,7 @@ export const MediumImpactHero: React.FC<Page["hero"]> = ({
                         priority={false}
                         resource={media}
                     />
+                    {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress] */}
                     {media?.caption && (
                         <div className={"mt-3"}>
                             <RichText

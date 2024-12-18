@@ -25,20 +25,25 @@ export const useClickableCard = <T extends HTMLElement>({
     const router = useRouter();
     const card = React.useRef<T>(null);
     const link = React.useRef<HTMLAnchorElement>(null);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const timeDown = React.useRef<number>(0);
     const hasActiveParent = React.useRef<boolean>(false);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const pressedButton = React.useRef<number>(0);
 
     const handleMouseDown = React.useCallback(
         (event: MouseEvent) => {
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             if (event.target) {
                 const target = event.target as Element;
 
                 const timeNow = Date.now();
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                 const parent = target?.closest("a");
 
                 pressedButton.current = event.button;
 
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (parent) {
                     hasActiveParent.current = true;
                 } else {
@@ -53,14 +58,18 @@ export const useClickableCard = <T extends HTMLElement>({
 
     const handleMouseUp = React.useCallback(
         (event: MouseEvent) => {
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             if (link.current?.href) {
                 const timeNow = Date.now();
                 const difference = timeNow - timeDown.current;
 
                 if (
+                    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                     link.current?.href &&
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                     difference <= 250 &&
                     !hasActiveParent.current &&
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                     pressedButton.current === 0 &&
                     !event.ctrlKey
                 ) {
@@ -80,14 +89,18 @@ export const useClickableCard = <T extends HTMLElement>({
     React.useEffect(() => {
         const cardNode = card.current;
 
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         if (cardNode) {
             cardNode.addEventListener("mousedown", handleMouseDown);
             cardNode.addEventListener("mouseup", handleMouseUp);
         }
 
         return () => {
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
             if (cardNode && cardNode) {
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                 cardNode?.removeEventListener("mousedown", handleMouseDown);
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                 cardNode?.removeEventListener("mouseup", handleMouseUp);
             }
         };

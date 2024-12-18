@@ -249,6 +249,7 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
 
     const contactForm = await payload.create({
         collection: "forms",
+        // eslint-disable-next-line unicorn/prefer-structured-clone -- [bulk suppress]
         data: JSON.parse(JSON.stringify(contactFormData)),
     });
 
@@ -348,6 +349,7 @@ const fetchFileByURL = async (url: string): Promise<File> => {
     const data = await response.arrayBuffer();
 
     return {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
         name: url.split("/").pop() || `file-${Date.now()}`,
         data: Buffer.from(data),
         mimetype: `image/${url.split(".").pop()}`,

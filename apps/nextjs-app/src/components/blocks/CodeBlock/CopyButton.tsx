@@ -11,6 +11,7 @@ export const CopyButton = ({code}: {code: string}) => {
             setText(() => "Copied!");
             setTimeout(() => {
                 setText(() => "Copy");
+                // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
             }, 1000);
         }
     };
@@ -20,6 +21,7 @@ export const CopyButton = ({code}: {code: string}) => {
             <Button
                 className={"flex gap-1"}
                 variant={"secondary"}
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises -- [bulk suppress]
                 onClick={async () => {
                     await navigator.clipboard.writeText(code);
                     updateCopyStatus();

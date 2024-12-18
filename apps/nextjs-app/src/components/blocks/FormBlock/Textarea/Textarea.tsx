@@ -15,6 +15,7 @@ import {Width} from "../Width";
 
 export const Textarea: React.FC<
     TextField & {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
         errors: Partial<FieldErrorsImpl<Record<string, any>>>;
         register: UseFormRegister<FieldValues>;
         rows?: number;
@@ -39,6 +40,7 @@ export const Textarea: React.FC<
             {...register(name, {required: requiredFromProps})}
         />
 
+        {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
         {requiredFromProps && errors[name] && <Error />}
     </Width>
 );

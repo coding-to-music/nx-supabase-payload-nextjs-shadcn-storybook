@@ -10,6 +10,7 @@ export const contact: Partial<Page> = {
         {
             blockType: "formBlock",
             enableIntro: true,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress]
             // @ts-ignore
             form: "{{CONTACT_FORM_ID}}",
             introContent: {

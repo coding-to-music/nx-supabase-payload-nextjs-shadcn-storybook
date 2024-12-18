@@ -10,6 +10,7 @@ export const getMeUser = async (args?: {
     token: string;
     user: User;
 }> => {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const {nullUserRedirect, validUserRedirect} = args || {};
     const cookieStore = await cookies();
     const token = cookieStore.get("payload-token")?.value;
@@ -26,10 +27,12 @@ export const getMeUser = async (args?: {
         user: User;
     } = await meUserRequest.json();
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
     if (validUserRedirect && meUserRequest.ok && user) {
         redirect(validUserRedirect);
     }
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
     if (nullUserRedirect && (!meUserRequest.ok || !user)) {
         redirect(nullUserRedirect);
     }

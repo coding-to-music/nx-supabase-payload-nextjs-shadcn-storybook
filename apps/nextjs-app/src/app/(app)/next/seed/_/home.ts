@@ -23,6 +23,7 @@ export const home: RequiredDataFromCollectionSlug<"pages"> = {
                 },
             },
         ],
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress]
         // @ts-ignore
         media: "{{IMAGE_1}}",
         richText: {
@@ -502,6 +503,7 @@ export const home: RequiredDataFromCollectionSlug<"pages"> = {
         {
             blockName: "Media Block",
             blockType: "mediaBlock",
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress]
             // @ts-ignore
             media: "{{IMAGE_2}}",
         },
@@ -659,6 +661,7 @@ export const home: RequiredDataFromCollectionSlug<"pages"> = {
     ],
     meta: {
         description: "An open-source website built with Payload and Next.js.",
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress]
         // @ts-ignore
         image: "{{IMAGE_1}}",
         title: "Payload Website Template",

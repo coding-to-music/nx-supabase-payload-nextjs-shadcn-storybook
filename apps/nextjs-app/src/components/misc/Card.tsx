@@ -26,11 +26,15 @@ export const Card: React.FC<{
         title: titleFromProps,
     } = props;
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const {slug, categories, meta, title} = doc || {};
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const {description, image: metaImage} = meta || {};
 
     const hasCategories =
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-magic-numbers -- [bulk suppress]
         categories && Array.isArray(categories) && categories.length > 0;
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const titleToUse = titleFromProps || title;
     const sanitizedDescription = description?.replace(/\s/g, " "); // replace non-breaking space with white space
     const href = `/${relationTo}/${slug}`;
@@ -44,26 +48,33 @@ export const Card: React.FC<{
             )}
         >
             <div className={"relative w-full"}>
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {!metaImage && <div className={""}>No image</div>}
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {metaImage && typeof metaImage !== "string" && (
                     <Media resource={metaImage} size={"33vw"} />
                 )}
             </div>
             <div className={"p-4"}>
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {showCategories && hasCategories && (
                     <div className={"mb-4 text-sm uppercase"}>
+                        {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress] */}
                         {showCategories && hasCategories && (
                             <div>
+                                {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress] */}
                                 {categories?.map((category, index) => {
                                     if (typeof category === "object") {
                                         const {title: titleFromCategory} =
                                             category;
 
                                         const categoryTitle =
+                                            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                                             titleFromCategory ||
                                             "Untitled category";
 
                                         const isLast =
+                                            // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                             index === categories.length - 1;
 
                                         return (
@@ -80,6 +91,7 @@ export const Card: React.FC<{
                         )}
                     </div>
                 )}
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {titleToUse && (
                     <div className={"prose"}>
                         <h3>
@@ -93,8 +105,10 @@ export const Card: React.FC<{
                         </h3>
                     </div>
                 )}
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {description && (
                     <div className={"mt-2"}>
+                        {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                         {description && <p>{sanitizedDescription}</p>}
                     </div>
                 )}

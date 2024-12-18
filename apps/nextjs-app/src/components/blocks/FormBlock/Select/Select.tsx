@@ -17,6 +17,7 @@ import {Width} from "../Width";
 export const Select: React.FC<
     SelectField & {
         control: Control;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
         errors: Partial<FieldErrorsImpl<Record<string, any>>>;
     }
 > = ({name, control, errors, label, options, required, width}) => (
@@ -51,6 +52,7 @@ export const Select: React.FC<
             }}
             rules={{required}}
         />
+        {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
         {required && errors[name] && <Error />}
     </Width>
 );

@@ -31,6 +31,7 @@ export default async function Page({
         },
         // pagination: false reduces overhead if you don't need totalDocs
         pagination: false,
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         ...(query
             ? {
                   where: {
@@ -71,6 +72,7 @@ export default async function Page({
                 </div>
             </div>
 
+            {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress] */}
             {posts.totalDocs > 0 ? (
                 <CollectionArchive posts={posts.docs as CardPostData[]} />
             ) : (

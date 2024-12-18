@@ -20,7 +20,9 @@ export const SeedButton: React.FC = () => {
     const [error, setError] = React.useState(null);
 
     const handleClick = React.useCallback(
+        // eslint-disable-next-line @typescript-eslint/require-await -- [bulk suppress]
         async (event) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
             event.preventDefault();
 
             if (seeded) {
@@ -31,6 +33,7 @@ export const SeedButton: React.FC = () => {
                 toast.info("Seeding already in progress.");
                 return;
             }
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             if (error) {
                 toast.error("An error occurred, please refresh and try again.");
                 return;
@@ -51,15 +54,18 @@ export const SeedButton: React.FC = () => {
                                         resolve(true);
                                         setSeeded(true);
                                     } else {
+                                        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors -- [bulk suppress]
                                         reject(
                                             "An error occurred while seeding.",
                                         );
                                     }
                                 })
                                 .catch((error) => {
+                                    // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors -- [bulk suppress]
                                     reject(error);
                                 });
                         } catch (error) {
+                            // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors -- [bulk suppress]
                             reject(error);
                         }
                     }),
@@ -79,10 +85,12 @@ export const SeedButton: React.FC = () => {
     let message = "";
     if (loading) message = " (seeding...)";
     if (seeded) message = " (done!)";
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions, @typescript-eslint/restrict-template-expressions -- [bulk suppress]
     if (error) message = ` (error: ${error})`;
 
     return (
         <>
+            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises -- [bulk suppress] */}
             <button className={"seedButton"} onClick={handleClick}>
                 Seed your database
             </button>

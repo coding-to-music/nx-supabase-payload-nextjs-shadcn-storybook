@@ -18,5 +18,6 @@ export const mergeOpenGraph = (
 ): Metadata["openGraph"] => ({
     ...defaultOpenGraph,
     ...og,
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, unicorn/prefer-logical-operator-over-ternary -- [bulk suppress]
     images: og?.images ? og.images : defaultOpenGraph.images,
 });

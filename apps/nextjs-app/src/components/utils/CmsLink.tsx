@@ -35,15 +35,19 @@ export const CmsLink: React.FC<CmsLinkType> = (props) => {
     const href =
         type === "reference" &&
         typeof reference?.value === "object" &&
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         reference.value.slug
-            ? `${reference?.relationTo === "pages" ? "" : `/${reference?.relationTo}`}/${
+            ? // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
+              `${reference?.relationTo === "pages" ? "" : `/${reference?.relationTo}`}/${
                   reference.value.slug
               }`
             : url;
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (!href) return null;
 
     const size = appearance === "link" ? "clear" : sizeFromProps;
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     const newTabProps = newTab
         ? {rel: "noopener noreferrer", target: "_blank"}
         : {};
@@ -53,10 +57,13 @@ export const CmsLink: React.FC<CmsLinkType> = (props) => {
         return (
             <Link
                 className={cn(className)}
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
                 href={href || url || ""}
                 {...newTabProps}
             >
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {label && label}
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {children && children}
             </Link>
         );
@@ -66,10 +73,13 @@ export const CmsLink: React.FC<CmsLinkType> = (props) => {
         <Button className={className} size={size} variant={appearance} asChild>
             <Link
                 className={cn(className)}
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
                 href={href || url || ""}
                 {...newTabProps}
             >
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {label && label}
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {children && children}
             </Link>
         </Button>

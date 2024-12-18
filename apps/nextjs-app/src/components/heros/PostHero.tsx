@@ -31,13 +31,16 @@ export const PostHero: React.FC<{
                         {categories?.map((category, index) => {
                             if (
                                 typeof category === "object" &&
+                                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                                 category !== null
                             ) {
                                 const {title: categoryTitle} = category;
 
                                 const titleToUse =
+                                    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                                     categoryTitle || "Untitled category";
 
+                                // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                 const isLast = index === categories.length - 1;
 
                                 return (
@@ -61,6 +64,7 @@ export const PostHero: React.FC<{
                         className={"flex flex-col gap-4 md:flex-row md:gap-16"}
                     >
                         <div className={"flex flex-col gap-4"}>
+                            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                             {populatedAuthors && (
                                 <div className={"flex flex-col gap-1"}>
                                     <p className={"text-sm"}>Author</p>
@@ -69,9 +73,11 @@ export const PostHero: React.FC<{
 
                                         const isLast =
                                             index ===
+                                            // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                             populatedAuthors.length - 1;
                                         const secondToLast =
                                             index ===
+                                            // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                             populatedAuthors.length - 2;
 
                                         return (
@@ -79,12 +85,15 @@ export const PostHero: React.FC<{
                                                 {name}
                                                 {secondToLast &&
                                                     populatedAuthors.length >
+                                                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                                         2 && <>, </>}
                                                 {secondToLast &&
                                                     populatedAuthors.length ===
+                                                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                                         2 && <> </>}
                                                 {!isLast &&
                                                     populatedAuthors.length >
+                                                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                                         1 && <>and </>}
                                             </React.Fragment>
                                         );
@@ -92,6 +101,7 @@ export const PostHero: React.FC<{
                                 </div>
                             )}
                         </div>
+                        {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                         {publishedAt && (
                             <div className={"flex flex-col gap-1"}>
                                 <p className={"text-sm"}>Date Published</p>
@@ -105,6 +115,7 @@ export const PostHero: React.FC<{
                 </div>
             </div>
             <div className={"min-h-[80vh] select-none"}>
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {metaImage && typeof metaImage !== "string" && (
                     <Media
                         imgClassName={"-z-10 object-cover"}

@@ -25,6 +25,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({header}) => {
     }, [pathname]);
 
     React.useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         if (headerTheme && headerTheme !== theme) setTheme(headerTheme);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [headerTheme]);
@@ -32,6 +33,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({header}) => {
     return (
         <header
             className={"container relative z-20"}
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             {...(theme ? {"data-theme": theme} : {})}
         >
             <div className={"flex justify-between border-b border-border py-8"}>

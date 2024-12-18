@@ -48,7 +48,9 @@ export const Posts: CollectionConfig<"posts"> = {
         livePreview: {
             url: ({data}) => {
                 const path = generatePreviewPath({
-                    slug: typeof data?.["slug"] === "string" ? data["slug"] : "",
+                    slug:
+                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
+                        typeof data?.["slug"] === "string" ? data["slug"] : "",
                     collection: "posts",
                 });
 
@@ -57,6 +59,7 @@ export const Posts: CollectionConfig<"posts"> = {
         },
         preview: (data) => {
             const path = generatePreviewPath({
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                 slug: typeof data?.["slug"] === "string" ? data["slug"] : "",
                 collection: "posts",
             });
@@ -173,9 +176,11 @@ export const Posts: CollectionConfig<"posts"> = {
             hooks: {
                 beforeChange: [
                     ({siblingData, value}) => {
+                        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                         if (siblingData["_status"] === "published" && !value) {
                             return new Date();
                         }
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- [bulk suppress]
                         return value;
                     },
                 ],

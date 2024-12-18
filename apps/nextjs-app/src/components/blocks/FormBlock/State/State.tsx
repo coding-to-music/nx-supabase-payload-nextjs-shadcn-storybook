@@ -19,6 +19,7 @@ import {stateOptions} from "./options";
 export const State: React.FC<
     StateField & {
         control: Control;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
         errors: Partial<FieldErrorsImpl<Record<string, any>>>;
     }
 > = ({name, control, errors, label, required, width}) => (
@@ -55,6 +56,7 @@ export const State: React.FC<
             }}
             rules={{required}}
         />
+        {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
         {required && errors[name] && <Error />}
     </Width>
 );

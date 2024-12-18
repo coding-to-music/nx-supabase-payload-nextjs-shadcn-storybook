@@ -76,6 +76,7 @@ export const FormBlock: React.FC<
                 // delay loading indicator by 1s
                 loadingTimerID = setTimeout(() => {
                     setIsLoading(true);
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                 }, 1000);
 
                 try {
@@ -97,13 +98,17 @@ export const FormBlock: React.FC<
 
                     clearTimeout(loadingTimerID);
 
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
                     if (request.status >= 400) {
                         setIsLoading(false);
 
                         setError({
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
                             message:
+                                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-magic-numbers -- [bulk suppress]
                                 response.errors?.[0]?.message ||
                                 "Internal Server Error",
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
                             status: response.status,
                         });
 
@@ -113,11 +118,13 @@ export const FormBlock: React.FC<
                     setIsLoading(false);
                     setHasSubmitted(true);
 
+                    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                     if (confirmationType === "redirect" && redirect) {
                         const {url} = redirect;
 
                         const redirectUrl = url;
 
+                        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                         if (redirectUrl) router.push(redirectUrl);
                     }
                 } catch (error_) {
@@ -136,6 +143,7 @@ export const FormBlock: React.FC<
 
     return (
         <div className={"container lg:max-w-[48rem]"}>
+            {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
             {enableIntro && introContent && !hasSubmitted && (
                 <RichText
                     className={"mb-8 lg:mb-12"}
@@ -146,25 +154,38 @@ export const FormBlock: React.FC<
             <div className={"rounded-[0.8rem] border border-border p-4 lg:p-6"}>
                 <FormProvider {...formMethods}>
                     {!isLoading &&
+                        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                         hasSubmitted &&
                         confirmationType === "message" && (
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
                             <RichText content={confirmationMessage} />
                         )}
+                    {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                     {isLoading && !hasSubmitted && (
                         <p>Loading, please wait...</p>
                     )}
+                    {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                     {error && (
+                        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
                         <div>{`${error.status || "500"}: ${error.message || ""}`}</div>
                     )}
+                    {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                     {!hasSubmitted && (
+                        // eslint-disable-next-line @typescript-eslint/no-misused-promises -- [bulk suppress]
                         <form id={formID} onSubmit={handleSubmit(onSubmit)}>
                             <div className={"mb-4 last:mb-0"}>
+                                {/* eslint-disable-next-line @typescript-eslint/prefer-optional-chain, @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress] */}
                                 {formFromProps &&
+                                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                                     formFromProps.fields &&
+                                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                                     formFromProps.fields?.map(
                                         (field, index) => {
+                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any -- [bulk suppress]
                                             const Field: React.FC<any> =
+                                                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                                                 fields?.[field.blockType];
+                                            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                                             if (Field) {
                                                 return (
                                                     <div

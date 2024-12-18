@@ -80,6 +80,7 @@ export const link: Factory = ({
             type: "relationship",
             admin: {
                 condition: (_, siblingData) =>
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                     siblingData?.["type"] === "reference",
             },
             label: "Document to link to",
@@ -91,7 +92,9 @@ export const link: Factory = ({
             name: "url",
             type: "text",
             admin: {
-                condition: (_, siblingData) => siblingData?.["type"] === "custom",
+                condition: (_, siblingData) =>
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
+                    siblingData?.["type"] === "custom",
             },
             label: "Custom URL",
             required: true,
@@ -132,6 +135,7 @@ export const link: Factory = ({
             appearanceOptions.outline,
         ];
 
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         if (appearances) {
             appearanceOptionsToUse = appearances.map(
                 (appearance) => appearanceOptions[appearance],

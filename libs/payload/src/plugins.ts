@@ -16,6 +16,7 @@ import type {Page, Post} from "./payload-types";
 import {search} from "./search";
 
 const generateTitle: GenerateTitle<Post | Page> = ({doc}) =>
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
     doc?.title
         ? `${doc.title} | Payload Website Template`
         : "Payload Website Template";
@@ -23,6 +24,7 @@ const generateTitle: GenerateTitle<Post | Page> = ({doc}) =>
 const generateURL: GenerateURL<Post | Page> = ({doc}) => {
     const url = getServerSideUrl();
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
     return doc?.slug ? `${url}/${doc.slug}` : url;
 };
 
@@ -30,6 +32,7 @@ export const plugins: Plugin[] = [
     redirectsPlugin({
         collections: ["pages", "posts"],
         overrides: {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress]
             // @ts-expect-error
             fields: ({defaultFields}) =>
                 defaultFields.map((field) => {

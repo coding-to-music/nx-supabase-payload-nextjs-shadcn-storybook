@@ -23,7 +23,9 @@ export const ThemeProvider = ({children}: {children: React.ReactNode}) => {
         if (themeToSet === null) {
             globalThis.localStorage.removeItem(themeLocalStorageKey);
             const implicitPreference = getImplicitPreference();
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
             document.documentElement.dataset.theme = implicitPreference || "";
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             if (implicitPreference) setThemeState(implicitPreference);
         } else {
             setThemeState(themeToSet);
@@ -42,6 +44,7 @@ export const ThemeProvider = ({children}: {children: React.ReactNode}) => {
         } else {
             const implicitPreference = getImplicitPreference();
 
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             if (implicitPreference) {
                 themeToSet = implicitPreference;
             }

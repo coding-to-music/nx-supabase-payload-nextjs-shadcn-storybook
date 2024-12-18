@@ -12,12 +12,15 @@ const heroes = {
 };
 
 export const RenderHero: React.FC<Page["hero"]> = (props) => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     const {type} = props || {};
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (!type || type === "none") return null;
 
     const HeroToRender = heroes[type];
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (!HeroToRender) return null;
 
     return <HeroToRender {...props} />;

@@ -31,6 +31,7 @@ export const HighImpactHero: React.FC<Page["hero"]> = ({
                 }
             >
                 <div className={"max-w-[36.5rem] text-center"}>
+                    {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                     {richText && (
                         <RichText
                             className={"mb-6"}
@@ -38,6 +39,7 @@ export const HighImpactHero: React.FC<Page["hero"]> = ({
                             enableGutter={false}
                         />
                     )}
+                    {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress] */}
                     {Array.isArray(links) && links.length > 0 && (
                         <ul className={"flex justify-center gap-4"}>
                             {links.map(({link}, index) => (
@@ -50,6 +52,7 @@ export const HighImpactHero: React.FC<Page["hero"]> = ({
                 </div>
             </div>
             <div className={"min-h-[80vh] select-none"}>
+                {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                 {media && typeof media === "object" && (
                     <Media
                         imgClassName={"-z-10 object-cover"}

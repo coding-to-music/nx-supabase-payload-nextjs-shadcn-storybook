@@ -11,6 +11,7 @@ import {Error} from "../Error";
 import {Width} from "../Width";
 export const Number: React.FC<
     TextField & {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
         errors: Partial<FieldErrorsImpl<Record<string, any>>>;
         register: UseFormRegister<FieldValues>;
     }
@@ -31,6 +32,7 @@ export const Number: React.FC<
             type={"number"}
             {...register(name, {required: requiredFromProps})}
         />
+        {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
         {requiredFromProps && errors[name] && <Error />}
     </Width>
 );

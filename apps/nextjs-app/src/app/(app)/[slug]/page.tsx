@@ -26,6 +26,7 @@ export const generateStaticParams = async () => {
     });
 
     const parameters = pages.docs
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
         ?.filter((document_) => document_.slug !== "home")
         .map(({slug}) => ({slug}));
 
@@ -49,10 +50,12 @@ export default async function Page({params: parametersPromise}: Args) {
     });
 
     // Remove this code once your website is seeded
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (!page && slug === "home") {
         page = homeStatic;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (!page) {
         return <PayloadRedirects url={url} />;
     }
@@ -74,8 +77,10 @@ export default async function Page({params: parametersPromise}: Args) {
 export const generateMetadata = async ({
     params: parametersPromise,
 }): Promise<Metadata> => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
     const {slug = "home"} = await parametersPromise;
     const page = await queryPageBySlug({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
         slug,
     });
 
@@ -100,5 +105,6 @@ const queryPageBySlug = React.cache(async ({slug}: {slug: string}) => {
         },
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-magic-numbers -- [bulk suppress]
     return result.docs?.[0] || null;
 });

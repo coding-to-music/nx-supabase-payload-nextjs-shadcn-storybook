@@ -38,7 +38,9 @@ interface Props {
 
 export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
     <>
+        {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress] */}
         {nodes?.map((node, index): React.JSX.Element | null => {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
             if (node == null) {
                 return null;
             }
@@ -47,12 +49,15 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                 let text = (
                     <React.Fragment key={index}>{node.text}</React.Fragment>
                 );
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (node.format & IS_BOLD) {
                     text = <strong key={index}>{text}</strong>;
                 }
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (node.format & IS_ITALIC) {
                     text = <em key={index}>{text}</em>;
                 }
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (node.format & IS_STRIKETHROUGH) {
                     text = (
                         <span
@@ -63,6 +68,7 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                         </span>
                     );
                 }
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (node.format & IS_UNDERLINE) {
                     text = (
                         <span key={index} style={{textDecoration: "underline"}}>
@@ -70,12 +76,15 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                         </span>
                     );
                 }
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (node.format & IS_CODE) {
                     text = <code key={index}>{node.text}</code>;
                 }
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (node.format & IS_SUBSCRIPT) {
                     text = <sub key={index}>{text}</sub>;
                 }
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (node.format & IS_SUPERSCRIPT) {
                     text = <sup key={index}>{text}</sup>;
                 }
@@ -92,8 +101,10 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                 if (node.children == null) {
                     return null;
                 } else {
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                     if (node?.type === "list" && node?.listType === "check") {
                         for (const item of node.children) {
+                            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                             if ("checked" in item && !item?.checked) {
                                 item.checked = false;
                             }
@@ -111,8 +122,10 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
             if (node.type === "block") {
                 const block = node.fields;
 
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                 const blockType = block?.blockType;
 
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                 if (!block || !blockType) {
                     return null;
                 }
@@ -152,6 +165,7 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                             />
                         );
                     }
+                    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- [bulk suppress]
                     default: {
                         return null;
                     }
@@ -169,6 +183,7 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                         );
                     }
                     case "heading": {
+                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                         const Tag = node?.tag;
                         return (
                             <Tag key={index} className={"col-start-2"}>
@@ -177,6 +192,7 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                         );
                     }
                     case "list": {
+                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                         const Tag = node?.tag;
                         return (
                             <Tag key={index} className={"list col-start-2"}>
@@ -185,7 +201,9 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                         );
                     }
                     case "listitem": {
+                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                         return node?.checked == null ? (
+                            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                             <li key={index} value={node?.value}>
                                 {serializedChildren}
                             </li>
@@ -215,7 +233,9 @@ export const serializeLexical = ({nodes}: Props): React.JSX.Element => (
                         return (
                             <CmsLink
                                 key={index}
+                                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                                 newTab={Boolean(fields?.newTab)}
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any -- [bulk suppress]
                                 reference={fields.doc as any}
                                 type={
                                     fields.linkType === "internal"

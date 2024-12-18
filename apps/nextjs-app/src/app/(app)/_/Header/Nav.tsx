@@ -8,6 +8,7 @@ import type React from "react";
 import {CmsLink} from "~/components/utils/CmsLink";
 
 export const HeaderNav: React.FC<{header: HeaderType}> = ({header}) => {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const navItems = header?.navItems || [];
 
     return (

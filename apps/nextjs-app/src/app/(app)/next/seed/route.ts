@@ -13,6 +13,7 @@ export const POST = async (): Promise<Response> => {
     // Authenticate by passing request headers
     const {user} = await payload.auth({headers: requestHeaders});
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (!user) {
         return new Response("Action forbidden.", {status: 403});
     }

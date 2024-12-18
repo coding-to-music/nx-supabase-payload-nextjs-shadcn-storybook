@@ -42,7 +42,9 @@ export const Pages: CollectionConfig<"pages"> = {
         livePreview: {
             url: ({data}) => {
                 const path = generatePreviewPath({
-                    slug: typeof data?.["slug"] === "string" ? data["slug"] : "",
+                    slug:
+                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
+                        typeof data?.["slug"] === "string" ? data["slug"] : "",
                     collection: "pages",
                 });
 
@@ -51,6 +53,7 @@ export const Pages: CollectionConfig<"pages"> = {
         },
         preview: (data) => {
             const path = generatePreviewPath({
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                 slug: typeof data?.["slug"] === "string" ? data["slug"] : "",
                 collection: "pages",
             });

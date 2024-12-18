@@ -21,7 +21,9 @@ export const PayloadRedirects: React.FC<Props> = async ({
 
     const redirectItem = redirects.find((redirect) => redirect.from === slug);
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (redirectItem) {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         if (redirectItem.to?.url) {
             redirect(redirectItem.to.url);
         }
@@ -29,26 +31,33 @@ export const PayloadRedirects: React.FC<Props> = async ({
         let redirectUrl: string;
 
         if (typeof redirectItem.to?.reference?.value === "string") {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
             const collection = redirectItem.to?.reference?.relationTo;
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
             const id = redirectItem.to?.reference?.value;
 
             const document = (await getCachedDocument(collection, id)()) as
                 | Page
                 | Post;
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
             redirectUrl = `${redirectItem.to?.reference?.relationTo === "pages" ? "" : `/${redirectItem.to?.reference?.relationTo}`}/${
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                 document?.slug
             }`;
         } else {
             redirectUrl = `${redirectItem.to?.reference?.relationTo === "pages" ? "" : `/${redirectItem.to?.reference?.relationTo}`}/${
                 typeof redirectItem.to?.reference?.value === "object"
-                    ? redirectItem.to?.reference?.value?.slug
+                    ? // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
+                      redirectItem.to?.reference?.value?.slug
                     : ""
             }`;
         }
 
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         if (redirectUrl) redirect(redirectUrl);
     }
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (disableNotFound) return null;
 
     notFound();

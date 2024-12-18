@@ -7,8 +7,10 @@ import {ThemeSelector} from "~/theme/ThemeSelector";
 import {getCachedGlobal} from "~/utils/getGlobals";
 
 export const Footer = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
     const footer: FooterType = await getCachedGlobal("footer", 1)();
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
     const navItems = footer?.navItems || [];
 
     return (

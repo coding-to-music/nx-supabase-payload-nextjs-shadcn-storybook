@@ -1,6 +1,7 @@
 import type {Page} from "@my-project/payload";
 
 // Used for pre-seeded content so that the homepage is not empty
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment -- [bulk suppress]
 // @ts-expect-error
 export const homeStatic: Page = {
     slug: "home",

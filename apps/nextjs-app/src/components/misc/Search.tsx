@@ -12,6 +12,7 @@ export const Search: React.FC = () => {
     const debouncedValue = useDebounce(value);
 
     React.useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         router.push(`/search${debouncedValue ? `?q=${debouncedValue}` : ""}`);
     }, [debouncedValue, router]);
 

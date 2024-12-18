@@ -11,7 +11,7 @@ export const populateAuthors: CollectionAfterReadHook<Post> = async ({
     req,
     req: {payload},
 }) => {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (doc?.authors) {
         const authorDocuments: User[] = [];
 
@@ -27,6 +27,7 @@ export const populateAuthors: CollectionAfterReadHook<Post> = async ({
                 req,
             });
 
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             if (authorDocument) {
                 authorDocuments.push(authorDocument);
             }

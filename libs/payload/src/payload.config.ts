@@ -15,6 +15,12 @@ import {plugins} from "./plugins";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+const getConnectionStringWithoutSslOptions = (connectionString: string) => {
+    const url = new URL(connectionString);
+    url.searchParams.delete("sslmode");
+    return url.toString();
+};
+
 export default buildConfig({
     admin: {
         user: Users.slug,
@@ -60,10 +66,12 @@ export default buildConfig({
     },
     db: postgresAdapter({
         pool: {
-            database: process.env["POSTGRES_DATABASE"]!,
-            host: process.env["POSTGRES_HOST"]!,
-            password: process.env["POSTGRES_PASSWORD"]!,
-            user: process.env["POSTGRES_USER"]!,
+            connectionString: getConnectionStringWithoutSslOptions(
+                process.env["POSTGRES_URL"]!,
+            ),
+            ssl: {
+                ca: process.env["POSTGRES_CA"]!,
+            },
         },
     }),
     cors: [getServerSideUrl()].filter(Boolean),

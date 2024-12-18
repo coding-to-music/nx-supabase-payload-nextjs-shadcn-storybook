@@ -61,6 +61,9 @@ export default buildConfig({
     db: postgresAdapter({
         pool: {
             connectionString: process.env["POSTGRES_URL"]!,
+            ssl: {
+                ca: process.env["POSTGRES_CA"]!,
+            },
         },
     }),
     cors: [getServerSideUrl()].filter(Boolean),

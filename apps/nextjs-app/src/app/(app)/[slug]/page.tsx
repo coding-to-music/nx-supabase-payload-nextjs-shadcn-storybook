@@ -5,7 +5,7 @@ import {draftMode} from "next/headers";
 import {getPayload} from "payload";
 import React from "react";
 
-import {homeStatic} from "./_/home-static";
+import {homeStatic} from "./_/homeStatic";
 import PageClient from "./page.client";
 
 import {PayloadRedirects} from "~/components/utils/PayloadRedirects";

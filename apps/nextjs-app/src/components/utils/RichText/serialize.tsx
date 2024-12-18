@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/filename-case */
 import type {
     BannerBlock as BannerBlockProps,
     CallToActionBlock as CTABlockProps,

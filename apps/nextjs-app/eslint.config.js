@@ -74,6 +74,56 @@ export default [
         },
     },
     {
+        files: ["**/*.ts", "**/*.js"],
+        rules: {
+            "unicorn/filename-case": [
+                "error",
+                {
+                    cases: {
+                        camelCase: true,
+                    },
+                },
+            ],
+        },
+    },
+    {
+        files: ["**/*.tsx", "**/*.jsx"],
+        rules: {
+            "unicorn/filename-case": [
+                "error",
+                {
+                    cases: {
+                        pascalCase: true,
+                    },
+                },
+            ],
+        },
+    },
+    {
+        files: [
+            "src/app/(app)/**/*.ts",
+            "src/app/(app)/**/*.tsx",
+            "src/app/(app)/**/*.js",
+            "src/app/(app)/**/*.jsx",
+        ],
+        ignores: [
+            "src/app/(app)/**/_/**/*.ts",
+            "src/app/(app)/**/_/**/*.tsx",
+            "src/app/(app)/**/_/**/*.js",
+            "src/app/(app)/**/_/**/*.jsx",
+        ],
+        rules: {
+            "unicorn/filename-case": [
+                "error",
+                {
+                    cases: {
+                        kebabCase: true,
+                    },
+                },
+            ],
+        },
+    },
+    {
         files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
         // Override or add rules here
         rules: {
@@ -121,15 +171,6 @@ export default [
                             message: "Deep relative imports are not allowed.",
                         },
                     ], */
-                },
-            ],
-            "unicorn/filename-case": [
-                "error",
-                {
-                    cases: {
-                        camelCase: true,
-                        pascalCase: true,
-                    },
                 },
             ],
         },

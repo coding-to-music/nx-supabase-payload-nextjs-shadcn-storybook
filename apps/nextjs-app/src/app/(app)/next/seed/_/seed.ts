@@ -1,13 +1,13 @@
 import type {CollectionSlug, File, GlobalSlug, Payload} from "payload";
 
-import {contactForm as contactFormData} from "./contact-form";
-import {contact as contactPageData} from "./contact-page";
+import {contactForm as contactFormData} from "./contactForm";
+import {contact as contactPageData} from "./contactPage";
 import {home} from "./home";
-import {image1} from "./image-1";
-import {image2} from "./image-2";
-import {post1} from "./post-1";
-import {post2} from "./post-2";
-import {post3} from "./post-3";
+import {image1} from "./image1";
+import {image2} from "./image2";
+import {post1} from "./post1";
+import {post2} from "./post2";
+import {post3} from "./post3";
 
 const collections: CollectionSlug[] = [
     "categories",

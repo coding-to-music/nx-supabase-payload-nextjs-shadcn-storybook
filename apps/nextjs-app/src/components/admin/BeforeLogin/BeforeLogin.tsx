@@ -1,6 +1,6 @@
 import type React from "react";
 
-const BeforeLogin: React.FC = () => (
+export const BeforeLogin: React.FC = () => (
     <div>
         <p>
             <b>Welcome to your dashboard!</b>
@@ -8,5 +8,3 @@ const BeforeLogin: React.FC = () => (
         </p>
     </div>
 );
-
-export default BeforeLogin;

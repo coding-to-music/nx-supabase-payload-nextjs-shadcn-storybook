@@ -1,12 +1,12 @@
 import {Banner} from "@payloadcms/ui/elements/Banner";
 import type React from "react";
 
-import {SeedButton} from "./SeedButton";
+import {SeedButton} from "./SeedButton/SeedButton";
 import "./index.scss";
 
 const baseClass = "before-dashboard";
 
-const BeforeDashboard: React.FC = () => (
+export const BeforeDashboard: React.FC = () => (
     <div className={baseClass}>
         <Banner className={`${baseClass}__banner`} type={"success"}>
             <h4>Welcome to your dashboard!</h4>
@@ -81,5 +81,3 @@ const BeforeDashboard: React.FC = () => (
         <strong>payload.config</strong>.
     </div>
 );
-
-export default BeforeDashboard;

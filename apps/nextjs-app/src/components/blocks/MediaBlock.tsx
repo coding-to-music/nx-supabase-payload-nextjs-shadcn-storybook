@@ -3,8 +3,7 @@ import {cn} from "@my-project/react-components/lib/utils";
 import type {StaticImageData} from "next/image";
 import type React from "react";
 
-import {Media} from "../../components/Media";
-
+import {Media} from "~/components/utils/Media";
 import {RichText} from "~/components/utils/RichText";
 
 type Props = MediaBlockProps & {

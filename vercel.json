@@ -1,0 +1,5 @@
+{
+    "buildCommand": "nx build nextjs-app",
+    "ignoreCommand": "pnpm dlx nx-ignore nextjs-app",
+    "outputDirectory": "apps/nextjs-app/.next"
+}

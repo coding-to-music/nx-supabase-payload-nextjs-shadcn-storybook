@@ -1,10 +1,9 @@
-name: CI
+name: Checks on PR
 
 on:
-    push:
+    pull_request:
         branches:
             - main
-    pull_request:
 
 permissions:
     actions: read
@@ -14,7 +13,7 @@ env:
     NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
 jobs:
-    main:
+    checks:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -45,4 +44,5 @@ jobs:
             # - run: pnpm exec nx-cloud record -- echo Hello World
             # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
             # When you enable task distribution, run the e2e-ci task instead of e2e
-            - run: pnpm exec nx affected -t typecheck lint test build e2e
+            - run: pnpm exec nx affected -t typecheck lint test e2e
+            - run: pnpm exec nx format:check

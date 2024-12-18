@@ -60,10 +60,10 @@ export default buildConfig({
     },
     db: postgresAdapter({
         pool: {
-            connectionString: process.env["POSTGRES_URL"]!,
-            ssl: {
-                rejectUnauthorized: false,
-            },
+            database: process.env["POSTGRES_DATABASE"]!,
+            host: process.env["POSTGRES_HOST"]!,
+            password: process.env["POSTGRES_PASSWORD"]!,
+            user: process.env["POSTGRES_USER"]!,
         },
     }),
     cors: [getServerSideUrl()].filter(Boolean),

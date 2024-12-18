@@ -11,7 +11,7 @@ export const populatePublishedAt: CollectionBeforeChangeHook = ({
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
         req.data &&
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
-        !req.data.publishedAt
+        !req.data["publishedAt"]
     ) {
         const now = new Date();
         return {

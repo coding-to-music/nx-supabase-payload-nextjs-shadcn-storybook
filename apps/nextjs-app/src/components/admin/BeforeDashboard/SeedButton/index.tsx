@@ -17,12 +17,11 @@ const SuccessMessage: React.FC = () => (
 export const SeedButton: React.FC = () => {
     const [loading, setLoading] = React.useState(false);
     const [seeded, setSeeded] = React.useState(false);
-    const [error, setError] = React.useState(null);
+    const [error, setError] = React.useState<unknown>(null);
 
     const handleClick = React.useCallback(
         // eslint-disable-next-line @typescript-eslint/require-await -- [bulk suppress]
-        async (event) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
+        async (event: React.MouseEvent) => {
             event.preventDefault();
 
             if (seeded) {
@@ -33,7 +32,7 @@ export const SeedButton: React.FC = () => {
                 toast.info("Seeding already in progress.");
                 return;
             }
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             if (error) {
                 toast.error("An error occurred, please refresh and try again.");
                 return;
@@ -85,7 +84,7 @@ export const SeedButton: React.FC = () => {
     let message = "";
     if (loading) message = " (seeding...)";
     if (seeded) message = " (done!)";
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions, @typescript-eslint/restrict-template-expressions -- [bulk suppress]
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string -- [bulk suppress]
     if (error) message = ` (error: ${error})`;
 
     return (

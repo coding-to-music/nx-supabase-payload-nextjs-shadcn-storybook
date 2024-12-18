@@ -94,7 +94,10 @@ export const FormBlock: React.FC<
                         },
                     );
 
-                    const response = await request.json();
+                    const response = (await request.json()) as {
+                        errors?: Array<{message?: string}>;
+                        status?: string;
+                    };
 
                     clearTimeout(loadingTimerID);
 
@@ -103,12 +106,10 @@ export const FormBlock: React.FC<
                         setIsLoading(false);
 
                         setError({
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
                             message:
-                                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-magic-numbers -- [bulk suppress]
+                                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-magic-numbers, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
                                 response.errors?.[0]?.message ||
                                 "Internal Server Error",
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
                             status: response.status,
                         });
 
@@ -181,10 +182,12 @@ export const FormBlock: React.FC<
                                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
                                     formFromProps.fields?.map(
                                         (field, index) => {
-                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any -- [bulk suppress]
+                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any -- [bulk suppress]
                                             const Field: React.FC<any> =
                                                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
-                                                fields?.[field.blockType];
+                                                fields?.[
+                                                    field.blockType as never
+                                                ];
                                             // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
                                             if (Field) {
                                                 return (

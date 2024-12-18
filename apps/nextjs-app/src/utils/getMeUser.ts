@@ -21,11 +21,9 @@ export const getMeUser = async (args?: {
         },
     });
 
-    const {
-        user,
-    }: {
+    const {user} = (await meUserRequest.json()) as {
         user: User;
-    } = await meUserRequest.json();
+    };
 
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
     if (validUserRedirect && meUserRequest.ok && user) {

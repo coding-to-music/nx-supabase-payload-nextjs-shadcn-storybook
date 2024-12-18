@@ -76,13 +76,11 @@ export default async function Page({params: parametersPromise}: Args) {
 
 export const generateMetadata = async ({
     params: parametersPromise,
+}: {
+    params: Promise<{slug?: string}>;
 }): Promise<Metadata> => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
     const {slug = "home"} = await parametersPromise;
-    const page = await queryPageBySlug({
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
-        slug,
-    });
+    const page = await queryPageBySlug({slug});
 
     return await generateMeta({doc: page});
 };

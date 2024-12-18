@@ -188,7 +188,7 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
                 .replaceAll('"{{IMAGE_1}}"', String(image1ID))
                 .replaceAll('"{{IMAGE_2}}"', String(image2ID))
                 .replaceAll('"{{AUTHOR}}"', String(demoAuthorID)),
-        ),
+        ) as never,
     });
 
     const post2Document = await payload.create({
@@ -198,7 +198,7 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
                 .replaceAll('"{{IMAGE_1}}"', String(image2ID))
                 .replaceAll('"{{IMAGE_2}}"', String(image3ID))
                 .replaceAll('"{{AUTHOR}}"', String(demoAuthorID)),
-        ),
+        ) as never,
     });
 
     const post3Document = await payload.create({
@@ -208,7 +208,7 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
                 .replaceAll('"{{IMAGE_1}}"', String(image3ID))
                 .replaceAll('"{{IMAGE_2}}"', String(image1ID))
                 .replaceAll('"{{AUTHOR}}"', String(demoAuthorID)),
-        ),
+        ) as never,
     });
 
     // update each post with related posts
@@ -242,7 +242,7 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
             JSON.stringify(home)
                 .replaceAll('"{{IMAGE_1}}"', String(imageHomeID))
                 .replaceAll('"{{IMAGE_2}}"', String(image2ID)),
-        ),
+        ) as never,
     });
 
     payload.logger.info("— Seeding contact form...");
@@ -250,7 +250,7 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
     const contactForm = await payload.create({
         collection: "forms",
         // eslint-disable-next-line unicorn/prefer-structured-clone -- [bulk suppress]
-        data: JSON.parse(JSON.stringify(contactFormData)),
+        data: JSON.parse(JSON.stringify(contactFormData)) as never,
     });
 
     let contactFormID: number | string = contactForm.id;
@@ -268,7 +268,7 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
                 '"{{CONTACT_FORM_ID}}"',
                 String(contactFormID),
             ),
-        ),
+        ) as never,
     });
 
     payload.logger.info("— Seeding header...");

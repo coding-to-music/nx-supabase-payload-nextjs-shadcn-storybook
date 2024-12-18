@@ -5,7 +5,10 @@ const defaultLabels = {
     singular: "Doc",
 };
 
-const defaultCollectionLabels = {
+const defaultCollectionLabels: Record<
+    string,
+    {plural: string; singular: string} | undefined
+> = {
     posts: {
         plural: "Posts",
         singular: "Post",
@@ -42,7 +45,6 @@ export const PageRange: React.FC<{
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (totalDocs && indexEnd > totalDocs) indexEnd = totalDocs;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
     const {plural, singular} =
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
         collectionLabelsFromProps ||

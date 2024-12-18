@@ -33,6 +33,7 @@ export const populateAuthors: CollectionAfterReadHook<Post> = async ({
             }
         }
 
+        // @ts-expect-error TODO
         doc.populatedAuthors = authorDocuments.map((authorDocument) => ({
             id: authorDocument.id,
             name: authorDocument.name,

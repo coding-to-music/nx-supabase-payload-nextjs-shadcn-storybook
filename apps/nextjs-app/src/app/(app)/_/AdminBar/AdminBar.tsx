@@ -3,7 +3,7 @@
 import {cn} from "@my-project/react-components/lib/utils";
 import {getClientSideUrl} from "@my-project/utils";
 import {useRouter, useSelectedLayoutSegments} from "next/navigation";
-import type {PayloadAdminBarProps} from "payload-admin-bar";
+import type {PayloadAdminBarProps, PayloadMeUser} from "payload-admin-bar";
 import {PayloadAdminBar} from "payload-admin-bar";
 import React from "react";
 
@@ -11,7 +11,14 @@ import "./index.scss";
 
 const baseClass = "admin-bar";
 
-const collectionLabels = {
+const collectionLabels: Record<
+    string,
+    | {
+          plural: string;
+          singular: string;
+      }
+    | undefined
+> = {
     pages: {
         plural: "Pages",
         singular: "Page",
@@ -35,16 +42,16 @@ export const AdminBar: React.FC<{
     const {adminBarProps} = props || {};
     const segments = useSelectedLayoutSegments();
     const [show, setShow] = React.useState(false);
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition, @typescript-eslint/no-magic-numbers -- [bulk suppress]
-    const collection = collectionLabels?.[segments?.[1]]
-        ? // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/no-magic-numbers -- [bulk suppress]
-          segments?.[1]
-        : "pages";
+    const collection =
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/no-magic-numbers -- [bulk suppress]
+        collectionLabels[segments?.[1]] == null
+            ? "pages"
+            : // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/no-magic-numbers -- [bulk suppress]
+              segments?.[1];
     const router = useRouter();
 
-    const onAuthChange = React.useCallback((user) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
-        setShow(user?.id);
+    const onAuthChange = React.useCallback((user: PayloadMeUser) => {
+        setShow(user?.id as never);
     }, []);
 
     return (
@@ -66,11 +73,11 @@ export const AdminBar: React.FC<{
                     cmsURL={getClientSideUrl()}
                     collection={collection}
                     collectionLabels={{
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
+                        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
                         plural: collectionLabels[collection]?.plural || "Pages",
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- [bulk suppress]
+
                         singular:
-                            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
+                            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress]
                             collectionLabels[collection]?.singular || "Page",
                     }}
                     logo={<Title />}

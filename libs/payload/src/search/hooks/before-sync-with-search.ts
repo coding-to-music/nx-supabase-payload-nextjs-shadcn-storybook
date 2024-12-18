@@ -33,6 +33,7 @@ export const beforeSyncWithSearch: BeforeSync = async ({
         // get full categories and keep a flattened copy of their most important properties
         try {
             const mappedCategories = categories.map((category) => {
+                // @ts-expect-error TODO
                 const {id, title} = category;
 
                 return {

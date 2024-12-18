@@ -64,8 +64,7 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
     }, [targetFieldValue, checkboxValue, setValue, value]);
 
     const handleLock = React.useCallback(
-        (event) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access -- [bulk suppress]
+        (event: React.MouseEvent) => {
             event.preventDefault();
 
             dispatchFields({

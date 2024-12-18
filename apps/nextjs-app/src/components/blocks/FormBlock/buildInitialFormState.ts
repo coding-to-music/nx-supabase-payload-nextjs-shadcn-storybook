@@ -1,7 +1,7 @@
 import type {FormFieldBlock} from "@payloadcms/plugin-form-builder/types";
 
 export const buildInitialFormState = (fields: FormFieldBlock[]) =>
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, array-callback-return -- [bulk suppress]
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
     fields?.reduce((initialSchema, field) => {
         if (field.blockType === "checkbox") {
             return {
@@ -39,4 +39,7 @@ export const buildInitialFormState = (fields: FormFieldBlock[]) =>
                 [field.name]: "",
             };
         }
+        return {
+            ...initialSchema,
+        };
     }, {});

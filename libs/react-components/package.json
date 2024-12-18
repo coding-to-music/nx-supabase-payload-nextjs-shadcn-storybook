@@ -2,5 +2,9 @@
     "name": "@my-project/react-components",
     "version": "0.0.0",
     "private": true,
-    "type": "module"
+    "type": "module",
+    "scripts": {
+        "copy-fonts": "copyfiles --flat ../../node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2 ../../node_modules/geist/dist/fonts/geist-mono/GeistMono-Variable.woff2 .storybook/fonts",
+        "postinstall": "pnpm copy-fonts"
+    }
 }

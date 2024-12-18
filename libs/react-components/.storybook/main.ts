@@ -11,7 +11,7 @@ const config: StorybookConfig = {
         "storybook-dark-mode",
     ],
     framework: {
-        name: "@storybook/react-vite",
+        name: "@storybook/experimental-nextjs-vite",
         options: {},
     },
     features: {

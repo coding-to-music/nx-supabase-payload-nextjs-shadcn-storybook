@@ -1,3 +1,2 @@
+/* eslint-disable unicorn/no-empty-file */
 // Use this file to export React server components
-
-// eslint-disable-next-line unicorn/no-empty-file

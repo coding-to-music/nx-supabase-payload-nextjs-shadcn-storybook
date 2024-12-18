@@ -6,7 +6,7 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type {Field} from "payload";
 
-import {linkGroup} from "../fields";
+import {linkGroup} from "./link-group";
 
 const heroField: Field = {
     name: "hero",

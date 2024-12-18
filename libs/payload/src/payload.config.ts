@@ -62,7 +62,7 @@ export default buildConfig({
         pool: {
             connectionString: process.env["POSTGRES_URL"]!,
             ssl: {
-                ca: process.env["POSTGRES_CA"]!,
+                rejectUnauthorized: false,
             },
         },
     }),

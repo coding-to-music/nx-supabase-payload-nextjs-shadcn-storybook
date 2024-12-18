@@ -9,6 +9,8 @@
 const {composePlugins, withNx} = require("@nx/next");
 const {withPayload} = require("@payloadcms/next/withPayload");
 
+console.log(process.env.POSTGRES_URL);
+
 const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";

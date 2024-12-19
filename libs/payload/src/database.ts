@@ -1,3 +1,6 @@
+import path from "node:path";
+import {fileURLToPath} from "node:url";
+
 import {postgresAdapter} from "@payloadcms/db-postgres";
 
 const getPoolConfig = () => {
@@ -21,6 +24,10 @@ const getPoolConfig = () => {
     };
 };
 
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+
 export const database = postgresAdapter({
     pool: getPoolConfig(),
+    migrationDir: path.resolve(dirname, "migrations"),
 });

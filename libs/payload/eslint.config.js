@@ -9,7 +9,7 @@ const dirname = path.dirname(filename);
 export default [
     ...baseConfig,
     {
-        ignores: ["src/payload-types.ts"],
+        ignores: ["src/migrations", "src/payload-types.ts"],
     },
     {
         languageOptions: {

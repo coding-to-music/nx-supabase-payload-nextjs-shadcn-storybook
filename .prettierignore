@@ -1,5 +1,6 @@
 # Add files here to ignore them from prettier formatting
 /pnpm-lock.yaml
+/libs/payload/src/migrations
 /libs/payload/src/payload-types.ts
 /dist
 /coverage

@@ -55,8 +55,7 @@
             }
         },
         {
-            "plugin": "@nx/js/typescript",
-            "exclude": ["libs/utils/*"]
+            "plugin": "@nx/js/typescript"
         }
     ],
     "targetDefaults": {

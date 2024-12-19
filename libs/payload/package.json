@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+        "generate:types": "payload generate:types",
         "postinstall": "pnpm generate:types"
     },
     "exports": {

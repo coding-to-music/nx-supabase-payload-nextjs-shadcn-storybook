@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "generate:importmap": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts tsx ./scripts/generateImportMap.ts",
+        "generate:importmap": "tsx ./scripts/generateImportMap.ts",
         "postinstall": "pnpm generate:importmap"
     }
 }

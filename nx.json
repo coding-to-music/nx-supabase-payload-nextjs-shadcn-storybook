@@ -1,10 +1,7 @@
 {
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "namedInputs": {
-        "default": [
-            "{projectRoot}/**/*",
-            "sharedGlobals"
-        ],
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
         "production": [
             "default",
             "!{projectRoot}/.eslintrc.json",
@@ -18,9 +15,7 @@
             "!{projectRoot}/.storybook/**/*",
             "!{projectRoot}/tsconfig.storybook.json"
         ],
-        "sharedGlobals": [
-            "{workspaceRoot}/.github/workflows/ci.yml"
-        ]
+        "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
     },
     "plugins": [
         {
@@ -61,16 +56,12 @@
         },
         {
             "plugin": "@nx/js/typescript",
-            "exclude": [
-                "libs/utils/*"
-            ]
+            "exclude": ["libs/utils/*"]
         }
     ],
     "targetDefaults": {
         "e2e-ci--**/*": {
-            "dependsOn": [
-                "^build"
-            ]
+            "dependsOn": ["^build"]
         },
         "lint": {
             "options": {

@@ -16,6 +16,10 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 const getConnectionStringWithoutSslOptions = (connectionString: string) => {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (!connectionString) {
+        return connectionString;
+    }
     const url = new URL(connectionString);
     url.searchParams.delete("sslmode");
     return url.toString();

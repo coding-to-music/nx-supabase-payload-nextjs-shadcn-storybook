@@ -2,28 +2,18 @@ import path from "node:path";
 import {fileURLToPath} from "node:url";
 
 import {getServerSideUrl} from "@my-project/utils";
-import {postgresAdapter} from "@payloadcms/db-postgres";
 import {s3Storage} from "@payloadcms/storage-s3";
 import {buildConfig} from "payload";
 import sharp from "sharp";
 
 import {Categories, Media, Pages, Posts, Users} from "./collections";
+import {database} from "./database";
 import {defaultLexical} from "./default-lexical";
 import {Footer, Header} from "./globals";
 import {plugins} from "./plugins";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-const getConnectionStringWithoutSslOptions = (connectionString: string) => {
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!connectionString) {
-        return connectionString;
-    }
-    const url = new URL(connectionString);
-    url.searchParams.delete("sslmode");
-    return url.toString();
-};
 
 export default buildConfig({
     admin: {
@@ -68,16 +58,7 @@ export default buildConfig({
     typescript: {
         outputFile: path.resolve(dirname, "payload-types.ts"),
     },
-    db: postgresAdapter({
-        pool: {
-            connectionString: getConnectionStringWithoutSslOptions(
-                process.env["POSTGRES_URL"]!,
-            ),
-            ssl: {
-                ca: process.env["POSTGRES_CA"]!,
-            },
-        },
-    }),
+    db: database,
     cors: [getServerSideUrl()].filter(Boolean),
     sharp,
     editor: defaultLexical,

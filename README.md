@@ -27,7 +27,7 @@ Ensure you have Node.js v20.9 or newer installed and [Corepack enabled](https://
 
 1. Navigate to the buckets page in the local Supabase Studio (`http://127.0.0.1:54323/project/default/storage/buckets`) and create a new bucket named `payload` with default settings.
 
-1. Copy `apps/nextjs-app/.env.local-example` as `apps/nextjs-app/.env.local` and fill in
+1. Copy `.env.local-example` as `.env.local` and fill in
 
     - `S3_ACCESS_KEY_ID`
     - `S3_SECRET_ACCESS_KEY`

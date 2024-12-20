@@ -59,6 +59,9 @@
         }
     ],
     "targetDefaults": {
+        "e2e-ci--**/*": {
+            "dependsOn": ["^build"]
+        },
         "lint": {
             "options": {
                 "cache": true,

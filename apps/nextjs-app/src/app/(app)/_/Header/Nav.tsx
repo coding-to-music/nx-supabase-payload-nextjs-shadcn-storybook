@@ -1,6 +1,7 @@
 "use client";
 
 import type {Header as HeaderType} from "@my-project/payload";
+import {Button} from "@my-project/react-components";
 import {SearchIcon} from "lucide-react";
 import Link from "next/link";
 import type React from "react";
@@ -20,6 +21,16 @@ export const HeaderNav: React.FC<{header: HeaderType}> = ({header}) => {
                 <span className={"sr-only"}>Search</span>
                 <SearchIcon className={"w-5 text-primary"} />
             </Link>
+            <Button
+                className={"dark:text-foreground"}
+                variant={"outline"}
+                asChild
+            >
+                <Link href={"/sign-up"}>Sign up</Link>
+            </Button>
+            <Button asChild>
+                <Link href={"/sign-in"}>Sign in</Link>
+            </Button>
         </nav>
     );
 };

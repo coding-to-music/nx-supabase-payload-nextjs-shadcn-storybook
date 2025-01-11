@@ -11,6 +11,9 @@ export default meta;
 type Story = StoryObj<typeof LoginForm>;
 
 export const Default: Story = {
+    parameters: {
+        layout: "fullscreen",
+    },
     render: () => (
         <div
             className={

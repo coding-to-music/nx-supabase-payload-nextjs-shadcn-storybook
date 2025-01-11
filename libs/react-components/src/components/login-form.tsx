@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type React from "react";
 
 import {Button} from "../ui/button";
@@ -56,14 +57,14 @@ export const LoginForm = ({authProviderButtons}: LoginFormProps) => (
                             <div className={"grid gap-2"}>
                                 <div className={"flex items-center"}>
                                     <Label htmlFor={"password"}>Password</Label>
-                                    <a
+                                    <Link
                                         className={
                                             "ml-auto text-sm underline-offset-4 hover:underline"
                                         }
-                                        href={"#"}
+                                        href={"/forgot-password"}
                                     >
                                         Forgot your password?
-                                    </a>
+                                    </Link>
                                 </div>
                                 <Input
                                     id={"password"}
@@ -77,12 +78,12 @@ export const LoginForm = ({authProviderButtons}: LoginFormProps) => (
                         </div>
                         <div className={"text-center text-sm"}>
                             Don&apos;t have an account?{" "}
-                            <a
+                            <Link
                                 className={"underline underline-offset-4"}
-                                href={"#"}
+                                href={"/sign-up"}
                             >
                                 Sign up
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </form>
@@ -94,8 +95,8 @@ export const LoginForm = ({authProviderButtons}: LoginFormProps) => (
             }
         >
             By clicking continue, you agree to our{" "}
-            <a href={"#"}>Terms of Service</a> and{" "}
-            <a href={"#"}>Privacy Policy</a>.
+            <Link href={"/tos"}>Terms of Service</Link> and{" "}
+            <Link href={"/privacy-policy"}>Privacy Policy</Link>.
         </div>
     </div>
 );

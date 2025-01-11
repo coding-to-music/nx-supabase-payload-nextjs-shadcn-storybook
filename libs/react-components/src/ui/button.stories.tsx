@@ -21,7 +21,7 @@ const meta: Meta<typeof Button> = {
         },
         size: {
             control: "inline-radio",
-            options: ["default", "sm", "lg", "icon"],
+            options: ["default", "sm", "lg", "icon", "clear"],
         },
     },
 };

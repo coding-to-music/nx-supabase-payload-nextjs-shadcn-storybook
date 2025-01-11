@@ -9,6 +9,8 @@ import {HeaderNav} from "./Nav";
 import {Logo} from "~/components/misc/Logo";
 import {useHeaderTheme} from "~/theme/header/useHeaderTheme";
 
+const headerBlackList = new Set(["/sign-in", "/sign-up"]);
+
 interface HeaderClientProps {
     header: Header;
 }
@@ -29,6 +31,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({header}) => {
         if (headerTheme && headerTheme !== theme) setTheme(headerTheme);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [headerTheme]);
+
+    if (headerBlackList.has(pathname)) {
+        return null;
+    }
 
     return (
         <header

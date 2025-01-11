@@ -125,7 +125,8 @@ export const AuthForm = ({variant}: AuthFormProps) => {
                     "text-balance text-center text-xs text-muted-foreground"
                 }
             >
-                By clicking &ldquo;{signInSignUpText}&rdquo;, you agree to our{" "}
+                By {{signIn: "signing in", signUp: "signing up"}[variant]}, you
+                agree to our{" "}
                 <Link
                     className={
                         "underline underline-offset-4 hover:text-primary"

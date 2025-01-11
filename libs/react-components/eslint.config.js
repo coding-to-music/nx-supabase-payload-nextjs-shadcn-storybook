@@ -72,8 +72,8 @@ export default [
                     /* Same as in @my-project/eslint-config-ecmascript END */
                     patterns: [
                         {
-                            // Deep relative import are not allowed, except for from lib/utils
-                            regex: String.raw`(\.{1,2}\/)(\.{2}\/)*(?!lib\/utils$)(\.+[^./]+[^/]*|[^./][^/]*)\/`,
+                            // Deep relative import are not allowed, except for from lib/utils and ui/* (one level deep)
+                            regex: String.raw`(\.{1,2}\/)(\.{2}\/)*(?!(lib\/utils|ui\/[^./]+)$)(\.+[^./]+[^/]*|[^./][^/]*)\/`,
                             message: "Deep relative imports are not allowed.",
                         },
                     ],

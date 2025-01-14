@@ -96,7 +96,6 @@ export const GoogleOneTap = () => {
                             );
 
                             // TODO: propagate auth state change
-                            debugger;
                         })
                         .catch((error) => {
                             console.error(

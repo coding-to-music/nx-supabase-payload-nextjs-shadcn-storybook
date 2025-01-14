@@ -10,6 +10,9 @@ import {zodToFieldJsonSchema} from "../utils";
 const emailAfterRead: FieldHook<User> = ({data}) =>
     data?.supabaseUserMetadata?.email;
 
+const nameAfterRead: FieldHook<User> = ({data}) =>
+    data?.supabaseUserMetadata?.name;
+
 const supabaseUserMetadataSchema = z
     .object({
         name: z.string(),
@@ -79,6 +82,7 @@ export const Users: CollectionConfig = {
                             collection: "users",
                             data: {
                                 email: jwtPayload.user_metadata.email,
+                                name: jwtPayload.user_metadata.name,
                                 supabaseUid: jwtPayload.sub,
                                 supabaseUserMetadata: jwtPayload.user_metadata,
                             },
@@ -107,6 +111,18 @@ export const Users: CollectionConfig = {
             },
             hooks: {
                 afterRead: [emailAfterRead],
+            },
+        },
+        {
+            name: "name",
+            type: "text",
+            required: true,
+            virtual: true,
+            admin: {
+                hidden: true,
+            },
+            hooks: {
+                afterRead: [nameAfterRead],
             },
         },
         {

@@ -16,7 +16,7 @@ export const PostHero: React.FC<{
     } = post;
 
     return (
-        <div className={"relative -mt-[10.4rem] flex items-end"}>
+        <div className={"relative -mt-32 flex items-end"}>
             <div
                 className={
                     "container relative z-10 pb-8 text-white lg:grid lg:grid-cols-[1fr_48rem_1fr]"

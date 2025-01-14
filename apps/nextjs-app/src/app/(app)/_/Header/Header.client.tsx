@@ -9,6 +9,8 @@ import {HeaderNav} from "./Nav";
 import {Logo} from "~/components/misc/Logo";
 import {useHeaderTheme} from "~/theme/header/useHeaderTheme";
 
+const headerBlackList = new Set(["/sign-in", "/sign-up"]);
+
 interface HeaderClientProps {
     header: Header;
 }
@@ -30,21 +32,31 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({header}) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [headerTheme]);
 
+    if (headerBlackList.has(pathname)) {
+        return null;
+    }
+
     return (
         <header
-            className={"container relative z-20"}
+            className={"sticky inset-0 z-20 bg-background"}
             // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             {...(theme ? {"data-theme": theme} : {})}
         >
-            <div className={"flex justify-between border-b border-border py-8"}>
-                <Link href={"/"}>
-                    <Logo
-                        className={"invert dark:invert-0"}
-                        loading={"eager"}
-                        priority={"high"}
-                    />
-                </Link>
-                <HeaderNav header={header} />
+            <div className={"container"}>
+                <div
+                    className={
+                        "flex h-16 items-center justify-between border-b border-border"
+                    }
+                >
+                    <Link href={"/"}>
+                        <Logo
+                            className={"invert dark:invert-0"}
+                            loading={"eager"}
+                            priority={"high"}
+                        />
+                    </Link>
+                    <HeaderNav header={header} />
+                </div>
             </div>
         </header>
     );

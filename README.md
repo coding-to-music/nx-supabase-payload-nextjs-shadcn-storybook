@@ -31,6 +31,7 @@ Ensure you have Node.js v20.9 or newer installed and [Corepack enabled](https://
 
     - `S3_ACCESS_KEY_ID`
     - `S3_SECRET_ACCESS_KEY`
+    - `SUPABASE_JWT_SECRET`
     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
     based on values printed by `pnpm supabase status`.

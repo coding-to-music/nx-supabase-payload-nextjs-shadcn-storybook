@@ -75,9 +75,13 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
     const demoAuthor = await payload.create({
         collection: "users",
         data: {
-            name: "Demo Author",
             email: "demo-author@payloadcms.com",
-            password: "password",
+            name: "Demo Author",
+            supabaseUid: "cdfd7a69-44fa-4a8e-a506-abd49a45f0b4",
+            supabaseUserMetadata: {
+                name: "Demo Author",
+                email: "demo-author@payloadcms.com",
+            },
         },
     });
 

@@ -34,7 +34,11 @@ Ensure you have Node.js v20.9 or newer installed and [Corepack enabled](https://
     - `SUPABASE_JWT_SECRET`
     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-    based on values printed by `pnpm supabase status`.
+    based on values printed by `pnpm supabase status`, and
+
+    - `NEXT_PUBLIC_GOOGLE_CLIENT_ID`
+
+    with your [Google OAuth 2.0 client ID](https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid) (for Sign in with Google).
 
 1. Start [Next.js dev server](https://nextjs.org/docs/app/getting-started/installation#run-the-development-server).
 

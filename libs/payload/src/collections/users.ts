@@ -107,7 +107,7 @@ export const Users: CollectionConfig = {
             unique: true,
             virtual: true,
             admin: {
-                hidden: true,
+                readOnly: true,
             },
             hooks: {
                 afterRead: [emailAfterRead],
@@ -119,7 +119,7 @@ export const Users: CollectionConfig = {
             required: true,
             virtual: true,
             admin: {
-                hidden: true,
+                readOnly: true,
             },
             hooks: {
                 afterRead: [nameAfterRead],
@@ -141,6 +141,8 @@ export const Users: CollectionConfig = {
             required: true,
             jsonSchema: zodToFieldJsonSchema(supabaseUserMetadataSchema),
             admin: {
+                disableListColumn: true,
+                disableListFilter: true,
                 readOnly: true,
             },
         },

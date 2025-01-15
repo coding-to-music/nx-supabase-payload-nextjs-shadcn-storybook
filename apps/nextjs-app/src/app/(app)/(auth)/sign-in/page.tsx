@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import {AuthForm} from "~/components/misc/AuthForm";
+import {AuthForm} from "~/components/auth/AuthForm";
 import {Logo} from "~/components/misc/Logo";
 
 export default function Page() {

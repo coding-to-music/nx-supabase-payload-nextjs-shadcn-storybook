@@ -11,7 +11,7 @@ import {Footer} from "./_/Footer";
 import {Header} from "./_/Header";
 import {LivePreviewListener} from "./_/LivePreviewListener";
 
-import {GoogleOneTap} from "~/components/misc/GoogleOneTap";
+import {GoogleOneTap} from "~/components/auth/GoogleOneTap";
 import {InitTheme} from "~/theme/InitTheme";
 import {ThemeProvider} from "~/theme/ThemeProvider";
 import {HeaderThemeProvider} from "~/theme/header/HeaderThemeProvider";

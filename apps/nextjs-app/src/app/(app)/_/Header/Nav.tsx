@@ -2,6 +2,7 @@
 
 import type {Header as HeaderType} from "@my-project/payload";
 import {Button} from "@my-project/react-components";
+import {CircleUserRoundIcon} from "lucide-react";
 import Link from "next/link";
 import type React from "react";
 
@@ -19,14 +20,25 @@ export const HeaderNav: React.FC<{header: HeaderType}> = ({header}) => {
             ))}
             <CommandMenu />
             <Button
-                className={"h-8 dark:text-foreground"}
+                className={"hidden h-8 md:flex dark:text-foreground"}
                 variant={"outline"}
                 asChild
             >
                 <Link href={"/sign-up"}>Sign up</Link>
             </Button>
-            <Button className={"h-8"} asChild>
+            <Button className={"hidden h-8 md:flex"} asChild>
                 <Link href={"/sign-in"}>Sign in</Link>
+            </Button>
+            <Button
+                className={"h-8 md:hidden"}
+                size={"icon"}
+                variant={"ghost"}
+                asChild
+            >
+                <Link href={"/sign-in"}>
+                    <CircleUserRoundIcon />
+                    <span className={"sr-only"}>Sign in</span>
+                </Link>
             </Button>
         </nav>
     );

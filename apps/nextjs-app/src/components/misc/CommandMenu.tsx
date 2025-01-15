@@ -12,7 +12,7 @@ import {
     CommandSeparator,
 } from "@my-project/react-components/ui/command";
 import type {DialogProps} from "@radix-ui/react-dialog";
-import {Circle, File, Laptop, Moon, Sun} from "lucide-react";
+import {Circle, File, Laptop, Moon, SearchIcon, Sun} from "lucide-react";
 import {useRouter} from "next/navigation";
 import React from "react";
 
@@ -83,7 +83,7 @@ export const CommandMenu = ({...props}: DialogProps) => {
         <>
             <Button
                 className={cn(
-                    "relative h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-64",
+                    "relative hidden h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:flex md:w-40 lg:w-64",
                 )}
                 variant={"outline"}
                 onClick={() => {
@@ -102,6 +102,18 @@ export const CommandMenu = ({...props}: DialogProps) => {
                 >
                     <span className={"text-xs"}>⌘</span>K
                 </kbd>
+            </Button>
+            <Button
+                className={"md:hidden"}
+                size={"icon"}
+                variant={"ghost"}
+                onClick={() => {
+                    setOpen(true);
+                }}
+                {...props}
+            >
+                <SearchIcon />
+                <span className={"sr-only"}>Search...</span>
             </Button>
             <CommandDialog
                 open={open}

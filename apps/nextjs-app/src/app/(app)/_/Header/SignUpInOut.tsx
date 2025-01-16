@@ -1,29 +1,83 @@
-import {Button} from "@my-project/react-components/ui/button";
-import {CircleUserRoundIcon} from "lucide-react";
-import Link from "next/link";
+"use client";
 
-export const SignUpInOut = () => (
+import {Button} from "@my-project/react-components/ui/button";
+import {CircleUserRoundIcon, LogOutIcon} from "lucide-react";
+import Link from "next/link";
+import React from "react";
+
+import {createClient} from "~/supabase/client";
+
+const signOut = () => {
+    const supabase = createClient();
+    supabase.auth
+        .signOut({scope: "local"})
+        .then(({error}) => {
+            if (error != null) {
+                throw error;
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+};
+
+const SignOut = () => (
     <>
-        <Button
-            className={"hidden h-8 md:flex dark:text-foreground"}
-            variant={"outline"}
-            asChild
-        >
-            <Link href={"/sign-up"}>Sign up</Link>
-        </Button>
-        <Button className={"hidden h-8 md:flex"} asChild>
-            <Link href={"/sign-in"}>Sign in</Link>
+        <Button className={"hidden h-8 md:flex"} onClick={signOut}>
+            Sign out
         </Button>
         <Button
             className={"h-8 md:hidden"}
             size={"icon"}
             variant={"ghost"}
-            asChild
+            onClick={signOut}
         >
-            <Link href={"/sign-in"}>
-                <CircleUserRoundIcon />
-                <span className={"sr-only"}>Sign in</span>
-            </Link>
+            <LogOutIcon />
+            <span className={"sr-only"}>Sign out</span>
         </Button>
     </>
 );
+
+export const SignUpInOut = () => {
+    const [signedIn, setSignedIn] = React.useState(false);
+    React.useEffect(() => {
+        const supabase = createClient();
+        const {
+            data: {subscription},
+        } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log("onAuthStateChange", event, session);
+            setSignedIn(session != null);
+        });
+        return () => {
+            subscription.unsubscribe();
+        };
+    }, []);
+    if (signedIn) {
+        return <SignOut />;
+    }
+    return (
+        <>
+            <Button
+                className={"hidden h-8 md:flex dark:text-foreground"}
+                variant={"outline"}
+                asChild
+            >
+                <Link href={"/sign-up"}>Sign up</Link>
+            </Button>
+            <Button className={"hidden h-8 md:flex"} asChild>
+                <Link href={"/sign-in"}>Sign in</Link>
+            </Button>
+            <Button
+                className={"h-8 md:hidden"}
+                size={"icon"}
+                variant={"ghost"}
+                asChild
+            >
+                <Link href={"/sign-in"}>
+                    <CircleUserRoundIcon />
+                    <span className={"sr-only"}>Sign in</span>
+                </Link>
+            </Button>
+        </>
+    );
+};

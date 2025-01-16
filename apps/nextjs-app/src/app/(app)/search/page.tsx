@@ -2,11 +2,11 @@ import configPromise from "@my-project/payload/config";
 import type {Metadata} from "next/types";
 import {getPayload} from "payload";
 
+import {SearchInput} from "./_/SearchInput";
 import PageClient from "./page.client";
 
 import type {CardPostData} from "~/components/misc/Card";
 import {CollectionArchive} from "~/components/misc/CollectionArchive";
-import {Search} from "~/components/misc/Search";
 
 interface Args {
     searchParams: Promise<{
@@ -68,7 +68,7 @@ export default async function Page({
             <div className={"container mb-16"}>
                 <div className={"prose max-w-none dark:prose-invert"}>
                     <h1 className={"sr-only"}>Search</h1>
-                    <Search />
+                    <SearchInput />
                 </div>
             </div>
 

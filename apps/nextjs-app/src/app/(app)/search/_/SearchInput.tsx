@@ -5,7 +5,7 @@ import React from "react";
 
 import {useDebounce} from "~/hooks/useDebounce";
 
-export const Search: React.FC = () => {
+export const SearchInput: React.FC = () => {
     const [value, setValue] = React.useState("");
     const router = useRouter();
 

@@ -42,7 +42,7 @@ const docsConfig = {
     ],
 };
 
-export const CommandMenu = ({...props}: DialogProps) => {
+export const Search = ({...props}: DialogProps) => {
     const router = useRouter();
     const [open, setOpen] = React.useState(false);
     const {setTheme} = useTheme();

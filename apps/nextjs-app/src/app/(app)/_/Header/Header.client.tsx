@@ -4,9 +4,11 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import React from "react";
 
-import {HeaderNav} from "./Nav";
+import {Search} from "./Search";
+import {SignUpInOut} from "./SignUpInOut";
 
 import {Logo} from "~/components/misc/Logo";
+import {CmsLink} from "~/components/utils/CmsLink";
 import {useHeaderTheme} from "~/theme/header/useHeaderTheme";
 
 const headerBlackList = new Set(["/sign-in", "/sign-up"]);
@@ -55,7 +57,18 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({header}) => {
                             priority={"high"}
                         />
                     </Link>
-                    <HeaderNav header={header} />
+                    <nav className={"flex items-center gap-3"}>
+                        {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress] */}
+                        {(header?.navItems || []).map(({link}, index) => (
+                            <CmsLink
+                                key={index}
+                                {...link}
+                                appearance={"link"}
+                            />
+                        ))}
+                        <Search />
+                        <SignUpInOut />
+                    </nav>
                 </div>
             </div>
         </header>

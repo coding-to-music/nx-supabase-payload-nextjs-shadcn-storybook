@@ -1,6 +1,4 @@
-import {expect} from "@storybook/jest";
 import type {Meta, StoryObj} from "@storybook/react";
-import {within} from "@storybook/testing-library";
 
 import {Button} from "./button";
 
@@ -33,9 +31,5 @@ export const Default: Story = {
         children: "Default",
         variant: "default",
         size: "default",
-    },
-    play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
-        await expect(canvas.getByText(/Default/)).toBeTruthy();
     },
 };

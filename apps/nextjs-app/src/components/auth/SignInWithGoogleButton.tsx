@@ -22,5 +22,5 @@ export const SignInWithGoogleButton = ({
         },
         [gsiButtonConfiguration],
     );
-    return <div ref={callbackRef} />;
+    return <div ref={callbackRef} className={"overflow-hidden rounded"} />;
 };

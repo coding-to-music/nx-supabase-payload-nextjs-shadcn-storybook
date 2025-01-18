@@ -194,6 +194,10 @@ export const GsiClient = () => {
                 google.accounts.id.renderButton(parent, {
                     ...options,
                     locale: "en",
+                    // TODO: react to parent width changes
+                    width: Math.floor(
+                        parent.getBoundingClientRect().width,
+                    ).toString(),
                 });
             });
         return () => {

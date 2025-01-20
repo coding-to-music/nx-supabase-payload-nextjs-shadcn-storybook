@@ -51,7 +51,11 @@ export const Users: CollectionConfig = {
             {
                 name: "supabase",
                 authenticate: async ({headers, payload}) => {
-                    const supabase = createSupabaseClient(headers);
+                    const responseHeaders = new Headers();
+                    const supabase = createSupabaseClient(
+                        headers,
+                        responseHeaders,
+                    );
                     const {
                         data: {session},
                         error,
@@ -94,6 +98,7 @@ export const Users: CollectionConfig = {
                             collection: "users",
                             _strategy: "supabase",
                         },
+                        responseHeaders,
                     };
                 },
             },
@@ -147,5 +152,19 @@ export const Users: CollectionConfig = {
             },
         },
     ],
+    hooks: {
+        afterLogout: [
+            async ({req}) => {
+                if (req.responseHeaders == null) {
+                    throw new TypeError("req.responseHeaders is not defined");
+                }
+                const supabase = createSupabaseClient(
+                    req.headers,
+                    req.responseHeaders,
+                );
+                await supabase.auth.signOut({scope: "local"});
+            },
+        ],
+    },
     timestamps: true,
 };

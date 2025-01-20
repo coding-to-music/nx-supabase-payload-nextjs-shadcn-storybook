@@ -1,9 +1,10 @@
 import {createServerClient} from "@supabase/ssr";
 import type {SupabaseClient} from "@supabase/supabase-js";
-import {parse as parseCookies} from "cookie";
+import {parse as parseCookies, serialize as serializeCookies} from "cookie";
 
 export const createSupabaseClient = (
-    headers: Request["headers"],
+    requestHeaders: Headers,
+    responseHeaders: Headers,
 ): SupabaseClient =>
     createServerClient(
         process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
@@ -12,17 +13,23 @@ export const createSupabaseClient = (
             cookies: {
                 getAll() {
                     return Object.entries(
-                        parseCookies(headers.get("cookie") ?? ""),
+                        parseCookies(requestHeaders.get("cookie") ?? ""),
                     ).map(([key, value]) => ({
                         name: key,
                         value: value ?? "",
                     }));
                 },
                 setAll(cookiesToSet) {
-                    console.warn(
-                        "The `setAll` method was called. Cookies to set:",
-                        cookiesToSet,
-                    );
+                    for (const cookie of cookiesToSet) {
+                        responseHeaders.append(
+                            "set-cookie",
+                            serializeCookies(
+                                cookie.name,
+                                cookie.value,
+                                cookie.options,
+                            ),
+                        );
+                    }
                 },
             },
         },

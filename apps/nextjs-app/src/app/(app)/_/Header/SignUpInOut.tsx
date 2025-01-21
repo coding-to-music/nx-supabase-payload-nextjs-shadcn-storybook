@@ -3,9 +3,9 @@
 import {Button} from "@my-project/react-components/ui/button";
 import {CircleUserRoundIcon, LogOutIcon} from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
 import {createClient} from "~/supabase/client";
+import {useSupabaseAuth} from "~/supabase/useSupabaseAuth";
 
 const signOut = () => {
     const supabase = createClient();
@@ -39,20 +39,8 @@ const SignOut = () => (
 );
 
 export const SignUpInOut = () => {
-    const [signedIn, setSignedIn] = React.useState(false);
-    React.useEffect(() => {
-        const supabase = createClient();
-        const {
-            data: {subscription},
-        } = supabase.auth.onAuthStateChange((event, session) => {
-            console.log("onAuthStateChange", event, session);
-            setSignedIn(session != null);
-        });
-        return () => {
-            subscription.unsubscribe();
-        };
-    }, []);
-    if (signedIn) {
+    const {session} = useSupabaseAuth();
+    if (session != null) {
         return <SignOut />;
     }
     return (

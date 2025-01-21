@@ -131,6 +131,7 @@ export default [
                     },
                     allowList: {
                         generateStaticParams: true,
+                        urlSearchParams: true,
                     },
                 },
             ],

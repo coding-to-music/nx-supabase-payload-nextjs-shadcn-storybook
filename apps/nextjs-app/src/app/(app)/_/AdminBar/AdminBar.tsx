@@ -7,6 +7,8 @@ import type {PayloadAdminBarProps, PayloadMeUser} from "payload-admin-bar";
 import {PayloadAdminBar} from "payload-admin-bar";
 import React from "react";
 
+import {useSupabaseAuth} from "~/supabase/useSupabaseAuth";
+
 import "./index.scss";
 
 const baseClass = "admin-bar";
@@ -54,6 +56,8 @@ export const AdminBar: React.FC<{
         setShow(user?.id as never);
     }, []);
 
+    const {session} = useSupabaseAuth();
+
     return (
         <div
             className={cn(baseClass, "bg-black py-2 text-white", {
@@ -64,6 +68,7 @@ export const AdminBar: React.FC<{
             <div className={"container"}>
                 <PayloadAdminBar
                     {...adminBarProps}
+                    key={(session == null).toString()}
                     className={"py-2 text-white"}
                     classNames={{
                         controls: "font-medium text-white",

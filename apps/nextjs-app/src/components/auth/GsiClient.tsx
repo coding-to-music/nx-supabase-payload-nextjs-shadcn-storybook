@@ -1,6 +1,6 @@
 "use client";
 
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import Script from "next/script";
 import React from "react";
 import {ReplaySubject, combineLatestWith} from "rxjs";
@@ -121,7 +121,9 @@ const generateNonce = async () => {
     return [nonce, hashedNonce];
 };
 
-const initializeGsiClient = async () => {
+const initializeGsiClient = async (
+    routerRef: React.RefObject<ReturnType<typeof useRouter>>,
+) => {
     await new Promise<void>((resolve) => {
         if (typeof google === "undefined") {
             globalThis.window.onGoogleLibraryLoad = () => {
@@ -137,6 +139,7 @@ const initializeGsiClient = async () => {
     google!.accounts.id.initialize({
         client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
         callback: (response) => {
+            console.log("GSI callback response", response);
             const supabase = createClient();
             supabase.auth
                 .signInWithIdToken({
@@ -150,7 +153,15 @@ const initializeGsiClient = async () => {
                     }
                     console.log("Successfully signed in with Google", data);
 
-                    // TODO: propagate auth state change
+                    if (location.pathname === "/sign-in") {
+                        const urlSearchParams = new URLSearchParams(
+                            location.search,
+                        );
+                        routerRef.current.replace(
+                            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/strict-boolean-expressions
+                            urlSearchParams.get("return-to") || "/",
+                        );
+                    }
                 })
                 .catch((error) => {
                     console.error("Error signing in with Google", error);
@@ -184,8 +195,11 @@ const GoogleOneTap = () => {
 };
 
 export const GsiClient = () => {
+    const router = useRouter();
+    const routerRef = React.useRef(router);
+    routerRef.current = router;
     React.useEffect(() => {
-        initializeGsiClient().catch((error) => {
+        initializeGsiClient(routerRef).catch((error) => {
             console.error(error);
         });
         const renderButton = google$

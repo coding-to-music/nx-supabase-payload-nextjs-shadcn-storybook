@@ -1,19 +1,21 @@
 "use client";
 
 import type {Footer as FooterType} from "@my-project/payload";
+import {MainContentMinHeight} from "@my-project/react-components/components/main-content-min-height";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+
+import {noHeaderFooterPathnames} from "../noHeaderFooterPathnames";
 
 import {Logo} from "~/components/misc/Logo";
 import {CmsLink} from "~/components/utils/CmsLink";
 import {ThemeSelector} from "~/theme/ThemeSelector";
 
-const footerBlackList = new Set(["/sign-in", "/sign-up"]);
-
 export const FooterClient: React.FC<{footer: FooterType}> = ({footer}) => {
     const pathname = usePathname();
+    const regionRef = MainContentMinHeight.useRegionRef("footer");
 
-    if (footerBlackList.has(pathname)) {
+    if (noHeaderFooterPathnames.includes(pathname)) {
         return null;
     }
 
@@ -22,6 +24,7 @@ export const FooterClient: React.FC<{footer: FooterType}> = ({footer}) => {
 
     return (
         <footer
+            ref={regionRef}
             className={
                 "border-t border-border bg-black text-white dark:bg-card"
             }

@@ -1,8 +1,11 @@
 "use client";
 import type {Header} from "@my-project/payload";
+import {MainContentMinHeight} from "@my-project/react-components/components/main-content-min-height";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import React from "react";
+
+import {noHeaderFooterPathnames} from "../noHeaderFooterPathnames";
 
 import {Search} from "./Search";
 import {SignUpInOut} from "./SignUpInOut";
@@ -10,8 +13,6 @@ import {SignUpInOut} from "./SignUpInOut";
 import {Logo} from "~/components/misc/Logo";
 import {CmsLink} from "~/components/utils/CmsLink";
 import {useHeaderTheme} from "~/theme/header/useHeaderTheme";
-
-const headerBlackList = new Set(["/sign-in", "/sign-up"]);
 
 interface HeaderClientProps {
     header: Header;
@@ -22,6 +23,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({header}) => {
     const [theme, setTheme] = React.useState<string | null>(null);
     const {headerTheme, setHeaderTheme} = useHeaderTheme();
     const pathname = usePathname();
+    const regionRef = MainContentMinHeight.useRegionRef("header");
 
     React.useEffect(() => {
         setHeaderTheme(null);
@@ -34,12 +36,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({header}) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [headerTheme]);
 
-    if (headerBlackList.has(pathname)) {
+    if (noHeaderFooterPathnames.includes(pathname)) {
         return null;
     }
 
     return (
         <header
+            ref={regionRef}
             className={"sticky inset-0 z-20 bg-background"}
             // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
             {...(theme ? {"data-theme": theme} : {})}

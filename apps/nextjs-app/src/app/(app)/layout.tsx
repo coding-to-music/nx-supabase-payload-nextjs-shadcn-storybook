@@ -7,9 +7,11 @@ import {draftMode} from "next/headers";
 import type React from "react";
 
 import {AdminBar} from "./_/AdminBar";
+import {Body} from "./_/Body";
 import {Footer} from "./_/Footer";
 import {Header} from "./_/Header";
 import {LivePreviewListener} from "./_/LivePreviewListener";
+import {Main} from "./_/Main";
 
 import {GsiClient} from "~/components/auth/GsiClient";
 import {SupabaseAuthProvider} from "~/supabase/SupabaseAuthProvider";
@@ -42,7 +44,7 @@ export default async function RootLayout({
                     type={"image/svg+xml"}
                 />
             </head>
-            <body>
+            <Body>
                 <ThemeProvider>
                     <HeaderThemeProvider>
                         <SupabaseAuthProvider>
@@ -55,12 +57,12 @@ export default async function RootLayout({
                             <LivePreviewListener />
 
                             <Header />
-                            {children}
+                            <Main>{children}</Main>
                             <Footer />
                         </SupabaseAuthProvider>
                     </HeaderThemeProvider>
                 </ThemeProvider>
-            </body>
+            </Body>
         </html>
     );
 }

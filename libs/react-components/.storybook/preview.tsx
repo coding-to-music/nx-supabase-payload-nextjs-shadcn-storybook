@@ -1,4 +1,4 @@
-import type {Decorator, Parameters} from "@storybook/react";
+import type {Decorator, Parameters, Preview} from "@storybook/react";
 import localFont from "next/font/local";
 import React from "react";
 import {useDarkMode} from "storybook-dark-mode";
@@ -43,3 +43,9 @@ export const parameters: Parameters = {
         stylePreview: true,
     },
 };
+
+const preview: Preview = {
+    tags: ["autodocs"],
+};
+
+export default preview;

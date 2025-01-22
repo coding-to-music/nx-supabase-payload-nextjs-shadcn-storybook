@@ -20,7 +20,7 @@ export const AuthForm = ({variant}: AuthFormProps) => {
     const signInSignUpText = {signIn: "Sign in", signUp: "Sign up"}[variant];
     return (
         <div className={"flex flex-col gap-6"}>
-            <Card className={"bg-background"}>
+            <Card className={"h-[498px] bg-background"}>
                 <CardHeader className={"text-center"}>
                     <CardTitle className={"text-xl"}>
                         {signInSignUpText}

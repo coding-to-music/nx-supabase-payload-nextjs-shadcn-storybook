@@ -1,4 +1,5 @@
-import {Checkbox as CheckboxUi, Label} from "@my-project/react-components";
+import {Checkbox as CheckboxUi} from "@my-project/react-components/ui/checkbox";
+import {Label} from "@my-project/react-components/ui/label";
 import type {CheckboxField} from "@payloadcms/plugin-form-builder/types";
 import type React from "react";
 import type {

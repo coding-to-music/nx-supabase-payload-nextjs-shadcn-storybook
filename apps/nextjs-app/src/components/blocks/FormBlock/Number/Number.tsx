@@ -1,4 +1,5 @@
-import {Input, Label} from "@my-project/react-components";
+import {Input} from "@my-project/react-components/ui/input";
+import {Label} from "@my-project/react-components/ui/label";
 import type {TextField} from "@payloadcms/plugin-form-builder/types";
 import type React from "react";
 import type {

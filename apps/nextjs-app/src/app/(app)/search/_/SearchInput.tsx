@@ -1,5 +1,6 @@
 "use client";
-import {Input, Label} from "@my-project/react-components";
+import {Input} from "@my-project/react-components/ui/input";
+import {Label} from "@my-project/react-components/ui/label";
 import {useRouter} from "next/navigation";
 import React from "react";
 

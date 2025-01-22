@@ -1,5 +1,5 @@
 "use client";
-import {Button} from "@my-project/react-components";
+import {Button} from "@my-project/react-components/ui/button";
 import {CopyIcon} from "@payloadcms/ui/icons/Copy";
 import React from "react";
 

@@ -1,5 +1,5 @@
 "use client";
-import {Button} from "@my-project/react-components";
+import {Button} from "@my-project/react-components/ui/button";
 import {getClientSideUrl} from "@my-project/utils";
 import type {Form as FormType} from "@payloadcms/plugin-form-builder/types";
 import {useRouter} from "next/navigation";

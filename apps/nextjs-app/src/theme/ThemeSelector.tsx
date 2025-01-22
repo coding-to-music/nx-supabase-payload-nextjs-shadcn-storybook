@@ -6,7 +6,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@my-project/react-components";
+} from "@my-project/react-components/ui/select";
 import React from "react";
 
 import {themeLocalStorageKey} from "./shared";

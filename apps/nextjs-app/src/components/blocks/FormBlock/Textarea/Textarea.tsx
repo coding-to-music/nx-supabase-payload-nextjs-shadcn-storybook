@@ -1,7 +1,5 @@
-import {
-    Label,
-    Textarea as TextAreaComponent,
-} from "@my-project/react-components";
+import {Label} from "@my-project/react-components/ui/label";
+import {Textarea as TextAreaComponent} from "@my-project/react-components/ui/textarea";
 import type {TextField} from "@payloadcms/plugin-form-builder/types";
 import type React from "react";
 import type {

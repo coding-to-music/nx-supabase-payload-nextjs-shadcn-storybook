@@ -1,11 +1,11 @@
+import {Label} from "@my-project/react-components/ui/label";
 import {
-    Label,
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@my-project/react-components";
+} from "@my-project/react-components/ui/select";
 import type {StateField} from "@payloadcms/plugin-form-builder/types";
 import type React from "react";
 import type {Control, FieldErrorsImpl} from "react-hook-form";

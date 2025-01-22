@@ -1,4 +1,5 @@
 "use client";
+import {cn} from "@my-project/react-components/lib/utils";
 import {
     Pagination as PaginationComponent,
     PaginationContent,
@@ -7,8 +8,7 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-} from "@my-project/react-components";
-import {cn} from "@my-project/react-components/lib/utils";
+} from "@my-project/react-components/ui/pagination";
 import {useRouter} from "next/navigation";
 import type React from "react";
 

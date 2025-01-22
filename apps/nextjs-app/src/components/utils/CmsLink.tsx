@@ -1,6 +1,6 @@
 import type {Page, Post} from "@my-project/payload";
-import {Button, type ButtonProps} from "@my-project/react-components";
 import {cn} from "@my-project/react-components/lib/utils";
+import {Button, type ButtonProps} from "@my-project/react-components/ui/button";
 import Link from "next/link";
 import type React from "react";
 

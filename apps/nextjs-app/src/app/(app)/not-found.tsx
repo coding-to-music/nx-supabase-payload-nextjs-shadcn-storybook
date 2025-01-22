@@ -1,4 +1,4 @@
-import {Button} from "@my-project/react-components";
+import {Button} from "@my-project/react-components/ui/button";
 import Link from "next/link";
 
 export default function NotFound() {

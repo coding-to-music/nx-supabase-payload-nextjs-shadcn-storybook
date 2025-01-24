@@ -12,6 +12,7 @@ import {Footer} from "./_/Footer";
 import {Header} from "./_/Header";
 import {LivePreviewListener} from "./_/LivePreviewListener";
 import {Main} from "./_/Main";
+import {QueryClientProvider} from "./_/QueryClientProvider";
 
 import {GsiClient} from "~/components/auth/GsiClient";
 import {SupabaseAuthProvider} from "~/supabase/SupabaseAuthProvider";
@@ -48,17 +49,19 @@ export default async function RootLayout({
                 <ThemeProvider>
                     <HeaderThemeProvider>
                         <SupabaseAuthProvider>
-                            <GsiClient />
-                            <AdminBar
-                                adminBarProps={{
-                                    preview: isEnabled,
-                                }}
-                            />
-                            <LivePreviewListener />
+                            <QueryClientProvider>
+                                <GsiClient />
+                                <AdminBar
+                                    adminBarProps={{
+                                        preview: isEnabled,
+                                    }}
+                                />
+                                <LivePreviewListener />
 
-                            <Header />
-                            <Main>{children}</Main>
-                            <Footer />
+                                <Header />
+                                <Main>{children}</Main>
+                                <Footer />
+                            </QueryClientProvider>
                         </SupabaseAuthProvider>
                     </HeaderThemeProvider>
                 </ThemeProvider>

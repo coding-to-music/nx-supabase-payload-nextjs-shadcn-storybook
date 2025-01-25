@@ -180,7 +180,11 @@ const GoogleOneTap = () => {
     const [prompted, setPrompted] = React.useState(false);
     const pathname = usePathname();
     React.useEffect(() => {
-        if (oneTapBlacklist.has(pathname) || prompted) {
+        if (
+            oneTapBlacklist.has(pathname) ||
+            prompted ||
+            process.env.NEXT_PUBLIC_DISABLE_GOOGLE_ONE_TAP === "true"
+        ) {
             return;
         }
         const prompt = google$.subscribe((google) => {

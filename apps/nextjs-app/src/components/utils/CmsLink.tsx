@@ -4,6 +4,8 @@ import {Button, type ButtonProps} from "@my-project/react-components/ui/button";
 import Link from "next/link";
 import type React from "react";
 
+import {useCmsLink} from "~/hooks/useCmsLink";
+
 interface CmsLinkType {
     appearance?: "inline" | ButtonProps["variant"];
     children?: React.ReactNode;
@@ -20,37 +22,21 @@ interface CmsLinkType {
 }
 
 export const CmsLink: React.FC<CmsLinkType> = (props) => {
-    const {
-        type,
-        appearance = "inline",
-        children,
-        className,
-        label,
-        newTab,
-        reference,
-        size: sizeFromProps,
-        url,
-    } = props;
-
-    const href =
-        type === "reference" &&
-        typeof reference?.value === "object" &&
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
-        reference.value.slug
-            ? // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
-              `${reference?.relationTo === "pages" ? "" : `/${reference?.relationTo}`}/${
-                  reference.value.slug
-              }`
-            : url;
+    const {href, newTabProps} = useCmsLink(props);
 
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
     if (!href) return null;
 
+    const {
+        appearance = "inline",
+        children,
+        className,
+        label,
+        size: sizeFromProps,
+        url,
+    } = props;
+
     const size = appearance === "link" ? "clear" : sizeFromProps;
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
-    const newTabProps = newTab
-        ? {rel: "noopener noreferrer", target: "_blank"}
-        : {};
 
     /* Ensure we don't break any styles set by richText */
     if (appearance === "inline") {

@@ -284,7 +284,7 @@ export const seed = async ({payload}: {payload: Payload}): Promise<void> => {
                 {
                     link: {
                         type: "custom",
-                        label: "Posts",
+                        label: "All posts",
                         url: "/posts",
                     },
                 },

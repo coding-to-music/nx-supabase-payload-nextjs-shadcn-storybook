@@ -1,5 +1,6 @@
 "use client";
 
+import type {Header} from "@my-project/payload";
 import {cn} from "@my-project/react-components/lib/utils";
 import {Button} from "@my-project/react-components/ui/button";
 import {
@@ -11,39 +12,47 @@ import {
     CommandList,
     CommandSeparator,
 } from "@my-project/react-components/ui/command";
-import type {DialogProps} from "@radix-ui/react-dialog";
-import {Circle, File, Laptop, Moon, SearchIcon, Sun} from "lucide-react";
+import {Laptop, Moon, SearchIcon, Sun} from "lucide-react";
 import {useRouter} from "next/navigation";
 import React from "react";
 
+import {CmsLink} from "~/components/utils/CmsLink";
+import {useCmsLink} from "~/hooks/useCmsLink";
 import {useTheme} from "~/theme/useTheme";
 
-// eslint-disable-next-line unicorn/prevent-abbreviations
-const docsConfig = {
-    mainNav: [
-        {
-            title: "Home",
-            href: "/",
-            external: false,
-        },
-    ],
-    sidebarNav: [
-        {
-            title: "Getting started",
-            items: [
-                {title: "Installation", href: "/getting-started/installation"},
-                {
-                    title: "Configuration",
-                    href: "/getting-started/configuration",
-                },
-                {title: "Usage", href: "/getting-started/usage"},
-            ],
-        },
-    ],
+type CmsLinkCommandItemProps = NonNullable<
+    NonNullable<Header["navItems"]>[number]["link"]
+> & {
+    runCommand: (command: () => unknown) => void;
 };
 
-export const Search = ({...props}: DialogProps) => {
+const CmsLinkCommandItem = (props: CmsLinkCommandItemProps) => {
     const router = useRouter();
+    const {href, newTabProps} = useCmsLink(props);
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (!href) {
+        return null;
+    }
+    return (
+        <CommandItem
+            value={props.label}
+            onSelect={() => {
+                props.runCommand(() => {
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+                    if (Object.keys(newTabProps).length > 0) {
+                        window.open(href, newTabProps.target, newTabProps.rel);
+                    } else {
+                        router.push(href);
+                    }
+                });
+            }}
+        >
+            <CmsLink {...props} appearance={"link"} />
+        </CommandItem>
+    );
+};
+
+export const Search = ({header}: {header: Header}) => {
     const [open, setOpen] = React.useState(false);
     const {setTheme} = useTheme();
 
@@ -89,7 +98,6 @@ export const Search = ({...props}: DialogProps) => {
                 onClick={() => {
                     setOpen(true);
                 }}
-                {...props}
             >
                 <span className={"hidden lg:inline-flex"}>
                     Search documentation...
@@ -110,7 +118,6 @@ export const Search = ({...props}: DialogProps) => {
                 onClick={() => {
                     setOpen(true);
                 }}
-                {...props}
             >
                 <SearchIcon />
                 <span className={"sr-only"}>Search...</span>
@@ -123,48 +130,16 @@ export const Search = ({...props}: DialogProps) => {
                 <CommandInput placeholder={"Type a command or search..."} />
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
-                    <CommandGroup heading={"Links"}>
-                        {docsConfig.mainNav
-                            .filter((navitem) => !navitem.external)
-                            .map((navItem) => (
-                                <CommandItem
-                                    key={navItem.href}
-                                    value={navItem.title}
-                                    onSelect={() => {
-                                        runCommand(() => {
-                                            router.push(navItem.href);
-                                        });
-                                    }}
-                                >
-                                    <File />
-                                    {navItem.title}
-                                </CommandItem>
-                            ))}
+                    <CommandGroup heading={"Nav items"}>
+                        {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress] */}
+                        {(header?.navItems || []).map(({id, link}) => (
+                            <CmsLinkCommandItem
+                                key={id}
+                                runCommand={runCommand}
+                                {...link}
+                            />
+                        ))}
                     </CommandGroup>
-                    {docsConfig.sidebarNav.map((group) => (
-                        <CommandGroup key={group.title} heading={group.title}>
-                            {group.items.map((navItem) => (
-                                <CommandItem
-                                    key={navItem.href}
-                                    value={navItem.title}
-                                    onSelect={() => {
-                                        runCommand(() => {
-                                            router.push(navItem.href);
-                                        });
-                                    }}
-                                >
-                                    <div
-                                        className={
-                                            "mr-2 flex h-4 w-4 items-center justify-center"
-                                        }
-                                    >
-                                        <Circle className={"h-3 w-3"} />
-                                    </div>
-                                    {navItem.title}
-                                </CommandItem>
-                            ))}
-                        </CommandGroup>
-                    ))}
                     <CommandSeparator />
                     <CommandGroup heading={"Theme"}>
                         <CommandItem

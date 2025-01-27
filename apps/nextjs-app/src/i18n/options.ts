@@ -7,7 +7,7 @@ export const getOptions = (
     lng: string = fallbackLng,
     ns: string | readonly string[] = defaultNS,
 ) => ({
-    // debug: true,
+    debug: true,
     supportedLngs: languages,
     fallbackLng,
     lng,

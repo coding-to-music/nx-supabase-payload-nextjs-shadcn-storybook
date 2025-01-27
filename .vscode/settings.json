@@ -15,5 +15,6 @@
         "http",
         "net"
     ],
+    "i18n-ally.localesPaths": "apps/nextjs-app/src/i18n/locales",
     "typescript.tsdk": "node_modules/typescript/lib"
 }

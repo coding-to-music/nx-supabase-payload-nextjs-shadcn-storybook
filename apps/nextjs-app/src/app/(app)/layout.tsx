@@ -2,7 +2,6 @@ import {cn} from "@my-project/react-components/lib/utils";
 import {getServerSideUrl} from "@my-project/utils";
 import {GeistMono} from "geist/font/mono";
 import {GeistSans} from "geist/font/sans";
-import {dir} from "i18next";
 import type {Metadata} from "next";
 import {draftMode} from "next/headers";
 import type React from "react";
@@ -16,7 +15,6 @@ import {Main} from "./_/Main";
 import {QueryClientProvider} from "./_/QueryClientProvider";
 
 import {GsiClient} from "~/components/auth/GsiClient";
-import {languages} from "~/i18n/options";
 import {SupabaseAuthProvider} from "~/supabase/SupabaseAuthProvider";
 import {InitTheme} from "~/theme/InitTheme";
 import {ThemeProvider} from "~/theme/ThemeProvider";
@@ -25,24 +23,17 @@ import {mergeOpenGraph} from "~/utils/mergeOpenGraph";
 
 import "./global.css";
 
-export const generateStaticParams = () => languages.map((lng) => ({lng}));
-
 export default async function RootLayout({
     children,
-    params: {lng},
 }: {
     children: React.ReactNode;
-    params: {
-        lng: string;
-    };
 }) {
     const {isEnabled} = await draftMode();
 
     return (
         <html
             className={cn(GeistSans.variable, GeistMono.variable)}
-            dir={dir(lng)}
-            lang={lng}
+            lang={"en"}
             suppressHydrationWarning
         >
             <head>

@@ -2,6 +2,7 @@ import {cn} from "@my-project/react-components/lib/utils";
 import {getServerSideUrl} from "@my-project/utils";
 import {GeistMono} from "geist/font/mono";
 import {GeistSans} from "geist/font/sans";
+import {dir} from "i18next";
 import type {Metadata} from "next";
 import {draftMode} from "next/headers";
 import type React from "react";
@@ -15,6 +16,8 @@ import {Main} from "./_/Main";
 import {QueryClientProvider} from "./_/QueryClientProvider";
 
 import {GsiClient} from "~/components/auth/GsiClient";
+import {InitI18nClient} from "~/i18n/client";
+import {language} from "~/i18n/server";
 import {SupabaseAuthProvider} from "~/supabase/SupabaseAuthProvider";
 import {InitTheme} from "~/theme/InitTheme";
 import {ThemeProvider} from "~/theme/ThemeProvider";
@@ -29,15 +32,18 @@ export default async function RootLayout({
     children: React.ReactNode;
 }) {
     const {isEnabled} = await draftMode();
+    const lng = await language();
 
     return (
         <html
             className={cn(GeistSans.variable, GeistMono.variable)}
-            lang={"en"}
+            dir={dir(lng)}
+            lang={lng}
             suppressHydrationWarning
         >
             <head>
                 <InitTheme />
+                <InitI18nClient lng={lng} />
                 <link href={"/favicon.ico"} rel={"icon"} sizes={"32x32"} />
                 <link
                     href={"/favicon.svg"}

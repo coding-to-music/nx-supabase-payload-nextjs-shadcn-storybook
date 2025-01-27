@@ -49,6 +49,9 @@ const nextConfig = {
             source: "/:path((?!ie-incompatible.html$).*)", // all pages except the incompatibility page
         },
     ],
+    sassOptions: {
+        silenceDeprecations: ["import", "legacy-js-api"],
+    },
     typescript: {
         ignoreBuildErrors: true,
     },

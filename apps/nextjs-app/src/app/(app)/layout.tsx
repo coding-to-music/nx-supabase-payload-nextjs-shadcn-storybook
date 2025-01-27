@@ -16,7 +16,7 @@ import {Main} from "./_/Main";
 import {QueryClientProvider} from "./_/QueryClientProvider";
 
 import {GsiClient} from "~/components/auth/GsiClient";
-import {languages} from "~/i18n/settings";
+import {languages} from "~/i18n/options";
 import {SupabaseAuthProvider} from "~/supabase/SupabaseAuthProvider";
 import {InitTheme} from "~/theme/InitTheme";
 import {ThemeProvider} from "~/theme/ThemeProvider";

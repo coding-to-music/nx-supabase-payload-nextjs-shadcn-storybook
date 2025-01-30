@@ -15,6 +15,7 @@ import {
 import {Laptop, Moon, SearchIcon, Sun} from "lucide-react";
 import {useRouter} from "next/navigation";
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 import {CmsLink} from "~/components/utils/CmsLink";
 import {useCmsLink} from "~/hooks/useCmsLink";
@@ -55,6 +56,7 @@ const CmsLinkCommandItem = (props: CmsLinkCommandItemProps) => {
 export const Search = ({header}: {header: Header}) => {
     const [open, setOpen] = React.useState(false);
     const {setTheme} = useTheme();
+    const {t} = useTranslation();
 
     React.useEffect(() => {
         const down = (event: KeyboardEvent) => {
@@ -100,9 +102,11 @@ export const Search = ({header}: {header: Header}) => {
                 }}
             >
                 <span className={"hidden lg:inline-flex"}>
-                    Search documentation...
+                    {t("header.search.label.long")}
                 </span>
-                <span className={"inline-flex lg:hidden"}>Search...</span>
+                <span className={"inline-flex lg:hidden"}>
+                    {t("header.search.label.short")}
+                </span>
                 <kbd
                     className={
                         "pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
@@ -120,17 +124,21 @@ export const Search = ({header}: {header: Header}) => {
                 }}
             >
                 <SearchIcon />
-                <span className={"sr-only"}>Search...</span>
+                <span className={"sr-only"}>
+                    {t("header.search.label.short")}
+                </span>
             </Button>
             <CommandDialog
                 open={open}
-                title={"Type a command or search..."}
+                title={t("header.search.placeholder")}
                 onOpenChange={setOpen}
             >
-                <CommandInput placeholder={"Type a command or search..."} />
+                <CommandInput placeholder={t("header.search.placeholder")} />
                 <CommandList>
-                    <CommandEmpty>No results found.</CommandEmpty>
-                    <CommandGroup heading={"Nav items"}>
+                    <CommandEmpty>t("header.search.noResults")</CommandEmpty>
+                    <CommandGroup
+                        heading={t("header.search.group.navItems.heading")}
+                    >
                         {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition, @typescript-eslint/prefer-nullish-coalescing -- [bulk suppress] */}
                         {(header?.navItems || []).map(({id, link}) => (
                             <CmsLinkCommandItem
@@ -141,7 +149,7 @@ export const Search = ({header}: {header: Header}) => {
                         ))}
                     </CommandGroup>
                     <CommandSeparator />
-                    <CommandGroup heading={"Theme"}>
+                    <CommandGroup heading={t("theme.label")}>
                         <CommandItem
                             onSelect={() => {
                                 runCommand(() => {
@@ -150,7 +158,7 @@ export const Search = ({header}: {header: Header}) => {
                             }}
                         >
                             <Sun />
-                            Light
+                            {t("theme.option.light.label")}
                         </CommandItem>
                         <CommandItem
                             onSelect={() => {
@@ -160,7 +168,7 @@ export const Search = ({header}: {header: Header}) => {
                             }}
                         >
                             <Moon />
-                            Dark
+                            {t("theme.option.dark.label")}
                         </CommandItem>
                         <CommandItem
                             onSelect={() => {
@@ -170,7 +178,7 @@ export const Search = ({header}: {header: Header}) => {
                             }}
                         >
                             <Laptop />
-                            System
+                            {t("theme.option.system.label")}
                         </CommandItem>
                     </CommandGroup>
                 </CommandList>

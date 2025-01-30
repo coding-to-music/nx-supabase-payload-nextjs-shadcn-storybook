@@ -9,24 +9,27 @@ import {
 import {Input} from "@my-project/react-components/ui/input";
 import {Label} from "@my-project/react-components/ui/label";
 import Link from "next/link";
+import {Trans} from "react-i18next/TransWithoutContext";
 
 import {SignInWithGoogleButton} from "./SignInWithGoogleButton";
+
+import {translation} from "~/i18n/server";
 
 export interface AuthFormProps {
     variant: "signIn" | "signUp";
 }
 
-export const AuthForm = ({variant}: AuthFormProps) => {
-    const signInSignUpText = {signIn: "Sign in", signUp: "Sign up"}[variant];
+export const AuthForm = async ({variant}: AuthFormProps) => {
+    const {t} = await translation();
     return (
         <div className={"flex flex-col gap-6"}>
             <Card className={"h-[498px] bg-background"}>
                 <CardHeader className={"text-center"}>
                     <CardTitle className={"text-xl"}>
-                        {signInSignUpText}
+                        {t(`auth.${variant}.form.heading`)}
                     </CardTitle>
                     <CardDescription>
-                        {signInSignUpText} with your Google account
+                        {t(`auth.${variant}.form.subheading`)}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -43,17 +46,16 @@ export const AuthForm = ({variant}: AuthFormProps) => {
                                         "relative z-10 bg-background px-2 text-muted-foreground"
                                     }
                                 >
-                                    {
-                                        {
-                                            signIn: "Or continue with",
-                                            signUp: "Or sign up with",
-                                        }[variant]
-                                    }
+                                    {t(`auth.${variant}.form.or`)}
                                 </span>
                             </div>
                             <div className={"grid gap-6"}>
                                 <div className={"grid gap-2"}>
-                                    <Label htmlFor={"email"}>Email</Label>
+                                    <Label htmlFor={"email"}>
+                                        {t(
+                                            `auth.${variant}.form.emailInput.label`,
+                                        )}
+                                    </Label>
                                     <Input
                                         id={"email"}
                                         placeholder={"m@example.com"}
@@ -64,7 +66,9 @@ export const AuthForm = ({variant}: AuthFormProps) => {
                                 <div className={"grid gap-2"}>
                                     <div className={"flex items-center"}>
                                         <Label htmlFor={"password"}>
-                                            Password
+                                            {t(
+                                                `auth.${variant}.form.emailInput.label`,
+                                            )}
                                         </Label>
                                         {variant === "signIn" && (
                                             <Link
@@ -73,7 +77,9 @@ export const AuthForm = ({variant}: AuthFormProps) => {
                                                 }
                                                 href={"/forgot-password"}
                                             >
-                                                Forgot your password?
+                                                {t(
+                                                    "auth.signIn.form.forgotPasswordLinkText",
+                                                )}
                                             </Link>
                                         )}
                                     </div>
@@ -84,12 +90,17 @@ export const AuthForm = ({variant}: AuthFormProps) => {
                                     />
                                 </div>
                                 <Button className={"w-full"} type={"submit"}>
-                                    {signInSignUpText}
+                                    {t(`auth.${variant}.label`)}
                                 </Button>
                             </div>
                             {variant === "signIn" && (
-                                <div className={"text-center text-sm"}>
-                                    Don&apos;t have an account?{" "}
+                                <Trans
+                                    className={"text-center text-sm"}
+                                    i18nKey={"auth.signIn.form.signUpLinkText"}
+                                    parent={"div"}
+                                    t={t}
+                                >
+                                    Don't have an account?
                                     <Link
                                         className={
                                             "underline underline-offset-4"
@@ -98,19 +109,21 @@ export const AuthForm = ({variant}: AuthFormProps) => {
                                     >
                                         Sign up
                                     </Link>
-                                </div>
+                                </Trans>
                             )}
                         </div>
                     </form>
                 </CardContent>
             </Card>
-            <div
+            <Trans
                 className={
                     "text-balance text-center text-xs text-muted-foreground"
                 }
+                i18nKey={`auth.${variant}.form.tosAndPrivacyPolicyLinkText`}
+                parent={"div"}
+                t={t}
             >
-                By {{signIn: "signing in", signUp: "signing up"}[variant]}, you
-                agree to our{" "}
+                By signing up, you agree to our
                 <Link
                     className={
                         "underline underline-offset-4 hover:text-primary"
@@ -118,8 +131,8 @@ export const AuthForm = ({variant}: AuthFormProps) => {
                     href={"/tos"}
                 >
                     Terms of Service
-                </Link>{" "}
-                and{" "}
+                </Link>
+                and
                 <Link
                     className={
                         "underline underline-offset-4 hover:text-primary"
@@ -129,7 +142,7 @@ export const AuthForm = ({variant}: AuthFormProps) => {
                     Privacy Policy
                 </Link>
                 .
-            </div>
+            </Trans>
         </div>
     );
 };

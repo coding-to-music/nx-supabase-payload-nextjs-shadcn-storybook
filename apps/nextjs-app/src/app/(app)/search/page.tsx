@@ -7,6 +7,7 @@ import PageClient from "./page.client";
 
 import type {CardPostData} from "~/components/misc/Card";
 import {CollectionArchive} from "~/components/misc/CollectionArchive";
+import {translation} from "~/i18n/server";
 
 interface Args {
     searchParams: Promise<{
@@ -18,6 +19,7 @@ export default async function Page({
 }: Args) {
     const {q: query} = await searchParametersPromise;
     const payload = await getPayload({config: configPromise});
+    const {t} = await translation();
 
     const posts = await payload.find({
         collection: "search",
@@ -67,7 +69,7 @@ export default async function Page({
             <PageClient />
             <div className={"container mb-16"}>
                 <div className={"prose max-w-none dark:prose-invert"}>
-                    <h1 className={"sr-only"}>Search</h1>
+                    <h1 className={"sr-only"}>{t("search.label")}</h1>
                     <SearchInput />
                 </div>
             </div>
@@ -76,12 +78,15 @@ export default async function Page({
             {posts.totalDocs > 0 ? (
                 <CollectionArchive posts={posts.docs as CardPostData[]} />
             ) : (
-                <div className={"container"}>No results found.</div>
+                <div className={"container"}>{t("search.noResults")}</div>
             )}
         </div>
     );
 }
 
-export const generateMetadata = (): Metadata => ({
-    title: "Payload Website Template Search",
-});
+export const generateMetadata = async (): Promise<Metadata> => {
+    const {t} = await translation();
+    return {
+        title: t("search.page.metadata.title"),
+    };
+};

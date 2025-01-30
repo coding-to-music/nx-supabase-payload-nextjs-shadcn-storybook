@@ -8,6 +8,7 @@ import PageClient from "./page.client";
 import {CollectionArchive} from "~/components/misc/CollectionArchive";
 import {PageRange} from "~/components/pagination/PageRange";
 import {Pagination} from "~/components/pagination/Pagination";
+import {translation} from "~/i18n/server";
 
 export const revalidate = 600;
 
@@ -20,6 +21,7 @@ interface Args {
 export default async function Page({params: parametersPromise}: Args) {
     const {pageNumber} = await parametersPromise;
     const payload = await getPayload({config: configPromise});
+    const {t} = await translation();
 
     const sanitizedPageNumber = Number(pageNumber);
 
@@ -38,7 +40,7 @@ export default async function Page({params: parametersPromise}: Args) {
             <PageClient />
             <div className={"container mb-16"}>
                 <div className={"prose max-w-none dark:prose-invert"}>
-                    <h1>Posts</h1>
+                    <h1>{t("posts.page.heading")}</h1>
                 </div>
             </div>
 
@@ -70,9 +72,12 @@ export const generateMetadata = async ({
     params: parametersPromise,
 }: Args): Promise<Metadata> => {
     const {pageNumber} = await parametersPromise;
+    const {t} = await translation();
     return {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
-        title: `Payload Website Template Posts Page ${pageNumber || ""}`,
+        title: t("posts.page.metadata.title", {
+            context: "paginated",
+            pageNumber,
+        }),
     };
 };
 

@@ -3,6 +3,7 @@ import {Input} from "@my-project/react-components/ui/input";
 import {Label} from "@my-project/react-components/ui/label";
 import {useRouter} from "next/navigation";
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 import {useDebounce} from "~/hooks/useDebounce";
 
@@ -11,6 +12,8 @@ export const SearchInput: React.FC = () => {
     const router = useRouter();
 
     const debouncedValue = useDebounce(value);
+
+    const {t} = useTranslation();
 
     React.useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
@@ -25,11 +28,11 @@ export const SearchInput: React.FC = () => {
                 }}
             >
                 <Label className={"sr-only"} htmlFor={"search"}>
-                    Search
+                    {t("search.label")}
                 </Label>
                 <Input
                     id={"search"}
-                    placeholder={"Search"}
+                    placeholder={t("search.label")}
                     onChange={(event) => {
                         setValue(event.target.value);
                     }}

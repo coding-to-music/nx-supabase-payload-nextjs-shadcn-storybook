@@ -3,6 +3,7 @@
 import {Button} from "@my-project/react-components/ui/button";
 import {CircleUserRoundIcon, LogOutIcon} from "lucide-react";
 import Link from "next/link";
+import {useTranslation} from "react-i18next";
 
 import {createClient} from "~/supabase/client";
 import {useSupabaseAuth} from "~/supabase/useSupabaseAuth";
@@ -21,25 +22,29 @@ const signOut = () => {
         });
 };
 
-const SignOut = () => (
-    <>
-        <Button className={"hidden h-8 md:flex"} onClick={signOut}>
-            Sign out
-        </Button>
-        <Button
-            className={"h-8 md:hidden"}
-            size={"icon"}
-            variant={"ghost"}
-            onClick={signOut}
-        >
-            <LogOutIcon />
-            <span className={"sr-only"}>Sign out</span>
-        </Button>
-    </>
-);
+const SignOut = () => {
+    const {t} = useTranslation();
+    return (
+        <>
+            <Button className={"hidden h-8 md:flex"} onClick={signOut}>
+                {t("auth.signOut.label")}
+            </Button>
+            <Button
+                className={"h-8 md:hidden"}
+                size={"icon"}
+                variant={"ghost"}
+                onClick={signOut}
+            >
+                <LogOutIcon />
+                <span className={"sr-only"}>{t("auth.signOut.label")}</span>
+            </Button>
+        </>
+    );
+};
 
 export const SignUpInOut = () => {
     const {session} = useSupabaseAuth();
+    const {t} = useTranslation();
     if (session != null) {
         return <SignOut />;
     }
@@ -50,10 +55,10 @@ export const SignUpInOut = () => {
                 variant={"outline"}
                 asChild
             >
-                <Link href={"/sign-up"}>Sign up</Link>
+                <Link href={"/sign-up"}>{t("auth.signUp.label")}</Link>
             </Button>
             <Button className={"hidden h-8 md:flex"} asChild>
-                <Link href={"/sign-in"}>Sign in</Link>
+                <Link href={"/sign-in"}>{t("auth.signIn.label")}</Link>
             </Button>
             <Button
                 className={"h-8 md:hidden"}
@@ -63,7 +68,7 @@ export const SignUpInOut = () => {
             >
                 <Link href={"/sign-in"}>
                     <CircleUserRoundIcon />
-                    <span className={"sr-only"}>Sign in</span>
+                    <span className={"sr-only"}>{t("auth.signIn.label")}</span>
                 </Link>
             </Button>
         </>

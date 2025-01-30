@@ -7,11 +7,13 @@ import PageClient from "./page.client";
 import {CollectionArchive} from "~/components/misc/CollectionArchive";
 import {PageRange} from "~/components/pagination/PageRange";
 import {Pagination} from "~/components/pagination/Pagination";
+import {translation} from "~/i18n/server";
 
 export const revalidate = 600;
 
 export default async function Page() {
     const payload = await getPayload({config: configPromise});
+    const {t} = await translation();
 
     const posts = await payload.find({
         collection: "posts",
@@ -31,7 +33,7 @@ export default async function Page() {
             <PageClient />
             <div className={"container mb-16"}>
                 <div className={"prose max-w-none dark:prose-invert"}>
-                    <h1>Posts</h1>
+                    <h1>{t("posts.page.heading")}</h1>
                 </div>
             </div>
 
@@ -59,6 +61,9 @@ export default async function Page() {
     );
 }
 
-export const generateMetadata = (): Metadata => ({
-    title: "Payload Website Template Posts",
-});
+export const generateMetadata = async (): Promise<Metadata> => {
+    const {t} = await translation();
+    return {
+        title: t("posts.page.metadata.title"),
+    };
+};

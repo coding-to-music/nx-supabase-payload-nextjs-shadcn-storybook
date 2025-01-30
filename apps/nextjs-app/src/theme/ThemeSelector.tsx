@@ -8,6 +8,7 @@ import {
     SelectValue,
 } from "@my-project/react-components/ui/select";
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 import {themeLocalStorageKey} from "./shared";
 import type {Theme} from "./types";
@@ -16,6 +17,7 @@ import {useTheme} from "./useTheme";
 export const ThemeSelector: React.FC = () => {
     const {setTheme} = useTheme();
     const [value, setValue] = React.useState("");
+    const {t} = useTranslation();
 
     const onThemeChange = (themeToSet: Theme & "auto") => {
         if (themeToSet === "auto") {
@@ -36,17 +38,23 @@ export const ThemeSelector: React.FC = () => {
     return (
         <Select value={value} onValueChange={onThemeChange}>
             <SelectTrigger
-                aria-label={"Select a theme"}
+                aria-label={t("theme.ariaLabel")}
                 className={
                     "w-auto gap-2 border-none bg-transparent pl-0 md:pl-3"
                 }
             >
-                <SelectValue placeholder={"Theme"} />
+                <SelectValue placeholder={t("theme.label")} />
             </SelectTrigger>
             <SelectContent>
-                <SelectItem value={"auto"}>Auto</SelectItem>
-                <SelectItem value={"light"}>Light</SelectItem>
-                <SelectItem value={"dark"}>Dark</SelectItem>
+                <SelectItem value={"auto"}>
+                    {t("theme.option.system.label")}
+                </SelectItem>
+                <SelectItem value={"light"}>
+                    {t("theme.option.light.label")}
+                </SelectItem>
+                <SelectItem value={"dark"}>
+                    {t("theme.option.dark.label")}
+                </SelectItem>
             </SelectContent>
         </Select>
     );

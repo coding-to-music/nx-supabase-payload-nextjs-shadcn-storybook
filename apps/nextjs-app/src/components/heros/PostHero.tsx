@@ -1,12 +1,14 @@
 import type {Post} from "@my-project/payload";
-import React from "react";
+import type React from "react";
 
 import {Media} from "~/components/utils/Media";
-import {formatDateTime} from "~/utils/formatDateTime";
+import {translation} from "~/i18n/server";
 
 export const PostHero: React.FC<{
     post: Post;
-}> = ({post}) => {
+}> = async ({post}) => {
+    const {t} = await translation();
+
     const {
         categories,
         meta: {image: metaImage} = {},
@@ -28,29 +30,26 @@ export const PostHero: React.FC<{
                     }
                 >
                     <div className={"mb-6 text-sm uppercase"}>
-                        {categories?.map((category, index) => {
-                            if (
-                                typeof category === "object" &&
-                                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
-                                category !== null
-                            ) {
-                                const {title: categoryTitle} = category;
+                        {t("list", {
+                            items: categories
+                                ?.map((category) => {
+                                    if (
+                                        typeof category === "object" &&
+                                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
+                                        category !== null
+                                    ) {
+                                        const {title: categoryTitle} = category;
 
-                                const titleToUse =
-                                    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
-                                    categoryTitle || "Untitled category";
+                                        const titleToUse =
+                                            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
+                                            categoryTitle ||
+                                            t("category.untitled");
 
-                                // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
-                                const isLast = index === categories.length - 1;
-
-                                return (
-                                    <React.Fragment key={index}>
-                                        {titleToUse}
-                                        {!isLast && <>, &nbsp;</>}
-                                    </React.Fragment>
-                                );
-                            }
-                            return null;
+                                        return titleToUse;
+                                    }
+                                    return null;
+                                })
+                                .filter(Boolean),
                         })}
                     </div>
 
@@ -67,36 +66,13 @@ export const PostHero: React.FC<{
                             {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                             {populatedAuthors && (
                                 <div className={"flex flex-col gap-1"}>
-                                    <p className={"text-sm"}>Author</p>
-                                    {populatedAuthors.map((author, index) => {
-                                        const {name} = author;
-
-                                        const isLast =
-                                            index ===
-                                            // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
-                                            populatedAuthors.length - 1;
-                                        const secondToLast =
-                                            index ===
-                                            // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
-                                            populatedAuthors.length - 2;
-
-                                        return (
-                                            <React.Fragment key={index}>
-                                                {name}
-                                                {secondToLast &&
-                                                    populatedAuthors.length >
-                                                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
-                                                        2 && <>, </>}
-                                                {secondToLast &&
-                                                    populatedAuthors.length ===
-                                                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
-                                                        2 && <> </>}
-                                                {!isLast &&
-                                                    populatedAuthors.length >
-                                                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
-                                                        1 && <>and </>}
-                                            </React.Fragment>
-                                        );
+                                    <p className={"text-sm"}>
+                                        {t("post.hero.authors.label")}
+                                    </p>
+                                    {t("list", {
+                                        items: populatedAuthors.map(
+                                            (author) => author.name,
+                                        ),
                                     })}
                                 </div>
                             )}
@@ -104,10 +80,14 @@ export const PostHero: React.FC<{
                         {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress] */}
                         {publishedAt && (
                             <div className={"flex flex-col gap-1"}>
-                                <p className={"text-sm"}>Date Published</p>
+                                <p className={"text-sm"}>
+                                    {t("post.hero.datePublished.label")}
+                                </p>
 
                                 <time dateTime={publishedAt}>
-                                    {formatDateTime(publishedAt)}
+                                    {t("date", {
+                                        date: new Date(publishedAt),
+                                    })}
                                 </time>
                             </div>
                         )}

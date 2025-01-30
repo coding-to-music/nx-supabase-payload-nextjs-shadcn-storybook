@@ -2,7 +2,8 @@
 import type {Post} from "@my-project/payload";
 import {cn} from "@my-project/react-components/lib/utils";
 import Link from "next/link";
-import React from "react";
+import type React from "react";
+import {useTranslation} from "react-i18next";
 
 import {Media} from "~/components/utils/Media";
 import {useClickableCard} from "~/hooks/useClickableCard";
@@ -18,6 +19,7 @@ export const Card: React.FC<{
     title?: string;
 }> = (props) => {
     const {card, link} = useClickableCard({});
+    const {t} = useTranslation();
     const {
         className,
         doc,
@@ -62,30 +64,26 @@ export const Card: React.FC<{
                         {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress] */}
                         {showCategories && hasCategories && (
                             <div>
-                                {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress] */}
-                                {categories?.map((category, index) => {
-                                    if (typeof category === "object") {
-                                        const {title: titleFromCategory} =
-                                            category;
+                                {t("list", {
+                                    items: categories
+                                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- [bulk suppress]
+                                        ?.map((category) => {
+                                            if (typeof category === "object") {
+                                                const {
+                                                    title: titleFromCategory,
+                                                } = category;
 
-                                        const categoryTitle =
-                                            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
-                                            titleFromCategory ||
-                                            "Untitled category";
+                                                const categoryTitle =
+                                                    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- [bulk suppress]
+                                                    titleFromCategory ||
+                                                    t("category.untitled");
 
-                                        const isLast =
-                                            // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- [bulk suppress]
-                                            index === categories.length - 1;
+                                                return categoryTitle;
+                                            }
 
-                                        return (
-                                            <React.Fragment key={index}>
-                                                {categoryTitle}
-                                                {!isLast && <>, &nbsp;</>}
-                                            </React.Fragment>
-                                        );
-                                    }
-
-                                    return null;
+                                            return null;
+                                        })
+                                        .filter(Boolean),
                                 })}
                             </div>
                         )}

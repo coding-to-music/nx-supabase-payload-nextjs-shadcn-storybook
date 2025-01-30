@@ -9,6 +9,7 @@ import {noHeaderFooterPathnames} from "../noHeaderFooterPathnames";
 
 import {Logo} from "~/components/misc/Logo";
 import {CmsLink} from "~/components/utils/CmsLink";
+import {LanguageSelector} from "~/i18n/LanguageSelector";
 import {ThemeSelector} from "~/theme/ThemeSelector";
 
 export const FooterClient: React.FC<{footer: FooterType}> = ({footer}) => {
@@ -43,6 +44,7 @@ export const FooterClient: React.FC<{footer: FooterType}> = ({footer}) => {
                         "flex flex-col-reverse items-start gap-4 md:flex-row md:items-center"
                     }
                 >
+                    <LanguageSelector />
                     <ThemeSelector />
                     <nav className={"flex flex-col gap-4 md:flex-row"}>
                         {navItems.map(({link}, index) => (

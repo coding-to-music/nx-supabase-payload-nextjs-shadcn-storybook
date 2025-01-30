@@ -8,7 +8,6 @@ import {CollectionArchive} from "~/components/misc/CollectionArchive";
 import {PageRange} from "~/components/pagination/PageRange";
 import {Pagination} from "~/components/pagination/Pagination";
 
-export const dynamic = "force-static";
 export const revalidate = 600;
 
 export default async function Page() {

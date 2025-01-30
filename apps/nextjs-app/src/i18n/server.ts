@@ -1,4 +1,4 @@
-import acceptLanguage from "accept-language";
+import acceptLanguageParser from "accept-language-parser";
 import {type KeyPrefix, createInstance} from "i18next";
 import resourcesToBackend from "i18next-resources-to-backend";
 import {cookies as cookies_, headers as headers_} from "next/headers";
@@ -6,16 +6,23 @@ import React from "react";
 import type {FallbackNs, UseTranslationOptions} from "react-i18next";
 import {initReactI18next} from "react-i18next/initReactI18next";
 
-import {cookieName, fallbackLng, getOptions} from "./options";
+import {cookieName, fallbackLng, getOptions, languages} from "./options";
 
 export const language = React.cache(async () => {
     const cookies = await cookies_();
     const headers = await headers_();
     let lng;
     if (cookies.has(cookieName))
-        lng = acceptLanguage.get(cookies.get(cookieName)!.value);
+        lng = acceptLanguageParser.pick(
+            languages,
+            cookies.get(cookieName)!.value,
+        );
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!lng) lng = acceptLanguage.get(headers.get("Accept-Language"));
+    if (!lng)
+        lng = acceptLanguageParser.pick(
+            languages,
+            headers.get("Accept-Language") ?? "",
+        );
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!lng) lng = fallbackLng;
     return lng;

@@ -14,4 +14,7 @@ export const getOptions = (
     fallbackNS: defaultNS,
     defaultNS,
     ns,
+    interpolation: {
+        escapeValue: false, // react already safe from xss
+    },
 });

@@ -1,0 +1,143 @@
+{
+    "auth": {
+        "signIn": {
+            "form": {
+                "emailInput": {
+                    "label": "E-post"
+                },
+                "forgotPasswordLinkText": "Har du glömt ditt lösenord?",
+                "heading": "Logga in",
+                "or": "eller fortsätt med",
+                "passwordInput": {
+                    "label": "Lösenord"
+                },
+                "signUpLinkText": "Har du inte ett konto? <1>Registrera dig</1>",
+                "subheading": "Logga in med ditt Google-konto",
+                "tosAndPrivacyPolicyLinkText": "Genom att logga in godkänner du våra <1>användarvillkor</1> och vår <3>integritetspolicy</3>."
+            },
+            "label": "Logga in"
+        },
+        "signOut": {
+            "label": "Logga ut"
+        },
+        "signUp": {
+            "form": {
+                "emailInput": {
+                    "label": "E-post"
+                },
+                "heading": "Registrera dig",
+                "or": "eller registrera dig med",
+                "passwordInput": {
+                    "label": "Lösenord"
+                },
+                "subheading": "Registrera dig med ditt Google-konto",
+                "tosAndPrivacyPolicyLinkText": "Genom att registrera dig godkänner du våra <1>användarvillkor</1> och vår <3>integritetspolicy</3>."
+            },
+            "label": "Registrera dig"
+        }
+    },
+    "category": {
+        "untitled": "Namnlös kategori"
+    },
+    "copyButton": {
+        "label": "Kopiera",
+        "label_copied": "Kopierat!"
+    },
+    "date": "{{date, datetime}}",
+    "form": {
+        "field": {
+            "error": {
+                "required": "Detta fält är obligatoriskt"
+            }
+        }
+    },
+    "goHome": "Gå hem",
+    "header": {
+        "search": {
+            "group": {
+                "navItems": {
+                    "heading": "Navigeringsobjekt"
+                }
+            },
+            "label": {
+                "long": "Sök dokumentation...",
+                "short": "Sök..."
+            },
+            "noResults": "Inga resultat hittades.",
+            "placeholder": "Skriv ett kommando eller sök..."
+        }
+    },
+    "language": {
+        "ariaLabel": "Välj språk",
+        "label": "Språk",
+        "option": {
+            "en": {
+                "label": "English"
+            },
+            "fi": {
+                "label": "Suomi"
+            },
+            "sv": {
+                "label": "Svenska"
+            }
+        }
+    },
+    "list": "{{items, list}}",
+    "notFound": "Denna sida kunde inte hittas.",
+    "pagination": {
+        "pageRange": {
+            "_helpers": {
+                "collection": {
+                    "docs": "Dokument",
+                    "posts": "Inlägg"
+                }
+            },
+            "noResults": "Sökningen producerade inga resultat.",
+            "showing": "Visar {{indexStart}} av {{totalDocs}} $t(pagination.pageRange._helpers.collection.{{collection}}, {\"count\": {{totalDocs}}})",
+            "showing_range": "Visar {{indexStart}} - {{indexEnd}} av {{totalDocs}} $t(pagination.pageRange._helpers.collection.{{collection}}, {\"count\": {{totalDocs}}})"
+        }
+    },
+    "post": {
+        "hero": {
+            "authors": {
+                "label": "Författare"
+            },
+            "datePublished": {
+                "label": "Publiceringsdatum"
+            }
+        }
+    },
+    "posts": {
+        "page": {
+            "heading": "Inlägg",
+            "metadata": {
+                "title": "Payload Webbsajt Mall Inlägg",
+                "title_paginated": "Payload Webbsajt Mall Inlägg Sida {{pageNumber}}"
+            }
+        }
+    },
+    "search": {
+        "label": "Sök",
+        "noResults": "Inga resultat hittades.",
+        "page": {
+            "metadata": {
+                "title": "Payload Webbsajt Mall Sök"
+            }
+        }
+    },
+    "theme": {
+        "ariaLabel": "Välj ett tema",
+        "label": "Tema",
+        "option": {
+            "dark": {
+                "label": "Mörkt"
+            },
+            "light": {
+                "label": "Ljust"
+            },
+            "system": {
+                "label": "System"
+            }
+        }
+    }
+}

@@ -1,0 +1,145 @@
+{
+    "auth": {
+        "signIn": {
+            "form": {
+                "emailInput": {
+                    "label": "Sähköposti"
+                },
+                "forgotPasswordLinkText": "Unohditko salasanasi?",
+                "heading": "Kirjaudu",
+                "or": "tai jatka käyttämällä",
+                "passwordInput": {
+                    "label": "Salasana"
+                },
+                "signUpLinkText": "Eikö sinulla ole tiliä? <1>Rekisteröidy</1>",
+                "subheading": "Kirjaudu Google-tililläsi",
+                "tosAndPrivacyPolicyLinkText": "Kirjautumalla hyväksyt <1>käyttöehdomme</1> ja <3>tietosuojakäytäntömme</3>."
+            },
+            "label": "Kirjaudu"
+        },
+        "signOut": {
+            "label": "Kirjaudu ulos"
+        },
+        "signUp": {
+            "form": {
+                "emailInput": {
+                    "label": "Sähköposti"
+                },
+                "heading": "Rekisteröidy",
+                "or": "tai rekisteröidy käyttämällä",
+                "passwordInput": {
+                    "label": "Salasana"
+                },
+                "subheading": "Rekisteröidy Google-tililläsi",
+                "tosAndPrivacyPolicyLinkText": "Rekisteröitymällä hyväksyt <1>käyttöehdomme</1> ja <3>tietosuojakäytäntömme</3>."
+            },
+            "label": "Rekisteröidy"
+        }
+    },
+    "category": {
+        "untitled": "Nimetön kategoria"
+    },
+    "copyButton": {
+        "label": "Kopioi",
+        "label_copied": "Kopioitu!"
+    },
+    "date": "{{date, datetime}}",
+    "form": {
+        "field": {
+            "error": {
+                "required": "Tämä kenttä on pakollinen"
+            }
+        }
+    },
+    "goHome": "Mene kotiin",
+    "header": {
+        "search": {
+            "group": {
+                "navItems": {
+                    "heading": "Navigointiobjektit"
+                }
+            },
+            "label": {
+                "long": "Hae dokumentaatiota...",
+                "short": "Hae..."
+            },
+            "noResults": "Ei löytynyt tuloksia.",
+            "placeholder": "Kirjoita komento tai hae..."
+        }
+    },
+    "language": {
+        "ariaLabel": "Valitse kieli",
+        "label": "Kieli",
+        "option": {
+            "en": {
+                "label": "English"
+            },
+            "fi": {
+                "label": "Suomi"
+            },
+            "sv": {
+                "label": "Svenska"
+            }
+        }
+    },
+    "list": "{{items, list}}",
+    "notFound": "Tätä sivua ei löytynyt.",
+    "pagination": {
+        "pageRange": {
+            "_helpers": {
+                "collection": {
+                    "docs": "Tiedostoa",
+                    "docs_one": "Tiedosto",
+                    "posts": "Postausta",
+                    "posts_one": "Postaus"
+                }
+            },
+            "noResults": "Haku ei tuottanut tuloksia.",
+            "showing": "Näytetään {{indexStart}}/ {{totalDocs}} $t(pagination.pageRange._helpers.collection.{{collection}}, {\"count\": {{totalDocs}}})",
+            "showing_range": "Näytetään {{indexStart}} - {{indexEnd}} / {{totalDocs}} $t(pagination.pageRange._helpers.collection.{{collection}}, {\"count\": {{totalDocs}}})"
+        }
+    },
+    "post": {
+        "hero": {
+            "authors": {
+                "label": "Kirjoittaja"
+            },
+            "datePublished": {
+                "label": "Julkaistu"
+            }
+        }
+    },
+    "posts": {
+        "page": {
+            "heading": "Postauksia",
+            "metadata": {
+                "title": "Payload Nettisivu Malli Postaukset",
+                "title_paginated": "Payload Nettisivu Malli Postaukset Sivu {{pageNumber}}"
+            }
+        }
+    },
+    "search": {
+        "label": "Haku",
+        "noResults": "Ei löytynyt tuloksia.",
+        "page": {
+            "metadata": {
+                "title": "Payload Nettisivu Malli Haku"
+            }
+        }
+    },
+    "theme": {
+        "ariaLabel": "Valitse teemaa",
+        "label": "Teema",
+        "option": {
+            "dark": {
+                "label": "Himmeä"
+            },
+            "light": {
+                "label": "Kirkas"
+            },
+            "system": {
+                "label": "Systeemi"
+            }
+        }
+    }
+}

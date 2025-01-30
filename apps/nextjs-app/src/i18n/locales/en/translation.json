@@ -1,0 +1,145 @@
+{
+    "auth": {
+        "signIn": {
+            "form": {
+                "emailInput": {
+                    "label": "Email"
+                },
+                "forgotPasswordLinkText": "Forgot your password?",
+                "heading": "Sign in",
+                "or": "Or continue with",
+                "passwordInput": {
+                    "label": "Password"
+                },
+                "signUpLinkText": "Don't have an account? <1>Sign up</1>",
+                "subheading": "Sign in with your Google account",
+                "tosAndPrivacyPolicyLinkText": "By signing in, you agree to our <1>Terms of Service</1> and <3>Privacy Policy</3>."
+            },
+            "label": "Sign in"
+        },
+        "signOut": {
+            "label": "Sign out"
+        },
+        "signUp": {
+            "form": {
+                "emailInput": {
+                    "label": "Email"
+                },
+                "heading": "Sign up",
+                "or": "Or sign up with",
+                "passwordInput": {
+                    "label": "Password"
+                },
+                "subheading": "Sign up with your Google account",
+                "tosAndPrivacyPolicyLinkText": "By signing up, you agree to our <0>Terms of Service</0> and <1>Privacy Policy</1>."
+            },
+            "label": "Sign up"
+        }
+    },
+    "category": {
+        "untitled": "Untitled Category"
+    },
+    "copyButton": {
+        "label": "Copy",
+        "label_copied": "Copied!"
+    },
+    "date": "{{date, datetime}}",
+    "form": {
+        "field": {
+            "error": {
+                "required": "This field is required"
+            }
+        }
+    },
+    "goHome": "Go home",
+    "header": {
+        "search": {
+            "group": {
+                "navItems": {
+                    "heading": "Nav items"
+                }
+            },
+            "label": {
+                "long": "Search documentation...",
+                "short": "Search..."
+            },
+            "noResults": "No results found.",
+            "placeholder": "Type a command or search..."
+        }
+    },
+    "language": {
+        "ariaLabel": "Select language",
+        "label": "Language",
+        "option": {
+            "en": {
+                "label": "English"
+            },
+            "fi": {
+                "label": "Suomi"
+            },
+            "sv": {
+                "label": "Svenska"
+            }
+        }
+    },
+    "list": "{{items, list}}",
+    "notFound": "This page could not be found.",
+    "pagination": {
+        "pageRange": {
+            "_helpers": {
+                "collection": {
+                    "docs": "Docs",
+                    "docs_one": "Doc",
+                    "posts": "Posts",
+                    "posts_one": "Post"
+                }
+            },
+            "noResults": "Search produced no results.",
+            "showing": "Showing {{indexStart}} of {{totalDocs}} $t(pagination.pageRange._helpers.collection.{{collection}}, {\"count\": {{totalDocs}}})",
+            "showing_range": "Showing {{indexStart}} - {{indexEnd}} of {{totalDocs}} $t(pagination.pageRange._helpers.collection.{{collection}}, {\"count\": {{totalDocs}}})"
+        }
+    },
+    "post": {
+        "hero": {
+            "authors": {
+                "label": "Author"
+            },
+            "datePublished": {
+                "label": "Date Published"
+            }
+        }
+    },
+    "posts": {
+        "page": {
+            "heading": "Posts",
+            "metadata": {
+                "title": "Payload Website Template Posts",
+                "title_paginated": "Payload Website Template Posts Page {{pageNumber}}"
+            }
+        }
+    },
+    "search": {
+        "label": "Search",
+        "noResults": "No results found.",
+        "page": {
+            "metadata": {
+                "title": "Payload Website Template Search"
+            }
+        }
+    },
+    "theme": {
+        "ariaLabel": "Select a theme",
+        "label": "Theme",
+        "option": {
+            "dark": {
+                "label": "Dark"
+            },
+            "light": {
+                "label": "Light"
+            },
+            "system": {
+                "label": "System"
+            }
+        }
+    }
+}

@@ -57,10 +57,28 @@ const nextConfig = {
     },
 };
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+const withHeaders = (config: import("next").NextConfig) => ({
+    ...config,
+    headers: async () => [
+        ...((await config.headers?.()) ?? []),
+        {
+            source: "/:path*",
+            headers: [
+                {
+                    key: "Vary",
+                    value: "Accept-Language, Cookie, Sec-CH-Prefers-Color-Scheme",
+                },
+            ],
+        },
+    ],
+});
+
 const plugins = [
     // Add more Next.js plugins to this list if needed.
     withNx,
     withPayload,
+    withHeaders,
 ];
 
 module.exports = composePlugins(...plugins)(nextConfig);

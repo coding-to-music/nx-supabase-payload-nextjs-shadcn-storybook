@@ -7,6 +7,19 @@ import {initReactI18next} from "react-i18next/initReactI18next";
 
 import {cookieName, fallbackLng, getOptions} from "./options";
 
+export const language = async () => {
+    const cookies = await cookies_();
+    const headers = await headers_();
+    let lng;
+    if (cookies.has(cookieName))
+        lng = acceptLanguage.get(cookies.get(cookieName)!.value);
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (!lng) lng = acceptLanguage.get(headers.get("Accept-Language"));
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (!lng) lng = fallbackLng;
+    return lng;
+};
+
 const initI18next = async (
     lng: string,
     ns: string | readonly string[] | undefined,
@@ -46,17 +59,4 @@ export const translation = async <
         ),
         i18n: i18nextInstance,
     };
-};
-
-export const language = async () => {
-    const cookies = await cookies_();
-    const headers = await headers_();
-    let lng;
-    if (cookies.has(cookieName))
-        lng = acceptLanguage.get(cookies.get(cookieName)!.value);
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!lng) lng = acceptLanguage.get(headers.get("Accept-Language"));
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!lng) lng = fallbackLng;
-    return lng;
 };

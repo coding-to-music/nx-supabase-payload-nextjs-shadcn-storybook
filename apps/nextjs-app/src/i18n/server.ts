@@ -1,12 +1,16 @@
 import acceptLanguage from "accept-language";
-import {createInstance} from "i18next";
+import {type KeyPrefix, createInstance} from "i18next";
 import resourcesToBackend from "i18next-resources-to-backend";
 import {cookies as cookies_, headers as headers_} from "next/headers";
+import type {FallbackNs, UseTranslationOptions} from "react-i18next";
 import {initReactI18next} from "react-i18next/initReactI18next";
 
 import {cookieName, fallbackLng, getOptions} from "./options";
 
-const initI18next = async (lng: string, ns: string | readonly string[]) => {
+const initI18next = async (
+    lng: string,
+    ns: string | readonly string[] | undefined,
+) => {
     const i18nInstance = createInstance();
     await i18nInstance
         .use(initReactI18next)
@@ -21,11 +25,17 @@ const initI18next = async (lng: string, ns: string | readonly string[]) => {
     return i18nInstance;
 };
 
-export const useTranslation = async (
-    lng: string,
-    ns: string | readonly string[],
-    options: {keyPrefix?: string} = {},
+/**
+ * `useTranslation` but for server components.
+ */
+export const translation = async <
+    Ns extends string | readonly string[] | undefined = undefined,
+    KPrefix extends KeyPrefix<FallbackNs<Ns>> = undefined,
+>(
+    ns?: Ns,
+    options: UseTranslationOptions<KPrefix> = {},
 ) => {
+    const lng = await language();
     const i18nextInstance = await initI18next(lng, ns);
     return {
         t: i18nextInstance.getFixedT(

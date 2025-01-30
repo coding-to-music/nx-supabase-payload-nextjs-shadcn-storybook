@@ -25,6 +25,10 @@ void i18next
         lng: undefined, // let detect the language on client side
         detection: {
             order: ["htmlTag", "cookie", "navigator"],
+            lookupCookie: cookieName,
+            caches: ["cookie"],
+            cookieMinutes: 43_200, // 30 days
+            cookieOptions: {path: "/"},
         },
         preload: canUseDom ? [] : languages,
     });

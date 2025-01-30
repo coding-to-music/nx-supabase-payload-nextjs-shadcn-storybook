@@ -2,12 +2,13 @@ import acceptLanguage from "accept-language";
 import {type KeyPrefix, createInstance} from "i18next";
 import resourcesToBackend from "i18next-resources-to-backend";
 import {cookies as cookies_, headers as headers_} from "next/headers";
+import React from "react";
 import type {FallbackNs, UseTranslationOptions} from "react-i18next";
 import {initReactI18next} from "react-i18next/initReactI18next";
 
 import {cookieName, fallbackLng, getOptions} from "./options";
 
-export const language = async () => {
+export const language = React.cache(async () => {
     const cookies = await cookies_();
     const headers = await headers_();
     let lng;
@@ -18,25 +19,24 @@ export const language = async () => {
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!lng) lng = fallbackLng;
     return lng;
-};
+});
 
-const initI18next = async (
-    lng: string,
-    ns: string | readonly string[] | undefined,
-) => {
-    const i18nInstance = createInstance();
-    await i18nInstance
-        .use(initReactI18next)
-        .use(
-            resourcesToBackend(
-                // eslint-disable-next-line @typescript-eslint/promise-function-async
-                (language: string, namespace: string) =>
-                    import(`./locales/${language}/${namespace}.json`),
-            ),
-        )
-        .init(getOptions(lng, ns));
-    return i18nInstance;
-};
+const initI18next = React.cache(
+    async (lng: string, ns: string | readonly string[] | undefined) => {
+        const i18nInstance = createInstance();
+        await i18nInstance
+            .use(initReactI18next)
+            .use(
+                resourcesToBackend(
+                    // eslint-disable-next-line @typescript-eslint/promise-function-async
+                    (language: string, namespace: string) =>
+                        import(`./locales/${language}/${namespace}.json`),
+                ),
+            )
+            .init(getOptions(lng, ns));
+        return i18nInstance;
+    },
+);
 
 /**
  * `useTranslation` but for server components.

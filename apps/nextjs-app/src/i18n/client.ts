@@ -5,7 +5,6 @@ import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import resourcesToBackend from "i18next-resources-to-backend";
 import React from "react";
-import {useCookies} from "react-cookie";
 import {initReactI18next, useTranslation} from "react-i18next";
 
 import {cookieName, getOptions, languages} from "./options";
@@ -68,19 +67,5 @@ export const InitI18nClient = ({lng}: {lng: string}) => {
         });
         void i18n.changeLanguage(lng);
     }, [lng, i18n]);
-    const [cookies, setCookie] = useCookies([cookieName]);
-    const cookie: unknown = cookies[cookieName];
-    React.useEffect(() => {
-        console.log("InitI18nClient useEffect 3", {canUseDom});
-        if (cookie === lng) {
-            return;
-        }
-        console.log(`InitI18nClient setting cookie "${cookieName}"`, {
-            canUseDom,
-            cookie,
-            lng,
-        });
-        setCookie(cookieName, lng, {path: "/"});
-    }, [lng, cookie, setCookie]);
     return null;
 };

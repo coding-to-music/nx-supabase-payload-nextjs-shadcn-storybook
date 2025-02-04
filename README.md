@@ -1,3 +1,31 @@
+# nx-supabase-payload-nextjs-shadcn-storybook
+
+# 🚀 Nx Supabase Payload CMS Next.js shadcn/ui Storybook monorepo deno 🚀
+
+https://github.com/coding-to-music/nx-supabase-payload-nextjs-shadcn-storybook
+
+From / By https://github.com/DanielGiljam/nx-supabase-payload-nextjs-shadcn-storybook-monorepo
+
+https://nx-supabase-payload-nextjs-shadcn-storybook-monorepo.vercel.app/
+
+## GitHub
+
+```java
+git init
+git add .
+git remote remove origin
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:coding-to-music/nx-supabase-payload-nextjs-shadcn-storybook.git
+git push -u origin main
+```
+
+## Environment variables:
+
+```java
+
+```
+
 # Nx Supabase Payload CMS Next.js shadcn/ui Storybook monorepo
 
 A template monorepo for a stack with

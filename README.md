@@ -55,6 +55,38 @@ A template monorepo for a stack with
 - [shadcn/ui](https://ui.shadcn.com/)
 - [Storybook](https://storybook.js.org/)
 
+## install deno
+
+```
+npm install -g deno
+```
+
+Verify
+
+```java
+deno --version
+```
+
+Output
+
+```java
+deno 2.1.9 (stable, release, x86_64-unknown-linux-gnu)
+v8 13.0.245.12-rusty
+typescript 5.6.2
+```
+
+To update a previously installed version of Deno, you can run:
+
+```java
+deno upgrade
+```
+
+You can also use this utility to install a specific version of Deno:
+
+```java
+deno upgrade --version 1.0.1
+```
+
 ## Local development
 
 Ensure you have Node.js v20.9 or newer installed and [Corepack enabled](https://nodejs.org/api/corepack.html#enabling-the-feature) + Docker installed.
